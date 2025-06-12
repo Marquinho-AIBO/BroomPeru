@@ -25,7 +25,7 @@ export class LoginComponent {
       if (response && response.success) {
         this.message = 'Login exitoso. Redirigiendo...';
         localStorage.setItem('user', JSON.stringify(response.user));
-        this.AppRouter.navigate(['/menu']);
+        this.AppRouter.navigate(['/menu/consultar-cargas']);
       } else {
         this.message = response?.message || 'Error en la respuesta del servidor.';
       }

@@ -3,8 +3,8 @@ import { LoginComponent } from './login/login.component';
 
 import { authGuard } from './guards/auth.guard';  // <== IMPORTAR EL GUARD
 import { LayoutComponent } from './layout.component';
-import { IngresarCargasComponent } from './cargas/ingresar-cargas.component';
-import { ConsultarCargasComponent } from './cargas/consultar-cargas.component';
+import { IngresarCargasComponent } from './cargas/Ingresar/ingresar-cargas.component';
+import { ConsultarCargasComponent } from './cargas/Consultar/consultar-cargas.component';
 
 export const appRoutes: Routes = [
   { path: '', component: LoginComponent },
