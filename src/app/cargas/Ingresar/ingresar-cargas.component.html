@@ -1,5 +1,8 @@
-<<h2>Ingresar Carga</h2>
-
+<h2>Ingresar Carga</h2>
+<button (click)="abrirModal()">+ Nuevo Registro</button>
+<div class="modal-backdrop" *ngIf="mostrarModal">
+  <div class="modal">
+    <h3>Nuevo Registro</h3>
 <form (ngSubmit)="guardarRegistro()">
   <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
 
@@ -52,10 +55,10 @@
   <button type="submit">
     {{ modoEdicion ? 'Modificar' : 'Guardar' }}
   </button>
-  
-  <button type="button" (click)="limpiarFormulario()">Limpiar</button>
+ 
 </form>
-
+</div>
+</div>
 <hr>
 
 <h2>Registros cargados</h2>
@@ -105,11 +108,11 @@
         <th>FECHA_HORA_TRANSMISION</th>
         <th>COMENTARIOS</th>
         <th>RUT</th>
-        <th>creado_en</th>
+        <!--th>creado_en</th>-->
       </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let reg of registros" (click)="cargarEnFormulario(reg)" style="cursor: pointer;">
+        <tr *ngFor="let reg of registros" style="cursor: pointer;">
 
         <td>{{ reg.carga_id }}</td>
         <td>{{ reg.usuario_id }}</td>
@@ -153,7 +156,7 @@
         <td>{{ reg.FECHA_HORA_TRANSMISION }}</td>
         <td>{{ reg.COMENTARIOS }}</td>
         <td>{{ reg.RUT }}</td>
-        <td>{{ reg.creado_en }}</td>
+     <!--   <td>{{ reg.creado_en }}</td>-->
       </tr>
     </tbody>
   </table>

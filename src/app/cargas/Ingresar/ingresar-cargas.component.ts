@@ -62,40 +62,29 @@ export class IngresarCargasComponent implements OnInit {
   };
 
   registros: any[] = [];
-
-  constructor(private http: HttpClient) {}
+  mostrarModal: boolean | undefined;
+  userProfile: string = '';
+  constructor(private http: HttpClient) {
+    const user = localStorage.getItem('user');
+    console.log(localStorage);
+    if (user) {
+      const userObj = JSON.parse(user);
+      this.userProfile = userObj.rol;  
+      } 
+}
 
   ngOnInit(): void {
     this.cargarRegistros();
   }
 
   guardarRegistro() {
-    if (this.modoEdicion) {
-      // 🚀 MODO MODIFICAR (UPDATE)
-      const bodyUpdate = {
-        ...this.carga,
-        HBL_HAWB: this.HBL_HAWB_original  // importante! usamos el original
-      };
-  
-      this.http.post<any>(`${this.apiUrl}?action=update`, bodyUpdate).subscribe(response => {
-        if (response.success) {
-          alert('Registro modificado correctamente!');
-          this.limpiarFormulario();
-          this.cargarRegistros();
-        } else {
-          alert('Error al modificar: ' + response.message);
-        }
-      }, error => {
-        console.error('Error:', error);
-        alert('Error en la comunicación con el servidor.');
-      });
-  
-    } else {
+    
       // 🚀 MODO GUARDAR (INSERT)
       this.http.post<any>(`${this.apiUrl}?action=insert`, this.carga).subscribe(response => {
         if (response.success) {
           alert('Registro guardado correctamente!');
           this.limpiarFormulario();
+          this.cerrarModal();     
           this.cargarRegistros();
         } else {
           alert('Error al guardar: ' + response.message);
@@ -104,10 +93,9 @@ export class IngresarCargasComponent implements OnInit {
         console.error('Error:', error);
         alert('Error en la comunicación con el servidor.');
       });
-    }
+    
   }
   
-
   cargarRegistros() {
     this.http.get<any>(`${this.apiUrl}?action=list`).subscribe(response => {
       if (response.success) {
@@ -174,5 +162,12 @@ export class IngresarCargasComponent implements OnInit {
     };
     this.modoEdicion = false;
     this.HBL_HAWB_original = '';
+  }
+  abrirModal() {
+    this.mostrarModal = true;
+  }
+  
+  cerrarModal() {
+    this.mostrarModal = false;
   }
 }
