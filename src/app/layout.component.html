@@ -8,11 +8,11 @@
       <h3>Menú</h3>
       <span class="profile">({{ userProfile }})</span>
       <ul>
-        <li *ngIf="userProfile === 'Administrador' || userProfile === 'Operador'">
-          <a routerLink="ingresar-cargas" routerLinkActive="active">Ingresar Cargas</a>
-        </li>
         <li *ngIf="userProfile === 'Administrador' || userProfile === 'Operador' || userProfile === 'Aduana' || userProfile === 'Usuario'">
           <a routerLink="consultar-cargas" routerLinkActive="active">Consultar Cargas</a>
+        </li>
+        <li *ngIf="userProfile === 'Administrador' || userProfile === 'Operador'">
+          <a routerLink="ingresar-cargas" routerLinkActive="active">Ingresar Cargas</a>
         </li>
       </ul>
 
