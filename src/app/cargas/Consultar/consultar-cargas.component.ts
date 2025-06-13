@@ -66,6 +66,7 @@
     modoEdicion: boolean | undefined;
     mostrarModal: boolean | undefined;
     userProfile: any;
+    userRut: any;
     constructor(private http: HttpClient) {
       const user = localStorage.getItem('user');
       console.log(localStorage);
@@ -76,6 +77,12 @@
     }
 
     ngOnInit(): void {
+      const user = localStorage.getItem('user');
+  if (user) {
+    const userObj = JSON.parse(user);
+    this.userProfile = userObj.rol;
+    this.userRut = userObj.rut; // por si necesitas usar el rut también
+  }
       this.definirColumnasPorPerfil();
       this.cargarRegistros();
     }
@@ -106,20 +113,22 @@ definirColumnasPorPerfil() {
 
   const aduanero = { ...todas };
 
-  if (perfil === 'administrador') this.columnasVisibles = todas;
-  else if (perfil === 'aduanero') this.columnasVisibles = aduanero;
-  else if (perfil === 'empresas') this.columnasVisibles = empresas;
+  if (perfil === 'Administrador') this.columnasVisibles = todas;
+  else if (perfil === 'Aduanero') this.columnasVisibles = aduanero;
+  else if (perfil === 'Empresas') this.columnasVisibles = empresas;
 }
     cargarRegistros() {
       this.http.get<any>(`${this.apiUrl}?action=list`).subscribe(response => {
+        console.log(this.userProfile);
         if (response.success) {
-          if (this.userProfile === 'empresas') {
+          if (this.userProfile === 'Empresas') {
             const user = JSON.parse(localStorage.getItem('user')!);
             const rutUsuario = user.rut;
     
             // Mostrar solo registros que coinciden con su RUT
             this.registros = response.data.filter((reg: any) => reg.RUT === rutUsuario);
           } else {
+            console.log("else")
             this.registros = response.data;
           }
         } else {
@@ -128,11 +137,15 @@ definirColumnasPorPerfil() {
       });
     }
     cargarEnFormulario(reg: any) {
+      console.log("entro");
+      if (this.userProfile !== 'Administrador') return;
+    console.log("entro 2")
       this.carga = { ...reg };
       this.HBL_HAWB_original = reg.HBL_HAWB;
       this.modoEdicion = true;
-      this.mostrarModal = true; // ✅ Mostrar modal
+      this.mostrarModal = true;
     }
+    
     cerrarModal() {
       this.mostrarModal = false;
     }
