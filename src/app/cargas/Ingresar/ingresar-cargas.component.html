@@ -1,6 +1,7 @@
 <h2>Ingresar Carga</h2>
 <button class="btn-solid add" (click)="abrirModal()"><span>Nuevo Registro</span><span class="material-symbols-outlined">add</span></button>
 <div class="modal-backdrop" *ngIf="mostrarModal">
+  <button class="cerrar-modal" (click)="cerrarModal()">×</button>
   <div class="modal">
     <h3>Nuevo Registro</h3>
 <form (ngSubmit)="guardarRegistro()">
