@@ -1,70 +1,71 @@
 <h2>Lista Registros Existente</h2>
 <h2>Registros cargados</h2>
-
-<div class="modal-backdrop" *ngIf="mostrarModal">
-  <div class="modal">
-    <h3>Editar Registro</h3>
-    <form (ngSubmit)="guardarRegistro()">
-        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
-      
-          <!-- Campos generales -->
-      
-          <div><label>MES:</label> <input type="text" [(ngModel)]="carga.MES" name="MES"></div>
-          <div><label>COM:</label> <input type="text" [(ngModel)]="carga.COM" name="COM"></div>
-          <div><label>REF_OP:</label> <input type="text" [(ngModel)]="carga.REF_OP" name="REF_OP"></div>
-          <div><label>COD_SAP_HIJO:</label> <input type="text" [(ngModel)]="carga.COD_SAP_HIJO" name="COD_SAP_HIJO"></div>
-          <div><label>STATUS:</label> <input type="text" [(ngModel)]="carga.STATUS" name="STATUS"></div>
-          <div><label>TIPO:</label> <input type="text" [(ngModel)]="carga.TIPO" name="TIPO"></div>
-          <div><label>SERVICIO:</label> <input type="text" [(ngModel)]="carga.SERVICIO" name="SERVICIO"></div>
-          <div><label>UTILIDAD:</label> <input type="text" [(ngModel)]="carga.UTILIDAD" name="UTILIDAD"></div>
-          <div><label>AGENTE:</label> <input type="text" [(ngModel)]="carga.AGENTE" name="AGENTE"></div>
-          <div><label>SHIPPER:</label> <input type="text" [(ngModel)]="carga.SHIPPER" name="SHIPPER"></div>
-          <div><label>CONSIGNEE:</label> <input type="text" [(ngModel)]="carga.CONSIGNEE" name="CONSIGNEE"></div>
-          <div><label>BOOKING:</label> <input type="text" [(ngModel)]="carga.BOOKING" name="BOOKING"></div>
-          <div><label>MBL_MAWB:</label> <input type="text" [(ngModel)]="carga.MBL_MAWB" name="MBL_MAWB"></div>
-          <div><label>HBL_HAWB:</label> <input type="text" [(ngModel)]="carga.HBL_HAWB" name="HBL_HAWB"></div>
-          <div><label>ETD:</label> <input type="date" [(ngModel)]="carga.ETD" name="ETD"></div>
-          <div><label>NAVIERA_COLOADER:</label> <input type="text" [(ngModel)]="carga.NAVIERA_COLOADER" name="NAVIERA_COLOADER"></div>
-          <div><label>WEEK:</label> <input type="text" [(ngModel)]="carga.WEEK" name="WEEK"></div>
-          <div><label>ETA:</label> <input type="date" [(ngModel)]="carga.ETA" name="ETA"></div>
-          <div><label>COND:</label> <input type="text" [(ngModel)]="carga.COND" name="COND"></div>
-          <div><label>NUMERO_CONTS:</label> <input type="number" [(ngModel)]="carga.NUMERO_CONTS" name="NUMERO_CONTS"></div>
-          <div><label>CANT:</label> <input type="number" [(ngModel)]="carga.CANT" name="CANT" step="0.01"></div>
-          <div><label>SIZE:</label> <input type="text" [(ngModel)]="carga.SIZE" name="SIZE"></div>
-          <div><label>TYPE:</label> <input type="text" [(ngModel)]="carga.TYPE" name="TYPE"></div>
-          <div><label>KILOS:</label> <input type="number" [(ngModel)]="carga.KILOS" name="KILOS" step="0.01"></div>
-          <div><label>VESSEL:</label> <input type="text" [(ngModel)]="carga.VESSEL" name="VESSEL"></div>
-          <div><label>VIAJE:</label> <input type="text" [(ngModel)]="carga.VIAJE" name="VIAJE"></div>
-          <div><label>PORT_LOADING:</label> <input type="text" [(ngModel)]="carga.PORT_LOADING" name="PORT_LOADING"></div>
-          <div><label>PORT_DISCHARGE:</label> <input type="text" [(ngModel)]="carga.PORT_DISCHARGE" name="PORT_DISCHARGE"></div>
-          <div><label>PUERTO_ATRAQUE:</label> <input type="text" [(ngModel)]="carga.PUERTO_ATRAQUE" name="PUERTO_ATRAQUE"></div>
-          <div><label>DT:</label> <input type="text" [(ngModel)]="carga.DT" name="DT"></div>
-          <div><label>DIAS_SE:</label> <input type="text" [(ngModel)]="carga.DIAS_SE" name="DIAS_SE"></div>
-          <div><label>ADUANA_MANIF:</label> <input type="text" [(ngModel)]="carga.ADUANA_MANIF" name="ADUANA_MANIF"></div>
-          <div><label>NRO_MANIFIESTO:</label> <input type="text" [(ngModel)]="carga.NRO_MANIFIESTO" name="NRO_MANIFIESTO"></div>
-          <div><label>AGENTE_ADUANA:</label> <input type="text" [(ngModel)]="carga.AGENTE_ADUANA" name="AGENTE_ADUANA"></div>
-          <div><label>DAM:</label> <input type="text" [(ngModel)]="carga.DAM" name="DAM"></div>
-          <div><label>FECHA_REGULARIZADA:</label> <input type="date" [(ngModel)]="carga.FECHA_REGULARIZADA" name="FECHA_REGULARIZADA"></div>
-          <div><label>NRO_TICKET:</label> <input type="text" [(ngModel)]="carga.NRO_TICKET" name="NRO_TICKET"></div>
-          <div><label>FECHA_HORA_TRANSMISION:</label> <input type="datetime-local" [(ngModel)]="carga.FECHA_HORA_TRANSMISION" name="FECHA_HORA_TRANSMISION"></div>
-          <div><label>COMENTARIOS:</label> <textarea [(ngModel)]="carga.COMENTARIOS" name="COMENTARIOS"></textarea></div>
-          <div><label>RUT:</label> <input type="text" [(ngModel)]="carga.RUT" name="RUT"></div>
-      
-        </div>
-      
-        <br>
-        <button type="submit">
-          {{ modoEdicion ? 'Modificar' : 'Guardar' }}
-        </button>
-      <button type="button" (click)="cerrarModal()">Cerrar</button>
-    </form>
+<ng-container *ngIf="userProfile === 'Administrador'">
+  <div class="modal-backdrop" *ngIf="mostrarModal">
+    <button class="cerrar-modal" (click)="cerrarModal()">×</button>
+    <div class="modal">
+      <h3>Editar Registro</h3>
+      <form (ngSubmit)="guardarRegistro()">
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
+        
+            <!-- Campos generales -->
+        
+            <div><label>MES:</label> <input type="text" [(ngModel)]="carga.MES" name="MES"></div>
+            <div><label>COM:</label> <input type="text" [(ngModel)]="carga.COM" name="COM"></div>
+            <div><label>REF_OP:</label> <input type="text" [(ngModel)]="carga.REF_OP" name="REF_OP"></div>
+            <div><label>COD_SAP_HIJO:</label> <input type="text" [(ngModel)]="carga.COD_SAP_HIJO" name="COD_SAP_HIJO"></div>
+            <div><label>STATUS:</label> <input type="text" [(ngModel)]="carga.STATUS" name="STATUS"></div>
+            <div><label>TIPO:</label> <input type="text" [(ngModel)]="carga.TIPO" name="TIPO"></div>
+            <div><label>SERVICIO:</label> <input type="text" [(ngModel)]="carga.SERVICIO" name="SERVICIO"></div>
+            <div><label>UTILIDAD:</label> <input type="text" [(ngModel)]="carga.UTILIDAD" name="UTILIDAD"></div>
+            <div><label>AGENTE:</label> <input type="text" [(ngModel)]="carga.AGENTE" name="AGENTE"></div>
+            <div><label>SHIPPER:</label> <input type="text" [(ngModel)]="carga.SHIPPER" name="SHIPPER"></div>
+            <div><label>CONSIGNEE:</label> <input type="text" [(ngModel)]="carga.CONSIGNEE" name="CONSIGNEE"></div>
+            <div><label>BOOKING:</label> <input type="text" [(ngModel)]="carga.BOOKING" name="BOOKING"></div>
+            <div><label>MBL_MAWB:</label> <input type="text" [(ngModel)]="carga.MBL_MAWB" name="MBL_MAWB"></div>
+            <div><label>HBL_HAWB:</label> <input type="text" [(ngModel)]="carga.HBL_HAWB" name="HBL_HAWB"></div>
+            <div><label>ETD:</label> <input type="date" [(ngModel)]="carga.ETD" name="ETD"></div>
+            <div><label>NAVIERA_COLOADER:</label> <input type="text" [(ngModel)]="carga.NAVIERA_COLOADER" name="NAVIERA_COLOADER"></div>
+            <div><label>WEEK:</label> <input type="text" [(ngModel)]="carga.WEEK" name="WEEK"></div>
+            <div><label>ETA:</label> <input type="date" [(ngModel)]="carga.ETA" name="ETA"></div>
+            <div><label>COND:</label> <input type="text" [(ngModel)]="carga.COND" name="COND"></div>
+            <div><label>NUMERO_CONTS:</label> <input type="number" [(ngModel)]="carga.NUMERO_CONTS" name="NUMERO_CONTS"></div>
+            <div><label>CANT:</label> <input type="number" [(ngModel)]="carga.CANT" name="CANT" step="0.01"></div>
+            <div><label>SIZE:</label> <input type="text" [(ngModel)]="carga.SIZE" name="SIZE"></div>
+            <div><label>TYPE:</label> <input type="text" [(ngModel)]="carga.TYPE" name="TYPE"></div>
+            <div><label>KILOS:</label> <input type="number" [(ngModel)]="carga.KILOS" name="KILOS" step="0.01"></div>
+            <div><label>VESSEL:</label> <input type="text" [(ngModel)]="carga.VESSEL" name="VESSEL"></div>
+            <div><label>VIAJE:</label> <input type="text" [(ngModel)]="carga.VIAJE" name="VIAJE"></div>
+            <div><label>PORT_LOADING:</label> <input type="text" [(ngModel)]="carga.PORT_LOADING" name="PORT_LOADING"></div>
+            <div><label>PORT_DISCHARGE:</label> <input type="text" [(ngModel)]="carga.PORT_DISCHARGE" name="PORT_DISCHARGE"></div>
+            <div><label>PUERTO_ATRAQUE:</label> <input type="text" [(ngModel)]="carga.PUERTO_ATRAQUE" name="PUERTO_ATRAQUE"></div>
+            <div><label>DT:</label> <input type="text" [(ngModel)]="carga.DT" name="DT"></div>
+            <div><label>DIAS_SE:</label> <input type="text" [(ngModel)]="carga.DIAS_SE" name="DIAS_SE"></div>
+            <div><label>ADUANA_MANIF:</label> <input type="text" [(ngModel)]="carga.ADUANA_MANIF" name="ADUANA_MANIF"></div>
+            <div><label>NRO_MANIFIESTO:</label> <input type="text" [(ngModel)]="carga.NRO_MANIFIESTO" name="NRO_MANIFIESTO"></div>
+            <div><label>AGENTE_ADUANA:</label> <input type="text" [(ngModel)]="carga.AGENTE_ADUANA" name="AGENTE_ADUANA"></div>
+            <div><label>DAM:</label> <input type="text" [(ngModel)]="carga.DAM" name="DAM"></div>
+            <div><label>FECHA_REGULARIZADA:</label> <input type="date" [(ngModel)]="carga.FECHA_REGULARIZADA" name="FECHA_REGULARIZADA"></div>
+            <div><label>NRO_TICKET:</label> <input type="text" [(ngModel)]="carga.NRO_TICKET" name="NRO_TICKET"></div>
+            <div><label>FECHA_HORA_TRANSMISION:</label> <input type="datetime-local" [(ngModel)]="carga.FECHA_HORA_TRANSMISION" name="FECHA_HORA_TRANSMISION"></div>
+            <div><label>COMENTARIOS:</label> <textarea [(ngModel)]="carga.COMENTARIOS" name="COMENTARIOS"></textarea></div>
+            <div><label>RUT:</label> <input type="text" [(ngModel)]="carga.RUT" name="RUT"></div>
+        
+          </div>
+        
+          <br>
+          <button type="submit">
+            {{ modoEdicion ? 'Modificar' : 'Guardar' }}
+          </button>
+        <button type="button" (click)="cerrarModal()">Cerrar</button>
+      </form>
+    </div>
   </div>
-</div>
-
+</ng-container>
 <table border="1" width="100%">
   <thead>
     <tr>
-      <th *ngIf="columnasVisibles['CARGA_ID']">carga_id</th>
+    <th *ngIf="columnasVisibles['CARGA_ID']">carga_id</th>
     <th *ngIf="columnasVisibles['USUARIO_ID']">usuario_id</th>
     <th *ngIf="columnasVisibles['MES']">MES</th>
     <th *ngIf="columnasVisibles['COM']">COM</th>
@@ -156,4 +157,4 @@
       <td *ngIf="columnasVisibles['RUT']">{{ reg.RUT }}</td>
       <td *ngIf="columnasVisibles['CREADO_EN']">{{ reg.creado_en }}</td>
       </tr>
-  </table>
+</table>
