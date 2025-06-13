@@ -76,7 +76,7 @@
         } 
     }
 
-    ngOnInit(): void {
+ngOnInit(): void {
       const user = localStorage.getItem('user');
   if (user) {
     const userObj = JSON.parse(user);
@@ -85,7 +85,7 @@
   }
       this.definirColumnasPorPerfil();
       this.cargarRegistros();
-    }
+}
 definirColumnasPorPerfil() {
   const perfil = this.userProfile;
 

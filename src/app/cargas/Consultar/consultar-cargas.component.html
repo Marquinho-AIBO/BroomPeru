@@ -2,6 +2,7 @@
 <h2>Registros cargados</h2>
 <ng-container *ngIf="userProfile === 'Administrador'">
   <div class="modal-backdrop" *ngIf="mostrarModal">
+    <button class="cerrar-modal" (click)="cerrarModal()">×</button>
     <div class="modal">
       <h3>Editar Registro</h3>
       <form (ngSubmit)="guardarRegistro()">
@@ -61,9 +62,6 @@
     </div>
   </div>
 </ng-container>
-
-
-
 <table border="1" width="100%">
   <thead>
     <tr>
