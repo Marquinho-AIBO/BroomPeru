@@ -1,1 +1,224 @@
-/* You can add global styles to this file, and also import other style files */
+$bp-greyblue: #3b4b57;
+$bp-blue: #2D57A3;
+$bp-red: #ee1c24;
+$bp-orange: #f15822;
+$bp-green: #55b948; 
+$bp-green-h: #239C13;
+$bp-light-blue: #26b1cb;
+$white:#ffffff;
+$black:#000000;
+$bp-txt: #474747;
+
+$bp-greyblue-80: #626F78;
+$bp-grey-50: #CCCCCC; 
+
+a, button{
+    cursor: pointer;
+}
+*{
+    transition: all .3s ease;
+    box-sizing: border-box;
+}
+ul{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+body{
+    padding: 0;
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+    font-optical-sizing: auto;
+    color: $bp-txt;
+    line-height: 1.2;
+}
+
+.btn-solid{
+    width: fit-content;
+    padding: 8px 32px;
+    display: flex;
+    align-items: center;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    gap: 4px;
+    .material-symbols-outlined{
+        font-size: 16px;
+    }
+}
+.primary{
+    background-color: $bp-greyblue;
+    color: $white;
+    &:hover{
+        background-color: $bp-blue;
+    }
+}
+.add{
+    background-color: $bp-green;
+    color: $white;
+    &:hover{
+        background-color: $bp-green-h;
+    }
+}
+.ghost{
+    background-color: transparent;
+    border: 1px solid $white;
+    color: white;
+    &:hover{
+        background-color: $bp-blue;
+        border: 1px solid $bp-blue;
+    }
+}
+.login-container {
+    width: 500px;
+    max-width: calc(100% - 32px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    background-color: $white;
+    padding: 32px 64px;
+    border-radius: 20px;
+    
+}
+body:has(.login-container){
+    background-image: url(assets/img/bg-login.jpg);
+    background-position: center;
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.form-group{
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    width: 100%;
+    label{
+        font-weight: 500;
+    }
+    input[type=text], input[type=password], input[type=date], input[type=number], input[type=datetime-local]{
+        padding: 8px 8px;
+        border-radius: 5px;
+        border: 1px solid $bp-grey-50;
+        font-size: 14px;
+        font-family: inherit;
+        width: 100%;
+        &:focus-visible {
+            outline: 1px solid $bp-blue;
+        }
+    }
+}
+
+.header{
+    background-color: $bp-greyblue;
+    color: $white;
+    height: 50px;
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    gap: 32px;
+}
+.wrapper{
+    display: flex;
+    height: calc(100vh - 50px);
+    .sidebar{
+        color: $white;
+        width: 230px;
+        background-color: $bp-greyblue-80;
+        padding: 32px 16px;
+        nav{
+            h3{
+                padding: 0;
+                margin: 0 0 4px;
+            }
+            .profile{
+                font-size: 14px;
+            }
+            ul{
+                margin: 32px auto;
+                li{
+                    padding: 8px 0;
+                    a{
+                        color: $white;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.cont-table{
+    width: 100%;
+    overflow-x: scroll;
+}
+
+table{
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    white-space: nowrap;
+    thead{
+        background-color: $bp-greyblue-80;
+        color: $white;
+        tr{
+            border-bottom:1px solid #ccc;
+            th{
+                padding: 8px;
+            }
+        }
+    }
+    tbody{
+        tr{
+            border-bottom:1px solid #ddd;
+            td{
+                padding: 8px
+            }
+            &:nth-last-of-type(even){
+                background-color: #f7f7f7;
+            }
+            &:hover{
+                background-color: #DEE5FB;
+            }
+        }
+    }
+}
+
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+  }
+  
+  .modal {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 1200px;
+    max-height: 90vh;
+    overflow-y: auto;
+    .cont-form-nr{
+        display: grid; 
+        grid-template-columns: repeat(4, 1fr); 
+        gap: 16px;
+      .form-group{
+            label{
+                font-size: 14px;
+            }
+            input[type=text], input[type=date], input[type=number], input[type=datetime-local]{
+                padding: 4px;
+            }
+      }
+    }
+  }
+  

@@ -1,22 +1,27 @@
-<div style="display: flex; height: 100vh;">
-
+<div class="header">
+  <img class="logo" src="../assets/img/logo-blp-w.png" alt="">
+  <span>Sistema de Registro de Carga</span></div>
+<div class="wrapper">
   <!-- Menú lateral -->
-  <nav style="width: 200px; background: #f0f0f0; padding: 10px;">
-    <h3>Menú ({{ userProfile }})</h3>
-    <ul style="list-style: none; padding: 0;">
-      <li *ngIf="userProfile === 'Administrador' || userProfile === 'Operador'">
-        <a routerLink="ingresar-cargas" routerLinkActive="active">Ingresar Cargas</a>
-      </li>
-      <li *ngIf="userProfile === 'Administrador' || userProfile === 'Operador' || userProfile === 'Aduana' || userProfile === 'Usuario'">
-        <a routerLink="consultar-cargas" routerLinkActive="active">Consultar Cargas</a>
-      </li>
-    </ul>
+  <div class="sidebar">
+    <nav>
+      <h3>Menú</h3>
+      <span class="profile">({{ userProfile }})</span>
+      <ul>
+        <li *ngIf="userProfile === 'Administrador' || userProfile === 'Operador'">
+          <a routerLink="ingresar-cargas" routerLinkActive="active">Ingresar Cargas</a>
+        </li>
+        <li *ngIf="userProfile === 'Administrador' || userProfile === 'Operador' || userProfile === 'Aduana' || userProfile === 'Usuario'">
+          <a routerLink="consultar-cargas" routerLinkActive="active">Consultar Cargas</a>
+        </li>
+      </ul>
 
-    <button (click)="logout()">Logout</button>
-  </nav>
+      <button class="btn-solid ghost" (click)="logout()"><span>Logout</span><span class="material-symbols-outlined">logout</span></button>
+    </nav>
+  </div>
 
   <!-- Contenido principal -->
-  <div style="flex: 1; padding: 20px; overflow: auto;">
+  <div class="content" style="flex: 1; padding: 20px; overflow: auto;">
     <!-- 🚀 Aquí se carga el contenido de IngresarCargasComponent o ConsultarCargasComponent -->
     <router-outlet></router-outlet>
   </div>
