@@ -10,10 +10,13 @@ $black:#000000;
 $bp-txt: #474747;
 
 $bp-greyblue-80: #626F78;
-$bp-grey-50: #CCCCCC; 
+$bp-grey-80: #8b8b8b; 
+$bp-grey-50: #a1a1a1; 
+$bp-cyan: #00dceb;
 
 a, button{
     cursor: pointer;
+    text-decoration: none;
 }
 *{
     transition: all .3s ease;
@@ -60,6 +63,13 @@ body{
         background-color: $bp-green-h;
     }
 }
+.close{
+    background-color: $bp-grey-50;
+    color: $white;
+    &:hover{
+        background-color: $bp-grey-80;
+    }
+}
 .ghost{
     background-color: transparent;
     border: 1px solid $white;
@@ -68,6 +78,11 @@ body{
         background-color: $bp-blue;
         border: 1px solid $bp-blue;
     }
+}
+.actions{
+    margin: 16px auto;
+    display: flex;
+    gap: 16px;
 }
 .login-container {
     width: 500px;
@@ -143,6 +158,9 @@ body:has(.login-container){
                     padding: 8px 0;
                     a{
                         color: $white;
+                        &:hover{
+                            color: $bp-cyan;
+                        }
                     }
                 }
             }
@@ -211,14 +229,14 @@ table{
         display: grid; 
         grid-template-columns: repeat(4, 1fr); 
         gap: 16px;
-      .form-group{
+        .form-group{
             label{
                 font-size: 14px;
             }
             input[type=text], input[type=date], input[type=number], input[type=datetime-local]{
                 padding: 4px;
             }
-      }
+        }
     }
   }
   
