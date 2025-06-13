@@ -2,8 +2,8 @@
 <h2>Registros cargados</h2>
 <ng-container *ngIf="userProfile === 'Administrador'">
   <div class="modal-backdrop" *ngIf="mostrarModal">
-    <button class="cerrar-modal" (click)="cerrarModal()">×</button>
     <div class="modal">
+      <button class="cerrar-modal" (click)="cerrarModal()"><span class="material-symbols-outlined">close</span></button>
       <h3>Editar Registro</h3>
       <form (ngSubmit)="guardarRegistro()">
           <div class="cont-form-nr">

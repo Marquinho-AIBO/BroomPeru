@@ -49,6 +49,22 @@ body{
         font-size: 16px;
     }
 }
+.cerrar-modal{
+    float: right;
+    font-size: 20px;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $bp-grey-50;
+    color: $white;
+    border: none;
+    &:hover{
+        background-color: $bp-grey-80;
+    }
+}
 .primary{
     background-color: $bp-greyblue;
     color: $white;
