@@ -78,23 +78,26 @@ export class IngresarCargasComponent implements OnInit {
   }
 
   guardarRegistro() {
-    
-      // 🚀 MODO GUARDAR (INSERT)
-      this.http.post<any>(`${this.apiUrl}?action=insert`, this.carga).subscribe(response => {
-        if (response.success) {
-          alert('Registro guardado correctamente!');
-          this.limpiarFormulario();
-          this.cerrarModal();     
-          this.cargarRegistros();
-        } else {
-          alert('Error al guardar: ' + response.message);
-        }
-      }, error => {
-        console.error('Error:', error);
-        alert('Error en la comunicación con el servidor.');
-      });
-    
+    if (!this.carga.HBL_HAWB || this.carga.HBL_HAWB.trim() === '') {
+      alert('El campo HBL/HAWB no puede estar vacío.');
+      return;
+    }
+  
+    this.http.post<any>(`${this.apiUrl}?action=insert`, this.carga).subscribe(response => {
+      if (response.success) {
+        alert('Registro guardado correctamente!');
+        this.limpiarFormulario();
+        this.cerrarModal();     
+        this.cargarRegistros();
+      } else {
+        alert('Error al guardar: ' + response.message);
+      }
+    }, error => {
+      console.error('Error:', error);
+      alert('Error en la comunicación con el servidor.');
+    });
   }
+  
   
   cargarRegistros() {
     this.http.get<any>(`${this.apiUrl}?action=list`).subscribe(response => {
