@@ -69,6 +69,7 @@
   </div>
 </ng-container>
 <div class="cont-table">
+  <input type="text" [(ngModel)]="filtroTexto" placeholder="Buscar..." class="form-control mb-2" />
   <table>
     <thead>
       <tr>
@@ -119,7 +120,8 @@
     </thead>
     
     <tbody>
-      <tr *ngFor="let reg of registros" (click)="cargarEnFormulario(reg)" style="cursor: pointer;">
+
+      <tr *ngFor="let reg of registrosFiltradosPaginados()"  (click)="cargarEnFormulario(reg)" style="cursor: pointer;">
         <td *ngIf="columnasVisibles['CARGA_ID']">{{ reg.carga_id }}</td>
         <td *ngIf="columnasVisibles['USUARIO_ID']">{{ reg.usuario_id }}</td>
         <td *ngIf="columnasVisibles['MES']">{{ reg.MES }}</td>
@@ -165,4 +167,17 @@
         <td *ngIf="columnasVisibles['CREADO_EN']">{{ reg.creado_en }}</td>
         </tr>
   </table>
+  <nav aria-label="Page navigation">
+    <ul class="pagination">
+      <li class="page-item" [class.disabled]="paginaActual === 1">
+        <a class="page-link" (click)="paginaActual">Anterior</a>
+      </li>
+      <li class="page-item" *ngFor="let p of totalPaginas()" [class.active]="paginaActual === p">
+        <a class="page-link" (click)="paginaActual = p">{{ p }}</a>
+      </li>
+      <li class="page-item" [class.disabled]="paginaActual === totalPaginas().length">
+        <a class="page-link" (click)="paginaActual">Siguiente</a>
+      </li>
+    </ul>
+  </nav>
 </div>

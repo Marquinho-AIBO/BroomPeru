@@ -61,9 +61,20 @@ export class IngresarCargasComponent implements OnInit {
     RUT: ''
   };
 
-  registros: any[] = [];
+  
   mostrarModal: boolean | undefined;
   userProfile: string = '';
+  
+ 
+  
+  
+ 
+  registros: any[] = []; // aquí tu data cargada
+  filtroTexto: string = '';
+  paginaActual: number = 1;
+  registrosPorPagina: number = 5;
+  ordenColumna: string = '';
+  ordenAscendente: boolean = true;
   constructor(private http: HttpClient) {
     const user = localStorage.getItem('user');
     console.log(localStorage);
@@ -97,8 +108,6 @@ export class IngresarCargasComponent implements OnInit {
       alert('Error en la comunicación con el servidor.');
     });
   }
-  
-  
   cargarRegistros() {
     this.http.get<any>(`${this.apiUrl}?action=list`).subscribe(response => {
       if (response.success) {
@@ -117,7 +126,6 @@ export class IngresarCargasComponent implements OnInit {
     // Cambiamos el modo del botón
     this.modoEdicion = true;
   }
-  
   limpiarFormulario() {
     this.carga = {
       carga_id: 1,
@@ -169,8 +177,46 @@ export class IngresarCargasComponent implements OnInit {
   abrirModal() {
     this.mostrarModal = true;
   }
-  
   cerrarModal() {
     this.mostrarModal = false;
+  }
+  registrosFiltradosPaginados() {
+    let datos = [...this.registros];
+  
+    // Filtro
+    if (this.filtroTexto.trim()) {
+      const filtro = this.filtroTexto.toLowerCase();
+      datos = datos.filter(reg =>
+        Object.values(reg).some(val => val?.toString().toLowerCase().includes(filtro))
+      );
+    }
+  
+    // Orden
+    if (this.ordenColumna) {
+      datos.sort((a, b) => {
+        const aVal = a[this.ordenColumna];
+        const bVal = b[this.ordenColumna];
+        return this.ordenAscendente
+          ? aVal > bVal ? 1 : -1
+          : aVal < bVal ? 1 : -1;
+      });
+    }
+  
+    // Paginación
+    const inicio = (this.paginaActual - 1) * this.registrosPorPagina;
+    return datos.slice(inicio, inicio + this.registrosPorPagina);
+  }
+  
+  ordenarPor(columna: string) {
+    if (this.ordenColumna === columna) {
+      this.ordenAscendente = !this.ordenAscendente;
+    } else {
+      this.ordenColumna = columna;
+      this.ordenAscendente = true;
+    }
+  } 
+  totalPaginas(): number[] {
+    const total = Math.ceil(this.registros.length / this.registrosPorPagina);
+    return Array.from({ length: total }, (_, i) => i + 1);
   }
 }
