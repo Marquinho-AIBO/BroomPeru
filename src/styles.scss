@@ -255,4 +255,54 @@ table{
         }
     }
   }
-  
+.buscador{
+    margin: 0 8px 8px 8px;
+    padding: 8px;
+    border-radius:5px ;
+    float:right;
+    border: 1px solid $bp-grey-80;
+    width: calc(100% - 32px);
+    max-width: 350px;
+}
+.pagination{
+    margin: 16px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    li{
+        a{
+            display: flex;
+            align-items: center;
+            line-height: 1;
+        }
+        &.page-item {
+            .page-nav{
+                &:hover{
+                    color: $bp-greyblue-80;
+                }
+            }
+            .page-link{
+                width: 30px;
+                height: 30px;
+                border: 1px solid $bp-grey-50;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                line-height: 1;
+                border-radius: 5px;
+                &:hover{
+                    background-color: $bp-grey-50;
+                    color: $white;
+                    }
+                }
+            &.active{
+                .page-link{
+                    background-color: $bp-grey-50;
+                    color: $white;
+                }
+                    
+            }
+        }
+    }
+}

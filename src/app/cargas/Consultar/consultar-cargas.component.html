@@ -68,8 +68,8 @@
     </div>
   </div>
 </ng-container>
+<input type="text" [(ngModel)]="filtroTexto" placeholder="Buscar..." class="buscador form-control mb-2" />
 <div class="cont-table">
-  <input type="text" [(ngModel)]="filtroTexto" placeholder="Buscar..." class="form-control mb-2" />
   <table>
     <thead>
       <tr>
@@ -167,17 +167,23 @@
         <td *ngIf="columnasVisibles['CREADO_EN']">{{ reg.creado_en }}</td>
         </tr>
   </table>
-  <nav aria-label="Page navigation">
-    <ul class="pagination">
-      <li class="page-item" [class.disabled]="paginaActual === 1">
-        <a class="page-link" (click)="paginaActual">Anterior</a>
-      </li>
-      <li class="page-item" *ngFor="let p of totalPaginas()" [class.active]="paginaActual === p">
-        <a class="page-link" (click)="paginaActual = p">{{ p }}</a>
-      </li>
-      <li class="page-item" [class.disabled]="paginaActual === totalPaginas().length">
-        <a class="page-link" (click)="paginaActual">Siguiente</a>
-      </li>
-    </ul>
-  </nav>
 </div>
+<nav aria-label="Page navigation">
+  <ul class="pagination">
+    <li class="page-item" [class.disabled]="paginaActual === 1">
+      <a class="page-nav" (click)="paginaActual"><span _ngcontent-ng-c3937186131="" class="material-symbols-outlined">chevron_left</span><span>Anterior</span></a>
+    </li>
+    <li class="page-item" *ngFor="let p of totalPaginas()" [class.active]="paginaActual === p">
+      <a class="page-link" (click)="paginaActual = p">{{ p }}</a>
+    </li>
+    <li class="page-item" *ngFor="let p of totalPaginas()" [class.active]="paginaActual === p">
+      <a class="page-link" (click)="paginaActual = p">2</a>
+    </li>
+    <li class="page-item" *ngFor="let p of totalPaginas()" [class.active]="paginaActual === p">
+      <a class="page-link" (click)="paginaActual = p">3</a>
+    </li>
+    <li class="page-item" [class.disabled]="paginaActual === totalPaginas().length">
+      <a class="page-nav" (click)="paginaActual"><span>Siguiente</span><span _ngcontent-ng-c3937186131="" class="material-symbols-outlined">chevron_right</span></a>
+    </li>
+  </ul>
+</nav>
