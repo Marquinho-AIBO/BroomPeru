@@ -10,47 +10,50 @@
         
             <!-- Campos generales -->
         
-            <div class="form-group"><label>MES:</label> <input type="text" [(ngModel)]="carga.MES" name="MES"></div>
-            <div class="form-group"><label>COM:</label> <input type="text" [(ngModel)]="carga.COM" name="COM"></div>
-            <div class="form-group"><label>REF_OP:</label> <input type="text" [(ngModel)]="carga.REF_OP" name="REF_OP"></div>
-            <div class="form-group"><label>COD_SAP_HIJO:</label> <input type="text" [(ngModel)]="carga.COD_SAP_HIJO" name="COD_SAP_HIJO"></div>
-            <div class="form-group"><label>STATUS:</label> <input type="text" [(ngModel)]="carga.STATUS" name="STATUS"></div>
-            <div class="form-group"><label>TIPO:</label> <input type="text" [(ngModel)]="carga.TIPO" name="TIPO"></div>
-            <div class="form-group"><label>SERVICIO:</label> <input type="text" [(ngModel)]="carga.SERVICIO" name="SERVICIO"></div>
-            <div class="form-group"><label>UTILIDAD:</label> <input type="text" [(ngModel)]="carga.UTILIDAD" name="UTILIDAD"></div>
-            <div class="form-group"><label>AGENTE:</label> <input type="text" [(ngModel)]="carga.AGENTE" name="AGENTE"></div>
-            <div class="form-group"><label>SHIPPER:</label> <input type="text" [(ngModel)]="carga.SHIPPER" name="SHIPPER"></div>
-            <div class="form-group"><label>CONSIGNEE:</label> <input type="text" [(ngModel)]="carga.CONSIGNEE" name="CONSIGNEE"></div>
-            <div class="form-group"><label>BOOKING:</label> <input type="text" [(ngModel)]="carga.BOOKING" name="BOOKING"></div>
-            <div class="form-group"><label>MBL_MAWB:</label> <input type="text" [(ngModel)]="carga.MBL_MAWB" name="MBL_MAWB"></div>
-            <div class="form-group"><label>HBL_HAWB:</label> <input type="text" [(ngModel)]="carga.HBL_HAWB" name="HBL_HAWB"></div>
-            <div class="form-group"><label>ETD:</label> <input type="date" [(ngModel)]="carga.ETD" name="ETD"></div>
-            <div class="form-group"><label>NAVIERA_COLOADER:</label> <input type="text" [(ngModel)]="carga.NAVIERA_COLOADER" name="NAVIERA_COLOADER"></div>
-            <div class="form-group"><label>WEEK:</label> <input type="text" [(ngModel)]="carga.WEEK" name="WEEK"></div>
-            <div class="form-group"><label>ETA:</label> <input type="date" [(ngModel)]="carga.ETA" name="ETA"></div>
-            <div class="form-group"><label>COND:</label> <input type="text" [(ngModel)]="carga.COND" name="COND"></div>
-            <div class="form-group"><label>NUMERO_CONTS:</label> <input type="number" [(ngModel)]="carga.NUMERO_CONTS" name="NUMERO_CONTS"></div>
-            <div class="form-group"><label>CANT:</label> <input type="number" [(ngModel)]="carga.CANT" name="CANT" step="0.01"></div>
-            <div class="form-group"><label>SIZE:</label> <input type="text" [(ngModel)]="carga.SIZE" name="SIZE"></div>
-            <div class="form-group"><label>TYPE:</label> <input type="text" [(ngModel)]="carga.TYPE" name="TYPE"></div>
-            <div class="form-group"><label>KILOS:</label> <input type="number" [(ngModel)]="carga.KILOS" name="KILOS" step="0.01"></div>
-            <div class="form-group"><label>VESSEL:</label> <input type="text" [(ngModel)]="carga.VESSEL" name="VESSEL"></div>
-            <div class="form-group"><label>VIAJE:</label> <input type="text" [(ngModel)]="carga.VIAJE" name="VIAJE"></div>
-            <div class="form-group"><label>PORT_LOADING:</label> <input type="text" [(ngModel)]="carga.PORT_LOADING" name="PORT_LOADING"></div>
-            <div class="form-group"><label>PORT_DISCHARGE:</label> <input type="text" [(ngModel)]="carga.PORT_DISCHARGE" name="PORT_DISCHARGE"></div>
-            <div class="form-group"><label>PUERTO_ATRAQUE:</label> <input type="text" [(ngModel)]="carga.PUERTO_ATRAQUE" name="PUERTO_ATRAQUE"></div>
-            <div class="form-group"><label>DT:</label> <input type="text" [(ngModel)]="carga.DT" name="DT"></div>
-            <div class="form-group"><label>DIAS_SE:</label> <input type="text" [(ngModel)]="carga.DIAS_SE" name="DIAS_SE"></div>
-            <div class="form-group"><label>ADUANA_MANIF:</label> <input type="text" [(ngModel)]="carga.ADUANA_MANIF" name="ADUANA_MANIF"></div>
-            <div class="form-group"><label>NRO_MANIFIESTO:</label> <input type="text" [(ngModel)]="carga.NRO_MANIFIESTO" name="NRO_MANIFIESTO"></div>
-            <div class="form-group"><label>AGENTE_ADUANA:</label> <input type="text" [(ngModel)]="carga.AGENTE_ADUANA" name="AGENTE_ADUANA"></div>
-            <div class="form-group"><label>DAM:</label> <input type="text" [(ngModel)]="carga.DAM" name="DAM"></div>
-            <div class="form-group"><label>FECHA_REGULARIZADA:</label> <input type="date" [(ngModel)]="carga.FECHA_REGULARIZADA" name="FECHA_REGULARIZADA"></div>
-            <div class="form-group"><label>NRO_TICKET:</label> <input type="text" [(ngModel)]="carga.NRO_TICKET" name="NRO_TICKET"></div>
-            <div class="form-group"><label>FECHA_HORA_TRANSMISION:</label> <input type="datetime-local" [(ngModel)]="carga.FECHA_HORA_TRANSMISION" name="FECHA_HORA_TRANSMISION"></div>
-            <div class="form-group"><label>RUT:</label> <input type="text" [(ngModel)]="carga.RUT" name="RUT"></div>
-            <div class="form-group"><label>COMENTARIOS:</label> <textarea [(ngModel)]="carga.COMENTARIOS" name="COMENTARIOS"></textarea></div>
-        
+            <!-- Campos generales -->
+
+<div class="form-group"><label>MES:</label> <input type="text" [(ngModel)]="carga.MES" name="MES"></div>
+<div class="form-group"><label>COM:</label> <input type="text" [(ngModel)]="carga.COM" name="COM"></div>
+<div class="form-group"><label>NRO_OP:</label> <input type="text" [(ngModel)]="carga.NRO_OP" name="NRO_OP"></div>
+<div class="form-group"><label>COD_SAP:</label> <input type="text" [(ngModel)]="carga.COD_SAP" name="COD_SAP"></div>
+<div class="form-group"><label>STATUS:</label> <input type="text" [(ngModel)]="carga.STATUS" name="STATUS"></div>
+<div class="form-group"><label>TIPO:</label> <input type="text" [(ngModel)]="carga.TIPO" name="TIPO"></div>
+<div class="form-group"><label>SERVICIO:</label> <input type="text" [(ngModel)]="carga.SERVICIO" name="SERVICIO"></div>
+<div class="form-group"><label>UTILIDAD:</label> <input type="text" [(ngModel)]="carga.UTILIDAD" name="UTILIDAD"></div>
+<div class="form-group"><label>RUC:</label> <input type="text" [(ngModel)]="carga.RUC" name="RUC"></div>
+<div class="form-group"><label>AGENTE:</label> <input type="text" [(ngModel)]="carga.AGENTE" name="AGENTE"></div>
+<div class="form-group"><label>SHIPPER:</label> <input type="text" [(ngModel)]="carga.SHIPPER" name="SHIPPER"></div>
+<div class="form-group"><label>CONSIGNEE:</label> <input type="text" [(ngModel)]="carga.CONSIGNEE" name="CONSIGNEE"></div>
+<div class="form-group"><label>MBL_MAWB:</label> <input type="text" [(ngModel)]="carga.MBL_MAWB" name="MBL_MAWB"></div>
+<div class="form-group"><label>HBL_HAWB:</label> <input type="text" [(ngModel)]="carga.HBL_HAWB" name="HBL_HAWB"></div>
+<div class="form-group"><label>ATD:</label> <input type="date" [(ngModel)]="carga.ATD" name="ATD"></div>
+<div class="form-group"><label>PUERTO_TRANSBORDO:</label> <input type="text" [(ngModel)]="carga.PUERTO_TRANSBORDO" name="PUERTO_TRANSBORDO"></div>
+<div class="form-group"><label>FECHA_ARRIBO_TRANSBORDO:</label> <input type="date" [(ngModel)]="carga.FECHA_ARRIBO_TRANSBORDO" name="FECHA_ARRIBO_TRANSBORDO"></div>
+<div class="form-group"><label>FECHA_SALIDA_TRANSBORDO:</label> <input type="date" [(ngModel)]="carga.FECHA_SALIDA_TRANSBORDO" name="FECHA_SALIDA_TRANSBORDO"></div>
+<div class="form-group"><label>NAVIERA_COLOADER:</label> <input type="text" [(ngModel)]="carga.NAVIERA_COLOADER" name="NAVIERA_COLOADER"></div>
+<div class="form-group"><label>WEEK:</label> <input type="text" [(ngModel)]="carga.WEEK" name="WEEK"></div>
+<div class="form-group"><label>ATA:</label> <input type="date" [(ngModel)]="carga.ATA" name="ATA"></div>
+<div class="form-group"><label>COND:</label> <input type="text" [(ngModel)]="carga.COND" name="COND"></div>
+<div class="form-group"><label>NUMERO_CONTS:</label> <input type="number" [(ngModel)]="carga.NUMERO_CONTS" name="NUMERO_CONTS"></div>
+<div class="form-group"><label>CANT:</label> <input type="number" [(ngModel)]="carga.CANT" name="CANT" step="0.01"></div>
+<div class="form-group"><label>SIZE:</label> <input type="text" [(ngModel)]="carga.SIZE" name="SIZE"></div>
+<div class="form-group"><label>TYPE:</label> <input type="text" [(ngModel)]="carga.TYPE" name="TYPE"></div>
+<div class="form-group"><label>KILOS:</label> <input type="number" [(ngModel)]="carga.KILOS" name="KILOS" step="0.01"></div>
+<div class="form-group"><label>NAVE:</label> <input type="text" [(ngModel)]="carga.NAVE" name="NAVE"></div>
+<div class="form-group"><label>VIAJE:</label> <input type="text" [(ngModel)]="carga.VIAJE" name="VIAJE"></div>
+<div class="form-group"><label>PUERTO_DE_EMBARQUE:</label> <input type="text" [(ngModel)]="carga.PUERTO_DE_EMBARQUE" name="PUERTO_DE_EMBARQUE"></div>
+<div class="form-group"><label>PUERTO_DE_DESCARGA:</label> <input type="text" [(ngModel)]="carga.PUERTO_DE_DESCARGA" name="PUERTO_DE_DESCARGA"></div>
+<div class="form-group"><label>PUERTO_ATRAQUE:</label> <input type="text" [(ngModel)]="carga.PUERTO_ATRAQUE" name="PUERTO_ATRAQUE"></div>
+<div class="form-group"><label>DT:</label> <input type="text" [(ngModel)]="carga.DT" name="DT"></div>
+<div class="form-group"><label>ADUANA_MANIF:</label> <input type="text" [(ngModel)]="carga.ADUANA_MANIF" name="ADUANA_MANIF"></div>
+<div class="form-group"><label>NRO_MANIFIESTO:</label> <input type="text" [(ngModel)]="carga.NRO_MANIFIESTO" name="NRO_MANIFIESTO"></div>
+<div class="form-group"><label>DAM:</label> <input type="text" [(ngModel)]="carga.DAM" name="DAM"></div>
+<div class="form-group"><label>FECHA_REGULARIZADA:</label> <input type="date" [(ngModel)]="carga.FECHA_REGULARIZADA" name="FECHA_REGULARIZADA"></div>
+<div class="form-group"><label>NRO_TICKET:</label> <input type="text" [(ngModel)]="carga.NRO_TICKET" name="NRO_TICKET"></div>
+<div class="form-group"><label>FECHA_HORA_TRANSMISION:</label> <input type="datetime-local" [(ngModel)]="carga.FECHA_HORA_TRANSMISION" name="FECHA_HORA_TRANSMISION"></div>
+<div class="form-group"><label>RUT:</label> <input type="text" [(ngModel)]="carga.RUT" name="RUT"></div>
+<div class="form-group"><label>COMENTARIOS:</label> <textarea [(ngModel)]="carga.COMENTARIOS" name="COMENTARIOS"></textarea></div>
+
           </div>
         
           <div class="actions">
@@ -68,96 +71,105 @@
     </div>
   </div>
 </ng-container>
-<input type="text" [(ngModel)]="filtroTexto" placeholder="Buscar..." class="buscador form-control mb-2" />
 <div class="cont-table">
+  <input type="text" [(ngModel)]="filtroTexto" placeholder="Buscar..." class="form-control mb-2" />
+  <button class="btn-solid" (click)="exportarDatosFiltradosCSV()">
+    <span>Exportar Excel.CSV</span>
+    <span class="material-symbols-outlined">download</span>
+  </button>
   <table>
     <thead>
       <tr>
-      <th *ngIf="columnasVisibles['CARGA_ID']">carga_id</th>
-      <th *ngIf="columnasVisibles['USUARIO_ID']">usuario_id</th>
-      <th *ngIf="columnasVisibles['MES']">MES</th>
-      <th *ngIf="columnasVisibles['COM']">COM</th>
-      <th *ngIf="columnasVisibles['REF_OP']">REF_OP</th>
-      <th *ngIf="columnasVisibles['COD_SAP_HIJO']">COD_SAP_HIJO</th>
-      <th *ngIf="columnasVisibles['STATUS']">STATUS</th>
-      <th *ngIf="columnasVisibles['TIPO']">TIPO</th>
-      <th *ngIf="columnasVisibles['SERVICIO']">SERVICIO</th>
-      <th *ngIf="columnasVisibles['UTILIDAD']">UTILIDAD</th>
-      <th *ngIf="columnasVisibles['AGENTE']">AGENTE</th>
-      <th *ngIf="columnasVisibles['SHIPPER']">SHIPPER</th>
-      <th *ngIf="columnasVisibles['CONSIGNEE']">CONSIGNEE</th>
-      <th *ngIf="columnasVisibles['BOOKING']">BOOKING</th>
-      <th *ngIf="columnasVisibles['MBL_MAWB']">MBL_MAWB</th>
-      <th *ngIf="columnasVisibles['HBL_HAWB']">HBL_HAWB</th>
-      <th *ngIf="columnasVisibles['ETD']">ETD</th>
-      <th *ngIf="columnasVisibles['NAVIERA_COLOADER']">NAVIERA_COLOADER</th>
-      <th *ngIf="columnasVisibles['WEEK']">WEEK</th>
-      <th *ngIf="columnasVisibles['ETA']">ETA</th>
-      <th *ngIf="columnasVisibles['COND']">COND</th>
-      <th *ngIf="columnasVisibles['NUMERO_CONTS']">NUMERO_CONTS</th>
-      <th *ngIf="columnasVisibles['CANT']">CANT</th>
-      <th *ngIf="columnasVisibles['SIZE']">SIZE</th>
-      <th *ngIf="columnasVisibles['TYPE']">TYPE</th>
-      <th *ngIf="columnasVisibles['KILOS']">KILOS</th>
-      <th *ngIf="columnasVisibles['VESSEL']">VESSEL</th>
-      <th *ngIf="columnasVisibles['VIAJE']">VIAJE</th>
-      <th *ngIf="columnasVisibles['PORT_LOADING']">PORT_LOADING</th>
-      <th *ngIf="columnasVisibles['PORT_DISCHARGE']">PORT_DISCHARGE</th>
-      <th *ngIf="columnasVisibles['PUERTO_ATRAQUE']">PUERTO_ATRAQUE</th>
-      <th *ngIf="columnasVisibles['DT']">DT</th>
-      <th *ngIf="columnasVisibles['DIAS_SE']">DIAS_SE</th>
-      <th *ngIf="columnasVisibles['ADUANA_MANIF']">ADUANA_MANIF</th>
-      <th *ngIf="columnasVisibles['NRO_MANIFIESTO']">NRO_MANIFIESTO</th>
-      <th *ngIf="columnasVisibles['AGENTE_ADUANA']">AGENTE_ADUANA</th>
-      <th *ngIf="columnasVisibles['DAM']">DAM</th>
-      <th *ngIf="columnasVisibles['FECHA_REGULARIZADA']">FECHA_REGULARIZADA</th>
-      <th *ngIf="columnasVisibles['NRO_TICKET']">NRO_TICKET</th>
-      <th *ngIf="columnasVisibles['FECHA_HORA_TRANSMISION']">FECHA_HORA_TRANSMISION</th>
-      <th *ngIf="columnasVisibles['COMENTARIOS']">COMENTARIOS</th>
-      <th *ngIf="columnasVisibles['RUT']">RUT</th>
-      <th *ngIf="columnasVisibles['CREADO_EN']">creado_en</th>
+        <th *ngIf="columnasVisibles['CARGA_ID']">carga_id</th>
+        <th *ngIf="columnasVisibles['USUARIO_ID']">usuario_id</th>
+        <th *ngIf="columnasVisibles['MES']">MES</th>
+        <th *ngIf="columnasVisibles['COM']">COM</th>
+        <th *ngIf="columnasVisibles['NRO_OP']">NRO_OP</th>
+        <th *ngIf="columnasVisibles['COD_SAP']">COD_SAP</th>
+        <th *ngIf="columnasVisibles['STATUS']">STATUS</th>
+        <th *ngIf="columnasVisibles['TIPO']">TIPO</th>
+        <th *ngIf="columnasVisibles['SERVICIO']">SERVICIO</th>
+        <th *ngIf="columnasVisibles['UTILIDAD']">UTILIDAD</th>
+        <th *ngIf="columnasVisibles['RUC']">RUC</th>
+        <th *ngIf="columnasVisibles['AGENTE']">AGENTE</th>
+        <th *ngIf="columnasVisibles['SHIPPER']">SHIPPER</th>
+        <th *ngIf="columnasVisibles['CONSIGNEE']">CONSIGNEE</th>
+        <th *ngIf="columnasVisibles['MBL_MAWB']">MBL_MAWB</th>
+        <th *ngIf="columnasVisibles['HBL_HAWB']">HBL_HAWB</th>
+        <th *ngIf="columnasVisibles['ATD']">ATD</th>
+        <th *ngIf="columnasVisibles['PUERTO_TRANSBORDO']">PUERTO_TRANSBORDO</th>
+        <th *ngIf="columnasVisibles['FECHA_ARRIBO_TRANSBORDO']">ARRIBO TRANSBORDO</th>
+        <th *ngIf="columnasVisibles['FECHA_SALIDA_TRANSBORDO']">SALIDA TRANSBORDO</th>
+        <th *ngIf="columnasVisibles['NAVIERA_COLOADER']">NAVIERA / COLOADER</th>
+        <th *ngIf="columnasVisibles['WEEK']">WEEK</th>
+        <th *ngIf="columnasVisibles['ATA']">ATA</th>
+        <th *ngIf="columnasVisibles['COND']">COND</th>
+        <th *ngIf="columnasVisibles['NUMERO_CONTS']">N° CONTENEDORES</th>
+        <th *ngIf="columnasVisibles['CANT']">CANT</th>
+        <th *ngIf="columnasVisibles['SIZE']">SIZE</th>
+        <th *ngIf="columnasVisibles['TYPE']">TYPE</th>
+        <th *ngIf="columnasVisibles['KILOS']">KILOS</th>
+        <th *ngIf="columnasVisibles['NAVE']">NAVE</th>
+        <th *ngIf="columnasVisibles['VIAJE']">VIAJE</th>
+        <th *ngIf="columnasVisibles['PUERTO_DE_EMBARQUE']">PUERTO DE EMBARQUE</th>
+        <th *ngIf="columnasVisibles['PUERTO_DE_DESCARGA']">PUERTO DE DESCARGA</th>
+        <th *ngIf="columnasVisibles['PUERTO_ATRAQUE']">PUERTO DE ATRAQUE</th>
+        <th *ngIf="columnasVisibles['DT']">DT</th>
+        <th *ngIf="columnasVisibles['ADUANA_MANIF']">ADUANA MANIF.</th>
+        <th *ngIf="columnasVisibles['NRO_MANIFIESTO']">NRO. MANIFIESTO</th>
+        <th *ngIf="columnasVisibles['DAM']">DAM</th>
+        <th *ngIf="columnasVisibles['FECHA_REGULARIZADA']">F. REGULARIZADA</th>
+        <th *ngIf="columnasVisibles['NRO_TICKET']">NRO. TICKET</th>
+        <th *ngIf="columnasVisibles['FECHA_HORA_TRANSMISION']">F/H TRANSMISIÓN</th>
+        <th *ngIf="columnasVisibles['COMENTARIOS']">COMENTARIOS</th>
+        <th *ngIf="columnasVisibles['RUT']">RUT</th>
+        <th *ngIf="columnasVisibles['CREADO_EN']">CREADO EN</th>
       </tr>
     </thead>
     
+    
     <tbody>
 
-      <tr *ngFor="let reg of registrosFiltradosPaginados()"  (click)="cargarEnFormulario(reg)" style="cursor: pointer;">
+      <tr *ngFor="let reg of registrosFiltradosPaginados()" 
+    (click)="userProfile === 'Administrador' && cargarEnFormulario(reg)" 
+    [class.clickable]="userProfile === 'Administrador'">
         <td *ngIf="columnasVisibles['CARGA_ID']">{{ reg.carga_id }}</td>
         <td *ngIf="columnasVisibles['USUARIO_ID']">{{ reg.usuario_id }}</td>
         <td *ngIf="columnasVisibles['MES']">{{ reg.MES }}</td>
         <td *ngIf="columnasVisibles['COM']">{{ reg.COM }}</td>
-        <td *ngIf="columnasVisibles['REF_OP']">{{ reg.REF_OP }}</td>
-        <td *ngIf="columnasVisibles['COD_SAP_HIJO']">{{ reg.COD_SAP_HIJO }}</td>
+        <td *ngIf="columnasVisibles['NRO_OP']">{{ reg.NRO_OP }}</td>
+        <td *ngIf="columnasVisibles['COD_SAP']">{{ reg.COD_SAP }}</td>
         <td *ngIf="columnasVisibles['STATUS']">{{ reg.STATUS }}</td>
         <td *ngIf="columnasVisibles['TIPO']">{{ reg.TIPO }}</td>
         <td *ngIf="columnasVisibles['SERVICIO']">{{ reg.SERVICIO }}</td>
         <td *ngIf="columnasVisibles['UTILIDAD']">{{ reg.UTILIDAD }}</td>
+        <td *ngIf="columnasVisibles['RUC']">{{ reg.RUC }}</td>
         <td *ngIf="columnasVisibles['AGENTE']">{{ reg.AGENTE }}</td>
         <td *ngIf="columnasVisibles['SHIPPER']">{{ reg.SHIPPER }}</td>
         <td *ngIf="columnasVisibles['CONSIGNEE']">{{ reg.CONSIGNEE }}</td>
-        <td *ngIf="columnasVisibles['BOOKING']">{{ reg.BOOKING }}</td>
         <td *ngIf="columnasVisibles['MBL_MAWB']">{{ reg.MBL_MAWB }}</td>
         <td *ngIf="columnasVisibles['HBL_HAWB']">{{ reg.HBL_HAWB }}</td>
-        <td *ngIf="columnasVisibles['ETD']">{{ reg.ETD }}</td>
+        <td *ngIf="columnasVisibles['ATD']">{{ reg.ATD }}</td>
+        <td *ngIf="columnasVisibles['PUERTO_TRANSBORDO']">{{ reg.PUERTO_TRANSBORDO }}</td>
+        <td *ngIf="columnasVisibles['FECHA_ARRIBO_TRANSBORDO']">{{ reg.FECHA_ARRIBO_TRANSBORDO }}</td>
+        <td *ngIf="columnasVisibles['FECHA_SALIDA_TRANSBORDO']">{{ reg.FECHA_SALIDA_TRANSBORDO }}</td>
         <td *ngIf="columnasVisibles['NAVIERA_COLOADER']">{{ reg.NAVIERA_COLOADER }}</td>
         <td *ngIf="columnasVisibles['WEEK']">{{ reg.WEEK }}</td>
-        <td *ngIf="columnasVisibles['ETA']">{{ reg.ETA }}</td>
+        <td *ngIf="columnasVisibles['ATA']">{{ reg.ATA }}</td>
         <td *ngIf="columnasVisibles['COND']">{{ reg.COND }}</td>
         <td *ngIf="columnasVisibles['NUMERO_CONTS']">{{ reg.NUMERO_CONTS }}</td>
         <td *ngIf="columnasVisibles['CANT']">{{ reg.CANT }}</td>
         <td *ngIf="columnasVisibles['SIZE']">{{ reg.SIZE }}</td>
         <td *ngIf="columnasVisibles['TYPE']">{{ reg.TYPE }}</td>
         <td *ngIf="columnasVisibles['KILOS']">{{ reg.KILOS }}</td>
-        <td *ngIf="columnasVisibles['VESSEL']">{{ reg.VESSEL }}</td>
+        <td *ngIf="columnasVisibles['NAVE']">{{ reg.NAVE }}</td>
         <td *ngIf="columnasVisibles['VIAJE']">{{ reg.VIAJE }}</td>
-        <td *ngIf="columnasVisibles['PORT_LOADING']">{{ reg.PORT_LOADING }}</td>
-        <td *ngIf="columnasVisibles['PORT_DISCHARGE']">{{ reg.PORT_DISCHARGE }}</td>
+        <td *ngIf="columnasVisibles['PUERTO_DE_EMBARQUE']">{{ reg.PUERTO_DE_EMBARQUE }}</td>
+        <td *ngIf="columnasVisibles['PUERTO_DE_DESCARGA']">{{ reg.PUERTO_DE_DESCARGA }}</td>
         <td *ngIf="columnasVisibles['PUERTO_ATRAQUE']">{{ reg.PUERTO_ATRAQUE }}</td>
         <td *ngIf="columnasVisibles['DT']">{{ reg.DT }}</td>
-        <td *ngIf="columnasVisibles['DIAS_SE']">{{ reg.DIAS_SE }}</td>
         <td *ngIf="columnasVisibles['ADUANA_MANIF']">{{ reg.ADUANA_MANIF }}</td>
         <td *ngIf="columnasVisibles['NRO_MANIFIESTO']">{{ reg.NRO_MANIFIESTO }}</td>
-        <td *ngIf="columnasVisibles['AGENTE_ADUANA']">{{ reg.AGENTE_ADUANA }}</td>
         <td *ngIf="columnasVisibles['DAM']">{{ reg.DAM }}</td>
         <td *ngIf="columnasVisibles['FECHA_REGULARIZADA']">{{ reg.FECHA_REGULARIZADA }}</td>
         <td *ngIf="columnasVisibles['NRO_TICKET']">{{ reg.NRO_TICKET }}</td>
@@ -165,25 +177,19 @@
         <td *ngIf="columnasVisibles['COMENTARIOS']">{{ reg.COMENTARIOS }}</td>
         <td *ngIf="columnasVisibles['RUT']">{{ reg.RUT }}</td>
         <td *ngIf="columnasVisibles['CREADO_EN']">{{ reg.creado_en }}</td>
-        </tr>
+      </tr>
   </table>
+  <nav aria-label="Page navigation">
+    <ul class="pagination">
+      <li class="page-item" [class.disabled]="paginaActual === 1">
+        <a class="page-link" (click)="paginaActual">Anterior</a>
+      </li>
+      <li class="page-item" *ngFor="let p of totalPaginas()" [class.active]="paginaActual === p">
+        <a class="page-link" (click)="paginaActual = p">{{ p }}</a>
+      </li>
+      <li class="page-item" [class.disabled]="paginaActual === totalPaginas().length">
+        <a class="page-link" (click)="paginaActual">Siguiente</a>
+      </li>
+    </ul>
+  </nav>
 </div>
-<nav aria-label="Page navigation">
-  <ul class="pagination">
-    <li class="page-item" [class.disabled]="paginaActual === 1">
-      <a class="page-nav" (click)="paginaActual"><span _ngcontent-ng-c3937186131="" class="material-symbols-outlined">chevron_left</span><span>Anterior</span></a>
-    </li>
-    <li class="page-item" *ngFor="let p of totalPaginas()" [class.active]="paginaActual === p">
-      <a class="page-link" (click)="paginaActual = p">{{ p }}</a>
-    </li>
-    <li class="page-item" *ngFor="let p of totalPaginas()" [class.active]="paginaActual === p">
-      <a class="page-link" (click)="paginaActual = p">2</a>
-    </li>
-    <li class="page-item" *ngFor="let p of totalPaginas()" [class.active]="paginaActual === p">
-      <a class="page-link" (click)="paginaActual = p">3</a>
-    </li>
-    <li class="page-item" [class.disabled]="paginaActual === totalPaginas().length">
-      <a class="page-nav" (click)="paginaActual"><span>Siguiente</span><span _ngcontent-ng-c3937186131="" class="material-symbols-outlined">chevron_right</span></a>
-    </li>
-  </ul>
-</nav>

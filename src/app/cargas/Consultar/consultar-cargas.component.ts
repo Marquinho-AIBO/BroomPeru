@@ -70,7 +70,7 @@
     
   filtroTexto: string = '';
   paginaActual: number = 1;
-  registrosPorPagina: number = 5;
+  registrosPorPagina: number = 50;
   ordenColumna: string = '';
   ordenAscendente: boolean = true;
     constructor(private http: HttpClient) {
@@ -121,18 +121,21 @@ definirColumnasPorPerfil() {
 
   if (perfil === 'Administrador') this.columnasVisibles = todas;
   else if (perfil === 'Aduanero') this.columnasVisibles = aduanero;
-  else if (perfil === 'Empresas') this.columnasVisibles = empresas;
+  else if (perfil === 'Empresa') this.columnasVisibles = empresas;
 }
     cargarRegistros() {
       this.http.get<any>(`${this.apiUrl}?action=list`).subscribe(response => {
-        console.log(this.userProfile);
+        console.log("carga" +this.userProfile);
+
         if (response.success) {
-          if (this.userProfile === 'Empresas') {
+
+          if (this.userProfile === 'Empresa') {
+            console.log(localStorage.getItem('user'));
             const user = JSON.parse(localStorage.getItem('user')!);
             const rutUsuario = user.rut;
-    
+            console.log("usuario 1: " + user.nombre_usuario);
             // Mostrar solo registros que coinciden con su RUT
-            this.registros = response.data.filter((reg: any) => reg.RUT === rutUsuario);
+            this.registros = response.data.filter((reg: any) => reg.RUC  === user.nombre_usuario);
           } else {
             console.log("else")
             this.registros = response.data;
@@ -143,9 +146,7 @@ definirColumnasPorPerfil() {
       });
     }
     cargarEnFormulario(reg: any) {
-      console.log("entro");
       if (this.userProfile !== 'Administrador') return;
-    console.log("entro 2")
       this.carga = { ...reg };
       this.HBL_HAWB_original = reg.HBL_HAWB;
       this.modoEdicion = true;
@@ -218,4 +219,32 @@ definirColumnasPorPerfil() {
       const total = Math.ceil(this.registros.length / this.registrosPorPagina);
       return Array.from({ length: total }, (_, i) => i + 1);
     }
+    exportarDatosFiltradosCSV() {
+      const datos = this.registrosFiltradosPaginados();
+    
+      if (!datos.length) {
+        alert("No hay datos para exportar.");
+        return;
+      }
+    
+      const columnas = Object.keys(datos[0]);
+    
+      const csvContent = [
+        columnas.join(','), // Cabecera
+        ...datos.map(row => columnas.map(col => `"${(row[col] ?? '').toString().replace(/"/g, '""')}"`).join(','))
+      ].join('\n');
+    
+      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+    
+      const a = document.createElement('a');
+      a.href = url;
+      const ahora = new Date();
+      const timestamp = ahora.toISOString().replace(/[:.]/g, '-');
+      a.download = `registros_filtrados_${timestamp}.csv`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    }
+    
   }

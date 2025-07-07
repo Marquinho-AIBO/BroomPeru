@@ -1,166 +1,175 @@
 <h2>Ingresar Carga</h2>
-<button class="btn-solid add" (click)="abrirModal()"><span>Nuevo Registro</span><span class="material-symbols-outlined">add</span></button>
+<button class="btn-solid add" (click)="abrirModal()" *ngIf="puedeInsertar()">
+  <span>Nuevo Registro</span>
+  <span class="material-symbols-outlined">add</span>
+</button>
 <div class="modal-backdrop" *ngIf="mostrarModal">
   <div class="modal">
     <h3>Nuevo Registro</h3>
-<form (ngSubmit)="guardarRegistro()">
-  <div class="cont-form-nr">
-
-    <!-- Campos generales -->
-
-    <div class="form-group"><label>MES:</label> <input type="text" [(ngModel)]="carga.MES" name="MES"></div>
-    <div class="form-group"><label>COM:</label> <input type="text" [(ngModel)]="carga.COM" name="COM"></div>
-    <div class="form-group"><label>REF_OP:</label> <input type="text" [(ngModel)]="carga.REF_OP" name="REF_OP"></div>
-    <div class="form-group"><label>COD_SAP_HIJO:</label> <input type="text" [(ngModel)]="carga.COD_SAP_HIJO" name="COD_SAP_HIJO"></div>
-    <div class="form-group"><label>STATUS:</label> <input type="text" [(ngModel)]="carga.STATUS" name="STATUS"></div>
-    <div class="form-group"><label>TIPO:</label> <input type="text" [(ngModel)]="carga.TIPO" name="TIPO"></div>
-    <div class="form-group"><label>SERVICIO:</label> <input type="text" [(ngModel)]="carga.SERVICIO" name="SERVICIO"></div>
-    <div class="form-group"><label>UTILIDAD:</label> <input type="text" [(ngModel)]="carga.UTILIDAD" name="UTILIDAD"></div>
-    <div class="form-group"><label>AGENTE:</label> <input type="text" [(ngModel)]="carga.AGENTE" name="AGENTE"></div>
-    <div class="form-group"><label>SHIPPER:</label> <input type="text" [(ngModel)]="carga.SHIPPER" name="SHIPPER"></div>
-    <div class="form-group"><label>CONSIGNEE:</label> <input type="text" [(ngModel)]="carga.CONSIGNEE" name="CONSIGNEE"></div>
-    <div class="form-group"><label>BOOKING:</label> <input type="text" [(ngModel)]="carga.BOOKING" name="BOOKING"></div>
-    <div class="form-group"><label>MBL_MAWB:</label> <input type="text" [(ngModel)]="carga.MBL_MAWB" name="MBL_MAWB"></div>
-    <div class="form-group"><label>HBL_HAWB:</label> <input type="text" [(ngModel)]="carga.HBL_HAWB" name="HBL_HAWB"></div>
-    <div class="form-group"><label>ETD:</label> <input type="date" [(ngModel)]="carga.ETD" name="ETD"></div>
-    <div class="form-group"><label>NAVIERA_COLOADER:</label> <input type="text" [(ngModel)]="carga.NAVIERA_COLOADER" name="NAVIERA_COLOADER"></div>
-    <div class="form-group"><label>WEEK:</label> <input type="text" [(ngModel)]="carga.WEEK" name="WEEK"></div>
-    <div class="form-group"><label>ETA:</label> <input type="date" [(ngModel)]="carga.ETA" name="ETA"></div>
-    <div class="form-group"><label>COND:</label> <input type="text" [(ngModel)]="carga.COND" name="COND"></div>
-    <div class="form-group"><label>NUMERO_CONTS:</label> <input type="number" [(ngModel)]="carga.NUMERO_CONTS" name="NUMERO_CONTS"></div>
-    <div class="form-group"><label>CANT:</label> <input type="number" [(ngModel)]="carga.CANT" name="CANT" step="0.01"></div>
-    <div class="form-group"><label>SIZE:</label> <input type="text" [(ngModel)]="carga.SIZE" name="SIZE"></div>
-    <div class="form-group"><label>TYPE:</label> <input type="text" [(ngModel)]="carga.TYPE" name="TYPE"></div>
-    <div class="form-group"><label>KILOS:</label> <input type="number" [(ngModel)]="carga.KILOS" name="KILOS" step="0.01"></div>
-    <div class="form-group"><label>VESSEL:</label> <input type="text" [(ngModel)]="carga.VESSEL" name="VESSEL"></div>
-    <div class="form-group"><label>VIAJE:</label> <input type="text" [(ngModel)]="carga.VIAJE" name="VIAJE"></div>
-    <div class="form-group"><label>PORT_LOADING:</label> <input type="text" [(ngModel)]="carga.PORT_LOADING" name="PORT_LOADING"></div>
-    <div class="form-group"><label>PORT_DISCHARGE:</label> <input type="text" [(ngModel)]="carga.PORT_DISCHARGE" name="PORT_DISCHARGE"></div>
-    <div class="form-group"><label>PUERTO_ATRAQUE:</label> <input type="text" [(ngModel)]="carga.PUERTO_ATRAQUE" name="PUERTO_ATRAQUE"></div>
-    <div class="form-group"><label>DT:</label> <input type="text" [(ngModel)]="carga.DT" name="DT"></div>
-    <div class="form-group"><label>DIAS_SE:</label> <input type="text" [(ngModel)]="carga.DIAS_SE" name="DIAS_SE"></div>
-    <div class="form-group"><label>ADUANA_MANIF:</label> <input type="text" [(ngModel)]="carga.ADUANA_MANIF" name="ADUANA_MANIF"></div>
-    <div class="form-group"><label>NRO_MANIFIESTO:</label> <input type="text" [(ngModel)]="carga.NRO_MANIFIESTO" name="NRO_MANIFIESTO"></div>
-    <div class="form-group"><label>AGENTE_ADUANA:</label> <input type="text" [(ngModel)]="carga.AGENTE_ADUANA" name="AGENTE_ADUANA"></div>
-    <div class="form-group"><label>DAM:</label> <input type="text" [(ngModel)]="carga.DAM" name="DAM"></div>
-    <div class="form-group"><label>FECHA_REGULARIZADA:</label> <input type="date" [(ngModel)]="carga.FECHA_REGULARIZADA" name="FECHA_REGULARIZADA"></div>
-    <div class="form-group"><label>NRO_TICKET:</label> <input type="text" [(ngModel)]="carga.NRO_TICKET" name="NRO_TICKET"></div>
-    <div class="form-group"><label>FECHA_HORA_TRANSMISION:</label> <input type="datetime-local" [(ngModel)]="carga.FECHA_HORA_TRANSMISION" name="FECHA_HORA_TRANSMISION"></div>
-    <div class="form-group"><label>RUT:</label> <input type="text" [(ngModel)]="carga.RUT" name="RUT"></div>
-    <div class="form-group"><label>COMENTARIOS:</label> <textarea [(ngModel)]="carga.COMENTARIOS" name="COMENTARIOS"></textarea></div>
-
-  </div>
-
-  <br>
-  <button class="btn-solid add" type="submit">
-    <span>{{ modoEdicion ? 'Modificar' : 'Guardar' }}</span>
-    <span class="material-symbols-outlined">save</span>
-  </button>
- 
-</form>
+    <form (ngSubmit)="guardarRegistro()">
+      <div class="cont-form-nr">
+    
+        <!-- Campos actualizados -->
+        <div class="form-group"><label>MES:</label> <input type="text" [(ngModel)]="carga.MES" name="MES"></div>
+        <div class="form-group"><label>COM:</label> <input type="text" [(ngModel)]="carga.COM" name="COM"></div>
+        <div class="form-group"><label>NRO_OP:</label> <input type="text" [(ngModel)]="carga.NRO_OP" name="NRO_OP"></div>
+        <div class="form-group"><label>COD_SAP:</label> <input type="text" [(ngModel)]="carga.COD_SAP" name="COD_SAP"></div>
+        <div class="form-group"><label>STATUS:</label> <input type="text" [(ngModel)]="carga.STATUS" name="STATUS"></div>
+        <div class="form-group"><label>TIPO:</label> <input type="text" [(ngModel)]="carga.TIPO" name="TIPO"></div>
+        <div class="form-group"><label>SERVICIO:</label> <input type="text" [(ngModel)]="carga.SERVICIO" name="SERVICIO"></div>
+        <div class="form-group"><label>UTILIDAD:</label> <input type="text" [(ngModel)]="carga.UTILIDAD" name="UTILIDAD"></div>
+        <div class="form-group"><label>RUC:</label> <input type="text" [(ngModel)]="carga.RUC" name="RUC"></div>
+        <div class="form-group"><label>AGENTE:</label> <input type="text" [(ngModel)]="carga.AGENTE" name="AGENTE"></div>
+        <div class="form-group"><label>SHIPPER:</label> <input type="text" [(ngModel)]="carga.SHIPPER" name="SHIPPER"></div>
+        <div class="form-group"><label>CONSIGNEE:</label> <input type="text" [(ngModel)]="carga.CONSIGNEE" name="CONSIGNEE"></div>
+        <div class="form-group"><label>MBL_MAWB:</label> <input type="text" [(ngModel)]="carga.MBL_MAWB" name="MBL_MAWB"></div>
+        <div class="form-group"><label>HBL_HAWB:</label> <input type="text" [(ngModel)]="carga.HBL_HAWB" name="HBL_HAWB"></div>
+        <div class="form-group"><label>ATD:</label> <input type="date" [(ngModel)]="carga.ATD" name="ATD"></div>
+        <div class="form-group"><label>PUERTO_TRANSBORDO:</label> <input type="text" [(ngModel)]="carga.PUERTO_TRANSBORDO" name="PUERTO_TRANSBORDO"></div>
+        <div class="form-group"><label>FECHA_ARRIBO_TRANSBORDO:</label> <input type="date" [(ngModel)]="carga.FECHA_ARRIBO_TRANSBORDO" name="FECHA_ARRIBO_TRANSBORDO"></div>
+        <div class="form-group"><label>FECHA_SALIDA_TRANSBORDO:</label> <input type="date" [(ngModel)]="carga.FECHA_SALIDA_TRANSBORDO" name="FECHA_SALIDA_TRANSBORDO"></div>
+        <div class="form-group"><label>NAVIERA_COLOADER:</label> <input type="text" [(ngModel)]="carga.NAVIERA_COLOADER" name="NAVIERA_COLOADER"></div>
+        <div class="form-group"><label>WEEK:</label> <input type="text" [(ngModel)]="carga.WEEK" name="WEEK"></div>
+        <div class="form-group"><label>ATA:</label> <input type="date" [(ngModel)]="carga.ATA" name="ATA"></div>
+        <div class="form-group"><label>COND:</label> <input type="text" [(ngModel)]="carga.COND" name="COND"></div>
+        <div class="form-group"><label>NUMERO_CONTS:</label> <input type="number" [(ngModel)]="carga.NUMERO_CONTS" name="NUMERO_CONTS"></div>
+        <div class="form-group"><label>CANT:</label> <input type="number" [(ngModel)]="carga.CANT" name="CANT" step="0.01"></div>
+        <div class="form-group"><label>SIZE:</label> <input type="text" [(ngModel)]="carga.SIZE" name="SIZE"></div>
+        <div class="form-group"><label>TYPE:</label> <input type="text" [(ngModel)]="carga.TYPE" name="TYPE"></div>
+        <div class="form-group"><label>KILOS:</label> <input type="number" [(ngModel)]="carga.KILOS" name="KILOS" step="0.01"></div>
+        <div class="form-group"><label>NAVE:</label> <input type="text" [(ngModel)]="carga.NAVE" name="NAVE"></div>
+        <div class="form-group"><label>VIAJE:</label> <input type="text" [(ngModel)]="carga.VIAJE" name="VIAJE"></div>
+        <div class="form-group"><label>PUERTO_DE_EMBARQUE:</label> <input type="text" [(ngModel)]="carga.PUERTO_DE_EMBARQUE" name="PUERTO_DE_EMBARQUE"></div>
+        <div class="form-group"><label>PUERTO_DE_DESCARGA:</label> <input type="text" [(ngModel)]="carga.PUERTO_DE_DESCARGA" name="PUERTO_DE_DESCARGA"></div>
+        <div class="form-group"><label>PUERTO_ATRAQUE:</label> <input type="text" [(ngModel)]="carga.PUERTO_ATRAQUE" name="PUERTO_ATRAQUE"></div>
+        <div class="form-group"><label>DT:</label> <input type="text" [(ngModel)]="carga.DT" name="DT"></div>
+        <div class="form-group"><label>ADUANA_MANIF:</label> <input type="text" [(ngModel)]="carga.ADUANA_MANIF" name="ADUANA_MANIF"></div>
+        <div class="form-group"><label>NRO_MANIFIESTO:</label> <input type="text" [(ngModel)]="carga.NRO_MANIFIESTO" name="NRO_MANIFIESTO"></div>
+        <div class="form-group"><label>DAM:</label> <input type="text" [(ngModel)]="carga.DAM" name="DAM"></div>
+        <div class="form-group"><label>FECHA_REGULARIZADA:</label> <input type="date" [(ngModel)]="carga.FECHA_REGULARIZADA" name="FECHA_REGULARIZADA"></div>
+        <div class="form-group"><label>NRO_TICKET:</label> <input type="text" [(ngModel)]="carga.NRO_TICKET" name="NRO_TICKET"></div>
+        <div class="form-group"><label>FECHA_HORA_TRANSMISION:</label> <input type="datetime-local" [(ngModel)]="carga.FECHA_HORA_TRANSMISION" name="FECHA_HORA_TRANSMISION"></div>
+        <div class="form-group"><label>RUT:</label> <input type="text" [(ngModel)]="carga.RUT" name="RUT"></div>
+        <div class="form-group"><label>COMENTARIOS:</label> <textarea [(ngModel)]="carga.COMENTARIOS" name="COMENTARIOS"></textarea></div>
+    
+      </div>
+    
+      <br>
+      <button class="btn-solid add" type="submit">
+        <span>{{ modoEdicion ? 'Modificar' : 'Guardar' }}</span>
+        <span class="material-symbols-outlined">save</span>
+      </button>
+    </form>
+    
 </div>
 </div>
 <hr>
 
 <h2>Registros cargados</h2>
 <input type="text" [(ngModel)]="filtroTexto" placeholder="Buscar..." class="form-control mb-2" />
+<button class="btn-solid" (click)="exportarDatosFiltradosCSV()">
+  <span>Exportar Excel.CSV</span>
+  <span class="material-symbols-outlined">download</span>
+</button>
+
 <div class="cont-table">
   <table>
     <thead>
       <tr>
-        <th>carga_id</th>
-        <th>usuario_id</th>
+        <!--th>carga_id</th>
+        <th>usuario_id</th-->
         <th>MES</th>
         <th>COM</th>
-        <th>REF_OP</th>
-        <th>COD_SAP_HIJO</th>
+        <th>NRO_OP</th>
+        <th>COD_SAP</th>
         <th>STATUS</th>
         <th>TIPO</th>
         <th>SERVICIO</th>
         <th>UTILIDAD</th>
+        <th>RUC</th>
         <th>AGENTE</th>
         <th>SHIPPER</th>
         <th>CONSIGNEE</th>
-        <th>BOOKING</th>
         <th>MBL_MAWB</th>
         <th>HBL_HAWB</th>
-        <th>ETD</th>
+        <th>ATD</th>
+        <th>PUERTO_TRANSBORDO</th>
+        <th>FECHA_ARRIBO_TRANSBORDO</th>
+        <th>FECHA_SALIDA_TRANSBORDO</th>
         <th>NAVIERA_COLOADER</th>
         <th>WEEK</th>
-        <th>ETA</th>
+        <th>ATA</th>
         <th>COND</th>
         <th>NUMERO_CONTS</th>
         <th>CANT</th>
         <th>SIZE</th>
         <th>TYPE</th>
         <th>KILOS</th>
-        <th>VESSEL</th>
+        <th>NAVE</th>
         <th>VIAJE</th>
-        <th>PORT_LOADING</th>
-        <th>PORT_DISCHARGE</th>
+        <th>PUERTO_DE_EMBARQUE</th>
+        <th>PUERTO_DE_DESCARGA</th>
         <th>PUERTO_ATRAQUE</th>
         <th>DT</th>
-        <th>DIAS_SE</th>
         <th>ADUANA_MANIF</th>
         <th>NRO_MANIFIESTO</th>
-        <th>AGENTE_ADUANA</th>
         <th>DAM</th>
         <th>FECHA_REGULARIZADA</th>
         <th>NRO_TICKET</th>
         <th>FECHA_HORA_TRANSMISION</th>
         <th>COMENTARIOS</th>
         <th>RUT</th>
-        <!--th>creado_en</th>-->
       </tr>
     </thead>
+    
     <tbody>
       <tr *ngFor="let reg of registrosFiltradosPaginados()" style="cursor: pointer;">
-
-        <td>{{ reg.carga_id }}</td>
-        <td>{{ reg.usuario_id }}</td>
+        <!--td>{{ reg.carga_id }}</td>
+        <td>{{ reg.usuario_id }}</td-->
         <td>{{ reg.MES }}</td>
         <td>{{ reg.COM }}</td>
-        <td>{{ reg.REF_OP }}</td>
-        <td>{{ reg.COD_SAP_HIJO }}</td>
+        <td>{{ reg.NRO_OP }}</td>
+        <td>{{ reg.COD_SAP }}</td>
         <td>{{ reg.STATUS }}</td>
         <td>{{ reg.TIPO }}</td>
         <td>{{ reg.SERVICIO }}</td>
         <td>{{ reg.UTILIDAD }}</td>
+        <td>{{ reg.RUC }}</td>
         <td>{{ reg.AGENTE }}</td>
         <td>{{ reg.SHIPPER }}</td>
         <td>{{ reg.CONSIGNEE }}</td>
-        <td>{{ reg.BOOKING }}</td>
         <td>{{ reg.MBL_MAWB }}</td>
         <td>{{ reg.HBL_HAWB }}</td>
-        <td>{{ reg.ETD }}</td>
+        <td>{{ reg.ATD }}</td>
+        <td>{{ reg.PUERTO_TRANSBORDO }}</td>
+        <td>{{ reg.FECHA_ARRIBO_TRANSBORDO }}</td>
+        <td>{{ reg.FECHA_SALIDA_TRANSBORDO }}</td>
         <td>{{ reg.NAVIERA_COLOADER }}</td>
         <td>{{ reg.WEEK }}</td>
-        <td>{{ reg.ETA }}</td>
+        <td>{{ reg.ATA }}</td>
         <td>{{ reg.COND }}</td>
         <td>{{ reg.NUMERO_CONTS }}</td>
         <td>{{ reg.CANT }}</td>
         <td>{{ reg.SIZE }}</td>
         <td>{{ reg.TYPE }}</td>
         <td>{{ reg.KILOS }}</td>
-        <td>{{ reg.VESSEL }}</td>
+        <td>{{ reg.NAVE }}</td>
         <td>{{ reg.VIAJE }}</td>
-        <td>{{ reg.PORT_LOADING }}</td>
-        <td>{{ reg.PORT_DISCHARGE }}</td>
+        <td>{{ reg.PUERTO_DE_EMBARQUE }}</td>
+        <td>{{ reg.PUERTO_DE_DESCARGA }}</td>
         <td>{{ reg.PUERTO_ATRAQUE }}</td>
         <td>{{ reg.DT }}</td>
-        <td>{{ reg.DIAS_SE }}</td>
         <td>{{ reg.ADUANA_MANIF }}</td>
         <td>{{ reg.NRO_MANIFIESTO }}</td>
-        <td>{{ reg.AGENTE_ADUANA }}</td>
         <td>{{ reg.DAM }}</td>
         <td>{{ reg.FECHA_REGULARIZADA }}</td>
         <td>{{ reg.NRO_TICKET }}</td>
         <td>{{ reg.FECHA_HORA_TRANSMISION }}</td>
         <td>{{ reg.COMENTARIOS }}</td>
         <td>{{ reg.RUT }}</td>
-     <!--   <td>{{ reg.creado_en }}</td>-->
       </tr>
     </tbody>
+    
   </table>
   <nav aria-label="Page navigation">
     <ul class="pagination">
