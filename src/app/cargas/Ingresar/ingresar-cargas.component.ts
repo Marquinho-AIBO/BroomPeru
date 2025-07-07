@@ -13,7 +13,8 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 export class IngresarCargasComponent implements OnInit {
   modoEdicion: boolean = false;
   HBL_HAWB_original: string = '';
-  
+  mostrarModal: boolean | undefined;
+
   apiUrl = 'https://www.broomperu.com/BroomPeru/API/cargaRegistros.php';
 
   carga: any = {
@@ -21,38 +22,39 @@ export class IngresarCargasComponent implements OnInit {
     usuario_id: 1,
     MES: '',
     COM: '',
-    REF_OP: '',
-    COD_SAP_HIJO: '',
+    NRO_OP: '',
+    COD_SAP: '',
     STATUS: '',
     TIPO: '',
     SERVICIO: '',
     UTILIDAD: '',
+    RUC: '',
     AGENTE: '',
     SHIPPER: '',
     CONSIGNEE: '',
-    BOOKING: '',
     MBL_MAWB: '',
     HBL_HAWB: '',
-    ETD: '',
+    ATD: '',
+    PUERTO_TRANSBORDO: '',
+    FECHA_ARRIBO_TRANSBORDO: '',
+    FECHA_SALIDA_TRANSBORDO: '',
     NAVIERA_COLOADER: '',
     WEEK: '',
-    ETA: '',
+    ATA: '',
     COND: '',
     NUMERO_CONTS: 0,
     CANT: 0,
     SIZE: '',
     TYPE: '',
     KILOS: 0,
-    VESSEL: '',
+    NAVE: '',
     VIAJE: '',
-    PORT_LOADING: '',
-    PORT_DISCHARGE: '',
+    PUERTO_DE_EMBARQUE: '',
+    PUERTO_DE_DESCARGA: '',
     PUERTO_ATRAQUE: '',
     DT: '',
-    DIAS_SE: '',
     ADUANA_MANIF: '',
     NRO_MANIFIESTO: '',
-    AGENTE_ADUANA: '',
     DAM: '',
     FECHA_REGULARIZADA: '',
     NRO_TICKET: '',
@@ -61,28 +63,22 @@ export class IngresarCargasComponent implements OnInit {
     RUT: ''
   };
 
-  
-  mostrarModal: boolean | undefined;
   userProfile: string = '';
-  
- 
-  
-  
- 
-  registros: any[] = []; // aquí tu data cargada
+  registros: any[] = [];
+
   filtroTexto: string = '';
   paginaActual: number = 1;
-  registrosPorPagina: number = 5;
+  registrosPorPagina: number = 50;
   ordenColumna: string = '';
   ordenAscendente: boolean = true;
+
   constructor(private http: HttpClient) {
     const user = localStorage.getItem('user');
-    console.log(localStorage);
     if (user) {
       const userObj = JSON.parse(user);
-      this.userProfile = userObj.rol;  
-      } 
-}
+      this.userProfile = userObj.rol;
+    }
+  }
 
   ngOnInit(): void {
     this.cargarRegistros();
@@ -93,12 +89,12 @@ export class IngresarCargasComponent implements OnInit {
       alert('El campo HBL/HAWB no puede estar vacío.');
       return;
     }
-  
+
     this.http.post<any>(`${this.apiUrl}?action=insert`, this.carga).subscribe(response => {
       if (response.success) {
         alert('Registro guardado correctamente!');
         this.limpiarFormulario();
-        this.cerrarModal();     
+        this.cerrarModal();
         this.cargarRegistros();
       } else {
         alert('Error al guardar: ' + response.message);
@@ -108,6 +104,7 @@ export class IngresarCargasComponent implements OnInit {
       alert('Error en la comunicación con el servidor.');
     });
   }
+
   cargarRegistros() {
     this.http.get<any>(`${this.apiUrl}?action=list`).subscribe(response => {
       if (response.success) {
@@ -117,53 +114,52 @@ export class IngresarCargasComponent implements OnInit {
       }
     });
   }
+
   cargarEnFormulario(reg: any) {
-    this.carga = { ...reg };  // copiamos los datos al formulario
-  
-    // Guardamos el HBL_HAWB original (para saber qué registro estamos editando)
+    this.carga = { ...reg };
     this.HBL_HAWB_original = reg.HBL_HAWB;
-  
-    // Cambiamos el modo del botón
     this.modoEdicion = true;
   }
+
   limpiarFormulario() {
     this.carga = {
       carga_id: 1,
       usuario_id: 1,
       MES: '',
       COM: '',
-      REF_OP: '',
-      COD_SAP_HIJO: '',
+      NRO_OP: '',
+      COD_SAP: '',
       STATUS: '',
       TIPO: '',
       SERVICIO: '',
       UTILIDAD: '',
+      RUC: '',
       AGENTE: '',
       SHIPPER: '',
       CONSIGNEE: '',
-      BOOKING: '',
       MBL_MAWB: '',
       HBL_HAWB: '',
-      ETD: '',
+      ATD: '',
+      PUERTO_TRANSBORDO: '',
+      FECHA_ARRIBO_TRANSBORDO: '',
+      FECHA_SALIDA_TRANSBORDO: '',
       NAVIERA_COLOADER: '',
       WEEK: '',
-      ETA: '',
+      ATA: '',
       COND: '',
       NUMERO_CONTS: 0,
       CANT: 0,
       SIZE: '',
       TYPE: '',
       KILOS: 0,
-      VESSEL: '',
+      NAVE: '',
       VIAJE: '',
-      PORT_LOADING: '',
-      PORT_DISCHARGE: '',
+      PUERTO_DE_EMBARQUE: '',
+      PUERTO_DE_DESCARGA: '',
       PUERTO_ATRAQUE: '',
       DT: '',
-      DIAS_SE: '',
       ADUANA_MANIF: '',
       NRO_MANIFIESTO: '',
-      AGENTE_ADUANA: '',
       DAM: '',
       FECHA_REGULARIZADA: '',
       NRO_TICKET: '',
@@ -174,24 +170,27 @@ export class IngresarCargasComponent implements OnInit {
     this.modoEdicion = false;
     this.HBL_HAWB_original = '';
   }
+
   abrirModal() {
+    if (!this.puedeInsertar()) return;
     this.mostrarModal = true;
   }
+  
+
   cerrarModal() {
     this.mostrarModal = false;
   }
+
   registrosFiltradosPaginados() {
     let datos = [...this.registros];
-  
-    // Filtro
+
     if (this.filtroTexto.trim()) {
       const filtro = this.filtroTexto.toLowerCase();
       datos = datos.filter(reg =>
         Object.values(reg).some(val => val?.toString().toLowerCase().includes(filtro))
       );
     }
-  
-    // Orden
+
     if (this.ordenColumna) {
       datos.sort((a, b) => {
         const aVal = a[this.ordenColumna];
@@ -201,12 +200,11 @@ export class IngresarCargasComponent implements OnInit {
           : aVal < bVal ? 1 : -1;
       });
     }
-  
-    // Paginación
+
     const inicio = (this.paginaActual - 1) * this.registrosPorPagina;
     return datos.slice(inicio, inicio + this.registrosPorPagina);
   }
-  
+
   ordenarPor(columna: string) {
     if (this.ordenColumna === columna) {
       this.ordenAscendente = !this.ordenAscendente;
@@ -214,9 +212,15 @@ export class IngresarCargasComponent implements OnInit {
       this.ordenColumna = columna;
       this.ordenAscendente = true;
     }
-  } 
+  }
+
   totalPaginas(): number[] {
     const total = Math.ceil(this.registros.length / this.registrosPorPagina);
     return Array.from({ length: total }, (_, i) => i + 1);
   }
+  puedeInsertar(): boolean {
+    return this.userProfile === 'Administrador';
+  }
+  
+  
 }
