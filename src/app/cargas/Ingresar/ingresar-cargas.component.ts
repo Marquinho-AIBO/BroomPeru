@@ -221,6 +221,33 @@ export class IngresarCargasComponent implements OnInit {
   puedeInsertar(): boolean {
     return this.userProfile === 'Administrador';
   }
+  exportarDatosFiltradosCSV() {
+    const datos = this.registrosFiltradosPaginados();
+  
+    if (!datos.length) {
+      alert("No hay datos para exportar.");
+      return;
+    }
+  
+    const columnas = Object.keys(datos[0]);
+  
+    const csvContent = [
+      columnas.join(','), // Cabecera
+      ...datos.map(row => columnas.map(col => `"${(row[col] ?? '').toString().replace(/"/g, '""')}"`).join(','))
+    ].join('\n');
+  
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+  
+    const a = document.createElement('a');
+    a.href = url;
+    const ahora = new Date();
+    const timestamp = ahora.toISOString().replace(/[:.]/g, '-');
+    a.download = `registros_filtrados_${timestamp}.csv`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  }
   
   
 }

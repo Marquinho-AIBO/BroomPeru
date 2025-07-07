@@ -73,6 +73,10 @@
 </ng-container>
 <div class="cont-table">
   <input type="text" [(ngModel)]="filtroTexto" placeholder="Buscar..." class="form-control mb-2" />
+  <button class="btn-solid" (click)="exportarDatosFiltradosCSV()">
+    <span>Exportar Excel.CSV</span>
+    <span class="material-symbols-outlined">download</span>
+  </button>
   <table>
     <thead>
       <tr>
