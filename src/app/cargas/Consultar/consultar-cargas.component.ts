@@ -60,7 +60,50 @@
       COMENTARIOS: '',
       RUT: ''
     };
-
+    campos = [
+      { label: 'MES', key: 'MES' },
+      { label: 'COM', key: 'COM' },
+      { label: 'NRO_OP', key: 'NRO_OP' },
+      { label: 'COD_SAP', key: 'COD_SAP' },
+      { label: 'STATUS', key: 'STATUS' },
+      { label: 'TIPO', key: 'TIPO' },
+      { label: 'SERVICIO', key: 'SERVICIO' },
+      { label: 'UTILIDAD', key: 'UTILIDAD' },
+      { label: 'RUC', key: 'RUC' },
+      { label: 'AGENTE', key: 'AGENTE' },
+      { label: 'SHIPPER', key: 'SHIPPER' },
+      { label: 'CONSIGNEE', key: 'CONSIGNEE' },
+      { label: 'MBL_MAWB', key: 'MBL_MAWB' },
+      { label: 'HBL_HAWB', key: 'HBL_HAWB' },
+      { label: 'ATD', key: 'ATD' },
+      { label: 'PUERTO_TRANSBORDO', key: 'PUERTO_TRANSBORDO' },
+      { label: 'FECHA_ARRIBO_TRANSBORDO', key: 'FECHA_ARRIBO_TRANSBORDO' },
+      { label: 'FECHA_SALIDA_TRANSBORDO', key: 'FECHA_SALIDA_TRANSBORDO' },
+      { label: 'NAVIERA_COLOADER', key: 'NAVIERA_COLOADER' },
+      { label: 'WEEK', key: 'WEEK' },
+      { label: 'ATA', key: 'ATA' },
+      { label: 'COND', key: 'COND' },
+      { label: 'NUMERO_CONTS', key: 'NUMERO_CONTS' },
+      { label: 'CANT', key: 'CANT' },
+      { label: 'SIZE', key: 'SIZE' },
+      { label: 'TYPE', key: 'TYPE' },
+      { label: 'KILOS', key: 'KILOS' },
+      { label: 'NAVE', key: 'NAVE' },
+      { label: 'VIAJE', key: 'VIAJE' },
+      { label: 'PUERTO_DE_EMBARQUE', key: 'PUERTO_DE_EMBARQUE' },
+      { label: 'PUERTO_DE_DESCARGA', key: 'PUERTO_DE_DESCARGA' },
+      { label: 'PUERTO_ATRAQUE', key: 'PUERTO_ATRAQUE' },
+      { label: 'DT', key: 'DT' },
+      { label: 'ADUANA_MANIF', key: 'ADUANA_MANIF' },
+      { label: 'NRO_MANIFIESTO', key: 'NRO_MANIFIESTO' },
+      { label: 'DAM', key: 'DAM' },
+      { label: 'FECHA_REGULARIZADA', key: 'FECHA_REGULARIZADA' },
+      { label: 'NRO_TICKET', key: 'NRO_TICKET' },
+      { label: 'FECHA_HORA_TRANSMISION', key: 'FECHA_HORA_TRANSMISION' },
+      { label: 'RUT', key: 'RUT' },
+      { label: 'COMENTARIOS', key: 'COMENTARIOS' },
+    ];
+    
     registros: any[] = [];
     HBL_HAWB_original: any;
     modoEdicion: boolean | undefined;
@@ -91,6 +134,8 @@ ngOnInit(): void {
   }
       this.definirColumnasPorPerfil();
       this.cargarRegistros();
+      console.log("Perfil:", this.userProfile);
+
 }
 definirColumnasPorPerfil() {
   const perfil = this.userProfile;
@@ -145,13 +190,19 @@ definirColumnasPorPerfil() {
         }
       });
     }
-    cargarEnFormulario(reg: any) {
-      if (this.userProfile !== 'Administrador') return;
+    cargarEnFormulario(reg: any): void {
+      console.log("Abriendo modal para:", this.userProfile);
       this.carga = { ...reg };
-      this.HBL_HAWB_original = reg.HBL_HAWB;
-      this.modoEdicion = true;
+    
+      if (this.userProfile === 'Administrador') {
+        this.HBL_HAWB_original = reg.HBL_HAWB;
+        this.modoEdicion = true;
+      }
+    
       this.mostrarModal = true;
     }
+    
+    
     
     cerrarModal() {
       this.mostrarModal = false;
@@ -246,5 +297,6 @@ definirColumnasPorPerfil() {
       a.click();
       document.body.removeChild(a);
     }
+    
     
   }

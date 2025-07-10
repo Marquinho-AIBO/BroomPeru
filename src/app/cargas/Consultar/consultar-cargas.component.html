@@ -7,10 +7,6 @@
       <h3>Editar Registro</h3>
       <form (ngSubmit)="guardarRegistro()">
           <div class="cont-form-nr">
-        
-            <!-- Campos generales -->
-        
-            <!-- Campos generales -->
 
 <div class="form-group"><label>MES:</label> <input type="text" [(ngModel)]="carga.MES" name="MES"></div>
 <div class="form-group"><label>COM:</label> <input type="text" [(ngModel)]="carga.COM" name="COM"></div>
@@ -71,6 +67,66 @@
     </div>
   </div>
 </ng-container>
+<ng-container *ngIf="userProfile === 'Empresa'">
+  <div class="modal-backdrop" *ngIf="mostrarModal">
+    <div class="modal">
+      <button class="cerrar-modal" (click)="cerrarModal()">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+      <h3>Detalle de Registro</h3>
+      <div class="cont-form-nr">
+        <div class="form-group"><label>MES:</label> <span>{{ carga.MES }}</span></div>
+        <div class="form-group"><label>COM:</label> <span>{{ carga.COM }}</span></div>
+        <div class="form-group"><label>NRO_OP:</label> <span>{{ carga.NRO_OP }}</span></div>
+        <div class="form-group"><label>COD_SAP:</label> <span>{{ carga.COD_SAP }}</span></div>
+        <div class="form-group"><label>STATUS:</label> <span>{{ carga.STATUS }}</span></div>
+        <div class="form-group"><label>TIPO:</label> <span>{{ carga.TIPO }}</span></div>
+        <div class="form-group"><label>SERVICIO:</label> <span>{{ carga.SERVICIO }}</span></div>
+        <div class="form-group"><label>UTILIDAD:</label> <span>{{ carga.UTILIDAD }}</span></div>
+        <div class="form-group"><label>RUC:</label> <span>{{ carga.RUC }}</span></div>
+        <div class="form-group"><label>AGENTE:</label> <span>{{ carga.AGENTE }}</span></div>
+        <div class="form-group"><label>SHIPPER:</label> <span>{{ carga.SHIPPER }}</span></div>
+        <div class="form-group"><label>CONSIGNEE:</label> <span>{{ carga.CONSIGNEE }}</span></div>
+        <div class="form-group"><label>MBL_MAWB:</label> <span>{{ carga.MBL_MAWB }}</span></div>
+        <div class="form-group"><label>HBL_HAWB:</label> <span>{{ carga.HBL_HAWB }}</span></div>
+        <div class="form-group"><label>ATD:</label> <span>{{ carga.ATD }}</span></div>
+        <div class="form-group"><label>PUERTO_TRANSBORDO:</label> <span>{{ carga.PUERTO_TRANSBORDO }}</span></div>
+        <div class="form-group"><label>FECHA_ARRIBO_TRANSBORDO:</label> <span>{{ carga.FECHA_ARRIBO_TRANSBORDO }}</span></div>
+        <div class="form-group"><label>FECHA_SALIDA_TRANSBORDO:</label> <span>{{ carga.FECHA_SALIDA_TRANSBORDO }}</span></div>
+        <div class="form-group"><label>NAVIERA_COLOADER:</label> <span>{{ carga.NAVIERA_COLOADER }}</span></div>
+        <div class="form-group"><label>WEEK:</label> <span>{{ carga.WEEK }}</span></div>
+        <div class="form-group"><label>ATA:</label> <span>{{ carga.ATA }}</span></div>
+        <div class="form-group"><label>COND:</label> <span>{{ carga.COND }}</span></div>
+        <div class="form-group"><label>NUMERO_CONTS:</label> <span>{{ carga.NUMERO_CONTS }}</span></div>
+        <div class="form-group"><label>CANT:</label> <span>{{ carga.CANT }}</span></div>
+        <div class="form-group"><label>SIZE:</label> <span>{{ carga.SIZE }}</span></div>
+        <div class="form-group"><label>TYPE:</label> <span>{{ carga.TYPE }}</span></div>
+        <div class="form-group"><label>KILOS:</label> <span>{{ carga.KILOS }}</span></div>
+        <div class="form-group"><label>NAVE:</label> <span>{{ carga.NAVE }}</span></div>
+        <div class="form-group"><label>VIAJE:</label> <span>{{ carga.VIAJE }}</span></div>
+        <div class="form-group"><label>PUERTO_DE_EMBARQUE:</label> <span>{{ carga.PUERTO_DE_EMBARQUE }}</span></div>
+        <div class="form-group"><label>PUERTO_DE_DESCARGA:</label> <span>{{ carga.PUERTO_DE_DESCARGA }}</span></div>
+        <div class="form-group"><label>PUERTO_ATRAQUE:</label> <span>{{ carga.PUERTO_ATRAQUE }}</span></div>
+        <div class="form-group"><label>DT:</label> <span>{{ carga.DT }}</span></div>
+        <div class="form-group"><label>ADUANA_MANIF:</label> <span>{{ carga.ADUANA_MANIF }}</span></div>
+        <div class="form-group"><label>NRO_MANIFIESTO:</label> <span>{{ carga.NRO_MANIFIESTO }}</span></div>
+        <div class="form-group"><label>DAM:</label> <span>{{ carga.DAM }}</span></div>
+        <div class="form-group"><label>FECHA_REGULARIZADA:</label> <span>{{ carga.FECHA_REGULARIZADA }}</span></div>
+        <div class="form-group"><label>NRO_TICKET:</label> <span>{{ carga.NRO_TICKET }}</span></div>
+        <div class="form-group"><label>FECHA_HORA_TRANSMISION:</label> <span>{{ carga.FECHA_HORA_TRANSMISION }}</span></div>
+        <div class="form-group"><label>RUT:</label> <span>{{ carga.RUT }}</span></div>
+        <div class="form-group"><label>COMENTARIOS:</label> <span>{{ carga.COMENTARIOS }}</span></div>
+      </div>
+      <div class="actions">
+        <button class="btn-solid close" type="button" (click)="cerrarModal()">
+          <span>Cerrar</span>
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</ng-container>
+
 <div class="cont-table">
   <input type="text" [(ngModel)]="filtroTexto" placeholder="Buscar..." class="form-control mb-2" />
   <button class="btn-solid" (click)="exportarDatosFiltradosCSV()">
@@ -129,10 +185,10 @@
     
     
     <tbody>
-
       <tr *ngFor="let reg of registrosFiltradosPaginados()" 
-    (click)="userProfile === 'Administrador' && cargarEnFormulario(reg)" 
-    [class.clickable]="userProfile === 'Administrador'">
+      (click)="cargarEnFormulario(reg)" 
+      [class.clickable]="userProfile === 'Administrador' || userProfile === 'Empresa'">
+  
         <td *ngIf="columnasVisibles['CARGA_ID']">{{ reg.carga_id }}</td>
         <td *ngIf="columnasVisibles['USUARIO_ID']">{{ reg.usuario_id }}</td>
         <td *ngIf="columnasVisibles['MES']">{{ reg.MES }}</td>
@@ -182,13 +238,13 @@
   <nav aria-label="Page navigation">
     <ul class="pagination">
       <li class="page-item" [class.disabled]="paginaActual === 1">
-        <a class="page-link" (click)="paginaActual">Anterior</a>
-      </li>
-      <li class="page-item" *ngFor="let p of totalPaginas()" [class.active]="paginaActual === p">
+        <a class="page-link" (click)="paginaActual = paginaActual - 1" [class.disabled]="paginaActual === 1">Anterior</a>
+<li class="page-item" *ngFor="let p of totalPaginas()" [class.active]="paginaActual === p">
         <a class="page-link" (click)="paginaActual = p">{{ p }}</a>
       </li>
       <li class="page-item" [class.disabled]="paginaActual === totalPaginas().length">
-        <a class="page-link" (click)="paginaActual">Siguiente</a>
+        <<a class="page-link" (click)="paginaActual = paginaActual + 1" [class.disabled]="paginaActual === totalPaginas().length">Siguiente</a>
+
       </li>
     </ul>
   </nav>
