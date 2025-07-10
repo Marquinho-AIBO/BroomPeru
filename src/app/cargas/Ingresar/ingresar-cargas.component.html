@@ -5,6 +5,7 @@
 </button>
 <div class="modal-backdrop" *ngIf="mostrarModal">
   <div class="modal">
+    <button class="cerrar-modal" (click)="cerrarModal()"><span class="material-symbols-outlined">close</span></button>
     <h3>Nuevo Registro</h3>
     <form (ngSubmit)="guardarRegistro()">
       <div class="cont-form-nr">
@@ -19,22 +20,29 @@
       </div>
 
       <br>
-      <button class="btn-solid add" type="submit">
+      <div class="actions">
+        <button class="btn-solid add" type="submit">
         <span>{{ modoEdicion ? 'Modificar' : 'Guardar' }}</span>
         <span class="material-symbols-outlined">save</span>
       </button>
+      <button class="btn-solid close" type="button" (click)="cerrarModal()">
+        <span>Cerrar</span>
+        <span class="material-symbols-outlined">close</span>
+      </button>
+      </div>
     </form>
   </div>
 </div>
 <hr>
 
 <h2>Registros cargados</h2>
-<input type="text" [(ngModel)]="filtroTexto" placeholder="Buscar..." class="form-control mb-2" />
-<button class="btn-solid" (click)="exportarDatosFiltradosCSV()">
-  <span>Exportar Excel.CSV</span>
-  <span class="material-symbols-outlined">download</span>
-</button>
-
+<div class="wrap-actions">
+  <input type="text" [(ngModel)]="filtroTexto" placeholder="Buscar..." class="form-control mb-2 buscador" />
+  <button class="btn-solid" (click)="exportarDatosFiltradosCSV()">
+    <span>Exportar Excel.CSV</span>
+    <span class="material-symbols-outlined">download</span>
+  </button>
+</div>
 <div class="cont-table">
   <table>
     <thead>
@@ -48,17 +56,18 @@
       </tr>
     </tbody>
   </table>
-  <nav aria-label="Page navigation">
-    <ul class="pagination">
-      <li class="page-item" [class.disabled]="paginaActual === 1">
-        <a class="page-link" (click)="paginaActual = paginaActual - 1">Anterior</a>
-      </li>
-      <li class="page-item" *ngFor="let p of totalPaginas()" [class.active]="paginaActual === p">
-        <a class="page-link" (click)="paginaActual = p">{{ p }}</a>
-      </li>
-      <li class="page-item" [class.disabled]="paginaActual === totalPaginas().length">
-        <a class="page-link" (click)="paginaActual = paginaActual + 1">Siguiente</a>
-      </li>
-    </ul>
-  </nav>
 </div>
+<nav aria-label="Page navigation">
+  <ul class="pagination">
+    <li class="page-item" [class.disabled]="paginaActual === 1">
+      <a class="page-nav" (click)="paginaActual">Anterior</a>
+    </li>
+    <li class="page-item" *ngFor="let p of totalPaginas()" [class.active]="paginaActual === p">
+      <a class="page-link" (click)="paginaActual = p">{{ p }}</a>
+    </li>
+    <li class="page-item" [class.disabled]="paginaActual === totalPaginas().length">
+      <a class="page-nav" (click)="paginaActual">Siguiente</a>
+    </li>
+  </ul>
+</nav>
+  
