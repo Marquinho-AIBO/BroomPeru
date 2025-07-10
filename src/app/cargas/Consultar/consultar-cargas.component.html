@@ -1,72 +1,40 @@
 <h2>Lista Registros Existente</h2>
 <h2>Registros cargados</h2>
+
 <ng-container *ngIf="userProfile === 'Administrador'">
   <div class="modal-backdrop" *ngIf="mostrarModal">
     <div class="modal">
-      <button class="cerrar-modal" (click)="cerrarModal()"><span class="material-symbols-outlined">close</span></button>
+      <button class="cerrar-modal" (click)="cerrarModal()">
+        <span class="material-symbols-outlined">close</span>
+      </button>
       <h3>Editar Registro</h3>
       <form (ngSubmit)="guardarRegistro()">
-          <div class="cont-form-nr">
-
-<div class="form-group"><label>MES:</label> <input type="text" [(ngModel)]="carga.MES" name="MES"></div>
-<div class="form-group"><label>COM:</label> <input type="text" [(ngModel)]="carga.COM" name="COM"></div>
-<div class="form-group"><label>NRO_OP:</label> <input type="text" [(ngModel)]="carga.NRO_OP" name="NRO_OP"></div>
-<div class="form-group"><label>COD_SAP:</label> <input type="text" [(ngModel)]="carga.COD_SAP" name="COD_SAP"></div>
-<div class="form-group"><label>STATUS:</label> <input type="text" [(ngModel)]="carga.STATUS" name="STATUS"></div>
-<div class="form-group"><label>TIPO:</label> <input type="text" [(ngModel)]="carga.TIPO" name="TIPO"></div>
-<div class="form-group"><label>SERVICIO:</label> <input type="text" [(ngModel)]="carga.SERVICIO" name="SERVICIO"></div>
-<div class="form-group"><label>UTILIDAD:</label> <input type="text" [(ngModel)]="carga.UTILIDAD" name="UTILIDAD"></div>
-<div class="form-group"><label>RUC:</label> <input type="text" [(ngModel)]="carga.RUC" name="RUC"></div>
-<div class="form-group"><label>AGENTE:</label> <input type="text" [(ngModel)]="carga.AGENTE" name="AGENTE"></div>
-<div class="form-group"><label>SHIPPER:</label> <input type="text" [(ngModel)]="carga.SHIPPER" name="SHIPPER"></div>
-<div class="form-group"><label>CONSIGNEE:</label> <input type="text" [(ngModel)]="carga.CONSIGNEE" name="CONSIGNEE"></div>
-<div class="form-group"><label>MBL_MAWB:</label> <input type="text" [(ngModel)]="carga.MBL_MAWB" name="MBL_MAWB"></div>
-<div class="form-group"><label>HBL_HAWB:</label> <input type="text" [(ngModel)]="carga.HBL_HAWB" name="HBL_HAWB"></div>
-<div class="form-group"><label>ATD:</label> <input type="date" [(ngModel)]="carga.ATD" name="ATD"></div>
-<div class="form-group"><label>PUERTO_TRANSBORDO:</label> <input type="text" [(ngModel)]="carga.PUERTO_TRANSBORDO" name="PUERTO_TRANSBORDO"></div>
-<div class="form-group"><label>FECHA_ARRIBO_TRANSBORDO:</label> <input type="date" [(ngModel)]="carga.FECHA_ARRIBO_TRANSBORDO" name="FECHA_ARRIBO_TRANSBORDO"></div>
-<div class="form-group"><label>FECHA_SALIDA_TRANSBORDO:</label> <input type="date" [(ngModel)]="carga.FECHA_SALIDA_TRANSBORDO" name="FECHA_SALIDA_TRANSBORDO"></div>
-<div class="form-group"><label>NAVIERA_COLOADER:</label> <input type="text" [(ngModel)]="carga.NAVIERA_COLOADER" name="NAVIERA_COLOADER"></div>
-<div class="form-group"><label>WEEK:</label> <input type="text" [(ngModel)]="carga.WEEK" name="WEEK"></div>
-<div class="form-group"><label>ATA:</label> <input type="date" [(ngModel)]="carga.ATA" name="ATA"></div>
-<div class="form-group"><label>COND:</label> <input type="text" [(ngModel)]="carga.COND" name="COND"></div>
-<div class="form-group"><label>NUMERO_CONTS:</label> <input type="number" [(ngModel)]="carga.NUMERO_CONTS" name="NUMERO_CONTS"></div>
-<div class="form-group"><label>CANT:</label> <input type="number" [(ngModel)]="carga.CANT" name="CANT" step="0.01"></div>
-<div class="form-group"><label>SIZE:</label> <input type="text" [(ngModel)]="carga.SIZE" name="SIZE"></div>
-<div class="form-group"><label>TYPE:</label> <input type="text" [(ngModel)]="carga.TYPE" name="TYPE"></div>
-<div class="form-group"><label>KILOS:</label> <input type="number" [(ngModel)]="carga.KILOS" name="KILOS" step="0.01"></div>
-<div class="form-group"><label>NAVE:</label> <input type="text" [(ngModel)]="carga.NAVE" name="NAVE"></div>
-<div class="form-group"><label>VIAJE:</label> <input type="text" [(ngModel)]="carga.VIAJE" name="VIAJE"></div>
-<div class="form-group"><label>PUERTO_DE_EMBARQUE:</label> <input type="text" [(ngModel)]="carga.PUERTO_DE_EMBARQUE" name="PUERTO_DE_EMBARQUE"></div>
-<div class="form-group"><label>PUERTO_DE_DESCARGA:</label> <input type="text" [(ngModel)]="carga.PUERTO_DE_DESCARGA" name="PUERTO_DE_DESCARGA"></div>
-<div class="form-group"><label>PUERTO_ATRAQUE:</label> <input type="text" [(ngModel)]="carga.PUERTO_ATRAQUE" name="PUERTO_ATRAQUE"></div>
-<div class="form-group"><label>DT:</label> <input type="text" [(ngModel)]="carga.DT" name="DT"></div>
-<div class="form-group"><label>ADUANA_MANIF:</label> <input type="text" [(ngModel)]="carga.ADUANA_MANIF" name="ADUANA_MANIF"></div>
-<div class="form-group"><label>NRO_MANIFIESTO:</label> <input type="text" [(ngModel)]="carga.NRO_MANIFIESTO" name="NRO_MANIFIESTO"></div>
-<div class="form-group"><label>DAM:</label> <input type="text" [(ngModel)]="carga.DAM" name="DAM"></div>
-<div class="form-group"><label>FECHA_REGULARIZADA:</label> <input type="date" [(ngModel)]="carga.FECHA_REGULARIZADA" name="FECHA_REGULARIZADA"></div>
-<div class="form-group"><label>NRO_TICKET:</label> <input type="text" [(ngModel)]="carga.NRO_TICKET" name="NRO_TICKET"></div>
-<div class="form-group"><label>FECHA_HORA_TRANSMISION:</label> <input type="datetime-local" [(ngModel)]="carga.FECHA_HORA_TRANSMISION" name="FECHA_HORA_TRANSMISION"></div>
-<div class="form-group"><label>RUT:</label> <input type="text" [(ngModel)]="carga.RUT" name="RUT"></div>
-<div class="form-group"><label>COMENTARIOS:</label> <textarea [(ngModel)]="carga.COMENTARIOS" name="COMENTARIOS"></textarea></div>
-
+        <div class="cont-form-nr">
+          <div class="form-group" *ngFor="let campo of campos">
+            <label>{{ campo.label }}:</label>
+            <input *ngIf="campo.key !== 'COMENTARIOS'"
+                   [type]="campo.key.includes('FECHA') || campo.key === 'ATA' || campo.key === 'ATD' ? 'date' : 'text'"
+                   [(ngModel)]="carga[campo.key]" [name]="campo.key" />
+            <textarea *ngIf="campo.key === 'COMENTARIOS'"
+                      [(ngModel)]="carga[campo.key]" [name]="campo.key"></textarea>
           </div>
-        
-          <div class="actions">
-            <button class="btn-solid add" type="submit">
+        </div>
+
+        <div class="actions">
+          <button class="btn-solid add" type="submit">
             <span>{{ modoEdicion ? 'Modificar' : 'Guardar' }}</span>
             <span class="material-symbols-outlined">save</span>
-            </button>
-            <button class="btn-solid close" type="button" (click)="cerrarModal()">
-              <span>Cerrar</span>
-              <span class="material-symbols-outlined">close</span>
-            </button>
-          </div>
-          
-        </form>
+          </button>
+          <button class="btn-solid close" type="button" (click)="cerrarModal()">
+            <span>Cerrar</span>
+            <span class="material-symbols-outlined">close</span>
+          </button>
+        </div>
+      </form>
     </div>
   </div>
 </ng-container>
+
 <ng-container *ngIf="userProfile === 'Empresa'">
   <div class="modal-backdrop" *ngIf="mostrarModal">
     <div class="modal">
@@ -75,47 +43,12 @@
       </button>
       <h3>Detalle de Registro</h3>
       <div class="cont-form-nr">
-        <div class="form-group"><label>MES:</label> <span>{{ carga.MES }}</span></div>
-        <div class="form-group"><label>COM:</label> <span>{{ carga.COM }}</span></div>
-        <div class="form-group"><label>NRO_OP:</label> <span>{{ carga.NRO_OP }}</span></div>
-        <div class="form-group"><label>COD_SAP:</label> <span>{{ carga.COD_SAP }}</span></div>
-        <div class="form-group"><label>STATUS:</label> <span>{{ carga.STATUS }}</span></div>
-        <div class="form-group"><label>TIPO:</label> <span>{{ carga.TIPO }}</span></div>
-        <div class="form-group"><label>SERVICIO:</label> <span>{{ carga.SERVICIO }}</span></div>
-        <div class="form-group"><label>UTILIDAD:</label> <span>{{ carga.UTILIDAD }}</span></div>
-        <div class="form-group"><label>RUC:</label> <span>{{ carga.RUC }}</span></div>
-        <div class="form-group"><label>AGENTE:</label> <span>{{ carga.AGENTE }}</span></div>
-        <div class="form-group"><label>SHIPPER:</label> <span>{{ carga.SHIPPER }}</span></div>
-        <div class="form-group"><label>CONSIGNEE:</label> <span>{{ carga.CONSIGNEE }}</span></div>
-        <div class="form-group"><label>MBL_MAWB:</label> <span>{{ carga.MBL_MAWB }}</span></div>
-        <div class="form-group"><label>HBL_HAWB:</label> <span>{{ carga.HBL_HAWB }}</span></div>
-        <div class="form-group"><label>ATD:</label> <span>{{ carga.ATD }}</span></div>
-        <div class="form-group"><label>PUERTO_TRANSBORDO:</label> <span>{{ carga.PUERTO_TRANSBORDO }}</span></div>
-        <div class="form-group"><label>FECHA_ARRIBO_TRANSBORDO:</label> <span>{{ carga.FECHA_ARRIBO_TRANSBORDO }}</span></div>
-        <div class="form-group"><label>FECHA_SALIDA_TRANSBORDO:</label> <span>{{ carga.FECHA_SALIDA_TRANSBORDO }}</span></div>
-        <div class="form-group"><label>NAVIERA_COLOADER:</label> <span>{{ carga.NAVIERA_COLOADER }}</span></div>
-        <div class="form-group"><label>WEEK:</label> <span>{{ carga.WEEK }}</span></div>
-        <div class="form-group"><label>ATA:</label> <span>{{ carga.ATA }}</span></div>
-        <div class="form-group"><label>COND:</label> <span>{{ carga.COND }}</span></div>
-        <div class="form-group"><label>NUMERO_CONTS:</label> <span>{{ carga.NUMERO_CONTS }}</span></div>
-        <div class="form-group"><label>CANT:</label> <span>{{ carga.CANT }}</span></div>
-        <div class="form-group"><label>SIZE:</label> <span>{{ carga.SIZE }}</span></div>
-        <div class="form-group"><label>TYPE:</label> <span>{{ carga.TYPE }}</span></div>
-        <div class="form-group"><label>KILOS:</label> <span>{{ carga.KILOS }}</span></div>
-        <div class="form-group"><label>NAVE:</label> <span>{{ carga.NAVE }}</span></div>
-        <div class="form-group"><label>VIAJE:</label> <span>{{ carga.VIAJE }}</span></div>
-        <div class="form-group"><label>PUERTO_DE_EMBARQUE:</label> <span>{{ carga.PUERTO_DE_EMBARQUE }}</span></div>
-        <div class="form-group"><label>PUERTO_DE_DESCARGA:</label> <span>{{ carga.PUERTO_DE_DESCARGA }}</span></div>
-        <div class="form-group"><label>PUERTO_ATRAQUE:</label> <span>{{ carga.PUERTO_ATRAQUE }}</span></div>
-        <div class="form-group"><label>DT:</label> <span>{{ carga.DT }}</span></div>
-        <div class="form-group"><label>ADUANA_MANIF:</label> <span>{{ carga.ADUANA_MANIF }}</span></div>
-        <div class="form-group"><label>NRO_MANIFIESTO:</label> <span>{{ carga.NRO_MANIFIESTO }}</span></div>
-        <div class="form-group"><label>DAM:</label> <span>{{ carga.DAM }}</span></div>
-        <div class="form-group"><label>FECHA_REGULARIZADA:</label> <span>{{ carga.FECHA_REGULARIZADA }}</span></div>
-        <div class="form-group"><label>NRO_TICKET:</label> <span>{{ carga.NRO_TICKET }}</span></div>
-        <div class="form-group"><label>FECHA_HORA_TRANSMISION:</label> <span>{{ carga.FECHA_HORA_TRANSMISION }}</span></div>
-        <div class="form-group"><label>RUT:</label> <span>{{ carga.RUT }}</span></div>
-        <div class="form-group"><label>COMENTARIOS:</label> <span>{{ carga.COMENTARIOS }}</span></div>
+        <div class="form-group" *ngFor="let campo of campos">
+          <ng-container *ngIf="columnasVisibles[campo.key]">
+            <label>{{ campo.label }}:</label>
+            <span>{{ carga[campo.key] }}</span>
+          </ng-container>
+        </div>
       </div>
       <div class="actions">
         <button class="btn-solid close" type="button" (click)="cerrarModal()">
@@ -136,115 +69,27 @@
   <table>
     <thead>
       <tr>
-        <th *ngIf="columnasVisibles['CARGA_ID']">carga_id</th>
-        <th *ngIf="columnasVisibles['USUARIO_ID']">usuario_id</th>
-        <th *ngIf="columnasVisibles['MES']">MES</th>
-        <th *ngIf="columnasVisibles['COM']">COM</th>
-        <th *ngIf="columnasVisibles['NRO_OP']">NRO_OP</th>
-        <th *ngIf="columnasVisibles['COD_SAP']">COD_SAP</th>
-        <th *ngIf="columnasVisibles['STATUS']">STATUS</th>
-        <th *ngIf="columnasVisibles['TIPO']">TIPO</th>
-        <th *ngIf="columnasVisibles['SERVICIO']">SERVICIO</th>
-        <th *ngIf="columnasVisibles['UTILIDAD']">UTILIDAD</th>
-        <th *ngIf="columnasVisibles['RUC']">RUC</th>
-        <th *ngIf="columnasVisibles['AGENTE']">AGENTE</th>
-        <th *ngIf="columnasVisibles['SHIPPER']">SHIPPER</th>
-        <th *ngIf="columnasVisibles['CONSIGNEE']">CONSIGNEE</th>
-        <th *ngIf="columnasVisibles['MBL_MAWB']">MBL_MAWB</th>
-        <th *ngIf="columnasVisibles['HBL_HAWB']">HBL_HAWB</th>
-        <th *ngIf="columnasVisibles['ATD']">ATD</th>
-        <th *ngIf="columnasVisibles['PUERTO_TRANSBORDO']">PUERTO_TRANSBORDO</th>
-        <th *ngIf="columnasVisibles['FECHA_ARRIBO_TRANSBORDO']">ARRIBO TRANSBORDO</th>
-        <th *ngIf="columnasVisibles['FECHA_SALIDA_TRANSBORDO']">SALIDA TRANSBORDO</th>
-        <th *ngIf="columnasVisibles['NAVIERA_COLOADER']">NAVIERA / COLOADER</th>
-        <th *ngIf="columnasVisibles['WEEK']">WEEK</th>
-        <th *ngIf="columnasVisibles['ATA']">ATA</th>
-        <th *ngIf="columnasVisibles['COND']">COND</th>
-        <th *ngIf="columnasVisibles['NUMERO_CONTS']">N° CONTENEDORES</th>
-        <th *ngIf="columnasVisibles['CANT']">CANT</th>
-        <th *ngIf="columnasVisibles['SIZE']">SIZE</th>
-        <th *ngIf="columnasVisibles['TYPE']">TYPE</th>
-        <th *ngIf="columnasVisibles['KILOS']">KILOS</th>
-        <th *ngIf="columnasVisibles['NAVE']">NAVE</th>
-        <th *ngIf="columnasVisibles['VIAJE']">VIAJE</th>
-        <th *ngIf="columnasVisibles['PUERTO_DE_EMBARQUE']">PUERTO DE EMBARQUE</th>
-        <th *ngIf="columnasVisibles['PUERTO_DE_DESCARGA']">PUERTO DE DESCARGA</th>
-        <th *ngIf="columnasVisibles['PUERTO_ATRAQUE']">PUERTO DE ATRAQUE</th>
-        <th *ngIf="columnasVisibles['DT']">DT</th>
-        <th *ngIf="columnasVisibles['ADUANA_MANIF']">ADUANA MANIF.</th>
-        <th *ngIf="columnasVisibles['NRO_MANIFIESTO']">NRO. MANIFIESTO</th>
-        <th *ngIf="columnasVisibles['DAM']">DAM</th>
-        <th *ngIf="columnasVisibles['FECHA_REGULARIZADA']">F. REGULARIZADA</th>
-        <th *ngIf="columnasVisibles['NRO_TICKET']">NRO. TICKET</th>
-        <th *ngIf="columnasVisibles['FECHA_HORA_TRANSMISION']">F/H TRANSMISIÓN</th>
-        <th *ngIf="columnasVisibles['COMENTARIOS']">COMENTARIOS</th>
-        <th *ngIf="columnasVisibles['RUT']">RUT</th>
-        <th *ngIf="columnasVisibles['CREADO_EN']">CREADO EN</th>
+        <th *ngFor="let campo of campos" [hidden]="!columnasVisibles[campo.key]">{{ campo.label }}</th>
       </tr>
     </thead>
-    
-    
     <tbody>
-      <tr *ngFor="let reg of registrosFiltradosPaginados()" 
-      (click)="cargarEnFormulario(reg)" 
-      [class.clickable]="userProfile === 'Administrador' || userProfile === 'Empresa'">
-  
-        <td *ngIf="columnasVisibles['CARGA_ID']">{{ reg.carga_id }}</td>
-        <td *ngIf="columnasVisibles['USUARIO_ID']">{{ reg.usuario_id }}</td>
-        <td *ngIf="columnasVisibles['MES']">{{ reg.MES }}</td>
-        <td *ngIf="columnasVisibles['COM']">{{ reg.COM }}</td>
-        <td *ngIf="columnasVisibles['NRO_OP']">{{ reg.NRO_OP }}</td>
-        <td *ngIf="columnasVisibles['COD_SAP']">{{ reg.COD_SAP }}</td>
-        <td *ngIf="columnasVisibles['STATUS']">{{ reg.STATUS }}</td>
-        <td *ngIf="columnasVisibles['TIPO']">{{ reg.TIPO }}</td>
-        <td *ngIf="columnasVisibles['SERVICIO']">{{ reg.SERVICIO }}</td>
-        <td *ngIf="columnasVisibles['UTILIDAD']">{{ reg.UTILIDAD }}</td>
-        <td *ngIf="columnasVisibles['RUC']">{{ reg.RUC }}</td>
-        <td *ngIf="columnasVisibles['AGENTE']">{{ reg.AGENTE }}</td>
-        <td *ngIf="columnasVisibles['SHIPPER']">{{ reg.SHIPPER }}</td>
-        <td *ngIf="columnasVisibles['CONSIGNEE']">{{ reg.CONSIGNEE }}</td>
-        <td *ngIf="columnasVisibles['MBL_MAWB']">{{ reg.MBL_MAWB }}</td>
-        <td *ngIf="columnasVisibles['HBL_HAWB']">{{ reg.HBL_HAWB }}</td>
-        <td *ngIf="columnasVisibles['ATD']">{{ reg.ATD }}</td>
-        <td *ngIf="columnasVisibles['PUERTO_TRANSBORDO']">{{ reg.PUERTO_TRANSBORDO }}</td>
-        <td *ngIf="columnasVisibles['FECHA_ARRIBO_TRANSBORDO']">{{ reg.FECHA_ARRIBO_TRANSBORDO }}</td>
-        <td *ngIf="columnasVisibles['FECHA_SALIDA_TRANSBORDO']">{{ reg.FECHA_SALIDA_TRANSBORDO }}</td>
-        <td *ngIf="columnasVisibles['NAVIERA_COLOADER']">{{ reg.NAVIERA_COLOADER }}</td>
-        <td *ngIf="columnasVisibles['WEEK']">{{ reg.WEEK }}</td>
-        <td *ngIf="columnasVisibles['ATA']">{{ reg.ATA }}</td>
-        <td *ngIf="columnasVisibles['COND']">{{ reg.COND }}</td>
-        <td *ngIf="columnasVisibles['NUMERO_CONTS']">{{ reg.NUMERO_CONTS }}</td>
-        <td *ngIf="columnasVisibles['CANT']">{{ reg.CANT }}</td>
-        <td *ngIf="columnasVisibles['SIZE']">{{ reg.SIZE }}</td>
-        <td *ngIf="columnasVisibles['TYPE']">{{ reg.TYPE }}</td>
-        <td *ngIf="columnasVisibles['KILOS']">{{ reg.KILOS }}</td>
-        <td *ngIf="columnasVisibles['NAVE']">{{ reg.NAVE }}</td>
-        <td *ngIf="columnasVisibles['VIAJE']">{{ reg.VIAJE }}</td>
-        <td *ngIf="columnasVisibles['PUERTO_DE_EMBARQUE']">{{ reg.PUERTO_DE_EMBARQUE }}</td>
-        <td *ngIf="columnasVisibles['PUERTO_DE_DESCARGA']">{{ reg.PUERTO_DE_DESCARGA }}</td>
-        <td *ngIf="columnasVisibles['PUERTO_ATRAQUE']">{{ reg.PUERTO_ATRAQUE }}</td>
-        <td *ngIf="columnasVisibles['DT']">{{ reg.DT }}</td>
-        <td *ngIf="columnasVisibles['ADUANA_MANIF']">{{ reg.ADUANA_MANIF }}</td>
-        <td *ngIf="columnasVisibles['NRO_MANIFIESTO']">{{ reg.NRO_MANIFIESTO }}</td>
-        <td *ngIf="columnasVisibles['DAM']">{{ reg.DAM }}</td>
-        <td *ngIf="columnasVisibles['FECHA_REGULARIZADA']">{{ reg.FECHA_REGULARIZADA }}</td>
-        <td *ngIf="columnasVisibles['NRO_TICKET']">{{ reg.NRO_TICKET }}</td>
-        <td *ngIf="columnasVisibles['FECHA_HORA_TRANSMISION']">{{ reg.FECHA_HORA_TRANSMISION }}</td>
-        <td *ngIf="columnasVisibles['COMENTARIOS']">{{ reg.COMENTARIOS }}</td>
-        <td *ngIf="columnasVisibles['RUT']">{{ reg.RUT }}</td>
-        <td *ngIf="columnasVisibles['CREADO_EN']">{{ reg.creado_en }}</td>
+      <tr *ngFor="let reg of registrosFiltradosPaginados()"
+          (click)="cargarEnFormulario(reg)"
+          [class.clickable]="userProfile === 'Administrador' || userProfile === 'Empresa'">
+        <td *ngFor="let campo of campos" [hidden]="!columnasVisibles[campo.key]">{{ reg[campo.key] }}</td>
       </tr>
+    </tbody>
   </table>
   <nav aria-label="Page navigation">
     <ul class="pagination">
       <li class="page-item" [class.disabled]="paginaActual === 1">
-        <a class="page-link" (click)="paginaActual = paginaActual - 1" [class.disabled]="paginaActual === 1">Anterior</a>
-<li class="page-item" *ngFor="let p of totalPaginas()" [class.active]="paginaActual === p">
+        <a class="page-link" (click)="paginaActual = paginaActual - 1">Anterior</a>
+      </li>
+      <li class="page-item" *ngFor="let p of totalPaginas()" [class.active]="paginaActual === p">
         <a class="page-link" (click)="paginaActual = p">{{ p }}</a>
       </li>
       <li class="page-item" [class.disabled]="paginaActual === totalPaginas().length">
-        <<a class="page-link" (click)="paginaActual = paginaActual + 1" [class.disabled]="paginaActual === totalPaginas().length">Siguiente</a>
-
+        <a class="page-link" (click)="paginaActual = paginaActual + 1">Siguiente</a>
       </li>
     </ul>
   </nav>

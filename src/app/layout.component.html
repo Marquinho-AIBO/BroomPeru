@@ -14,7 +14,11 @@
         <li *ngIf="userProfile === 'Administrador' || userProfile === 'Operador'">
           <a routerLink="ingresar-cargas" routerLinkActive="active">Ingresar Cargas</a>
         </li>
+        <li *ngIf="userProfile === 'Administrador'">
+          <a routerLink="crear-usuario" routerLinkActive="active">Crear Usuarios</a>
+        </li>
       </ul>
+      
 
       <button class="btn-solid ghost" (click)="logout()"><span>Logout</span><span class="material-symbols-outlined">logout</span></button>
     </nav>

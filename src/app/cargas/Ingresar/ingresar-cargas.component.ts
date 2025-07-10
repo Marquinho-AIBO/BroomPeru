@@ -12,65 +12,63 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 })
 export class IngresarCargasComponent implements OnInit {
   modoEdicion: boolean = false;
-  HBL_HAWB_original: string = '';
-  mostrarModal: boolean | undefined;
-
+  mostrarModal: boolean = false;
   apiUrl = 'https://www.broomperu.com/BroomPeru/API/cargaRegistros.php';
-
-  carga: any = {
-    carga_id: 1,
-    usuario_id: 1,
-    MES: '',
-    COM: '',
-    NRO_OP: '',
-    COD_SAP: '',
-    STATUS: '',
-    TIPO: '',
-    SERVICIO: '',
-    UTILIDAD: '',
-    RUC: '',
-    AGENTE: '',
-    SHIPPER: '',
-    CONSIGNEE: '',
-    MBL_MAWB: '',
-    HBL_HAWB: '',
-    ATD: '',
-    PUERTO_TRANSBORDO: '',
-    FECHA_ARRIBO_TRANSBORDO: '',
-    FECHA_SALIDA_TRANSBORDO: '',
-    NAVIERA_COLOADER: '',
-    WEEK: '',
-    ATA: '',
-    COND: '',
-    NUMERO_CONTS: 0,
-    CANT: 0,
-    SIZE: '',
-    TYPE: '',
-    KILOS: 0,
-    NAVE: '',
-    VIAJE: '',
-    PUERTO_DE_EMBARQUE: '',
-    PUERTO_DE_DESCARGA: '',
-    PUERTO_ATRAQUE: '',
-    DT: '',
-    ADUANA_MANIF: '',
-    NRO_MANIFIESTO: '',
-    DAM: '',
-    FECHA_REGULARIZADA: '',
-    NRO_TICKET: '',
-    FECHA_HORA_TRANSMISION: '',
-    COMENTARIOS: '',
-    RUT: ''
-  };
 
   userProfile: string = '';
   registros: any[] = [];
-
   filtroTexto: string = '';
   paginaActual: number = 1;
   registrosPorPagina: number = 50;
   ordenColumna: string = '';
   ordenAscendente: boolean = true;
+
+  campos = [
+    { label: 'MES', key: 'MES' },
+    { label: 'COM', key: 'COM' },
+    { label: 'NRO_OP', key: 'NRO_OP' },
+    { label: 'TARIFA', key: 'TARIFA' },
+    { label: 'COD_SAP', key: 'COD_SAP' },
+    { label: 'STATUS', key: 'STATUS' },
+    { label: 'TIPO', key: 'TIPO' },
+    { label: 'SERVICIO', key: 'SERVICIO' },
+    { label: 'UTILIDAD', key: 'UTILIDAD' },
+    { label: 'RUC', key: 'RUC' },
+    { label: 'AGENTE', key: 'AGENTE' },
+    { label: 'SHIPPER', key: 'SHIPPER' },
+    { label: 'CONSIGNEE', key: 'CONSIGNEE' },
+    { label: 'MBL_MAWB', key: 'MBL_MAWB' },
+    { label: 'HBL_HAWB', key: 'HBL_HAWB' },
+    { label: 'WEEK', key: 'WEEK' },
+    { label: 'PUERTO_DE_EMBARQUE', key: 'PUERTO_DE_EMBARQUE' },
+    { label: 'ATD', key: 'ATD' },
+    { label: 'PUERTO_TRANSBORDO', key: 'PUERTO_TRANSBORDO' },
+    { label: 'FECHA_ARRIBO_TRANSBORDO', key: 'FECHA_ARRIBO_TRANSBORDO' },
+    { label: 'FECHA_SALIDA_TRANSBORDO', key: 'FECHA_SALIDA_TRANSBORDO' },
+    { label: 'PUERTO_DE_DESCARGA', key: 'PUERTO_DE_DESCARGA' },
+    { label: 'ATA', key: 'ATA' },
+    { label: 'NAVIERA_COLOADER', key: 'NAVIERA_COLOADER' },
+    { label: 'COND', key: 'COND' },
+    { label: 'NUMERO_CONTS', key: 'NUMERO_CONTS' },
+    { label: 'CANT', key: 'CANT' },
+    { label: 'SIZE', key: 'SIZE' },
+    { label: 'TYPE', key: 'TYPE' },
+    { label: 'KILOS', key: 'KILOS' },
+    { label: 'NAVE', key: 'NAVE' },
+    { label: 'VIAJE', key: 'VIAJE' },
+    { label: 'PUERTO_ATRAQUE', key: 'PUERTO_ATRAQUE' },
+    { label: 'DT', key: 'DT' },
+    { label: 'ADUANA_MANIF', key: 'ADUANA_MANIF' },
+    { label: 'NRO_MANIFIESTO', key: 'NRO_MANIFIESTO' },
+    { label: 'DAM', key: 'DAM' },
+    { label: 'FECHA_REGULARIZADA', key: 'FECHA_REGULARIZADA' },
+    { label: 'NRO_TICKET', key: 'NRO_TICKET' },
+    { label: 'FECHA_HORA_TRANSMISION', key: 'FECHA_HORA_TRANSMISION' },
+    { label: 'COMENTARIOS', key: 'COMENTARIOS' },
+    { label: 'RUT', key: 'RUT' }
+  ];
+
+  carga: any = {};
 
   constructor(private http: HttpClient) {
     const user = localStorage.getItem('user');
@@ -78,6 +76,7 @@ export class IngresarCargasComponent implements OnInit {
       const userObj = JSON.parse(user);
       this.userProfile = userObj.rol;
     }
+    this.limpiarFormulario();
   }
 
   ngOnInit(): void {
@@ -115,67 +114,18 @@ export class IngresarCargasComponent implements OnInit {
     });
   }
 
-  cargarEnFormulario(reg: any) {
-    this.carga = { ...reg };
-    this.HBL_HAWB_original = reg.HBL_HAWB;
-    this.modoEdicion = true;
-  }
-
   limpiarFormulario() {
-    this.carga = {
-      carga_id: 1,
-      usuario_id: 1,
-      MES: '',
-      COM: '',
-      NRO_OP: '',
-      COD_SAP: '',
-      STATUS: '',
-      TIPO: '',
-      SERVICIO: '',
-      UTILIDAD: '',
-      RUC: '',
-      AGENTE: '',
-      SHIPPER: '',
-      CONSIGNEE: '',
-      MBL_MAWB: '',
-      HBL_HAWB: '',
-      ATD: '',
-      PUERTO_TRANSBORDO: '',
-      FECHA_ARRIBO_TRANSBORDO: '',
-      FECHA_SALIDA_TRANSBORDO: '',
-      NAVIERA_COLOADER: '',
-      WEEK: '',
-      ATA: '',
-      COND: '',
-      NUMERO_CONTS: 0,
-      CANT: 0,
-      SIZE: '',
-      TYPE: '',
-      KILOS: 0,
-      NAVE: '',
-      VIAJE: '',
-      PUERTO_DE_EMBARQUE: '',
-      PUERTO_DE_DESCARGA: '',
-      PUERTO_ATRAQUE: '',
-      DT: '',
-      ADUANA_MANIF: '',
-      NRO_MANIFIESTO: '',
-      DAM: '',
-      FECHA_REGULARIZADA: '',
-      NRO_TICKET: '',
-      FECHA_HORA_TRANSMISION: '',
-      COMENTARIOS: '',
-      RUT: ''
-    };
+    this.carga = {};
+    for (const campo of this.campos) {
+      this.carga[campo.key] = campo.key === 'NUMERO_CONTS' || campo.key === 'CANT' || campo.key === 'KILOS' ? 0 : '';
+    }
     this.modoEdicion = false;
-    this.HBL_HAWB_original = '';
   }
 
   abrirModal() {
     if (!this.puedeInsertar()) return;
     this.mostrarModal = true;
   }
-  
 
   cerrarModal() {
     this.mostrarModal = false;
@@ -218,27 +168,29 @@ export class IngresarCargasComponent implements OnInit {
     const total = Math.ceil(this.registros.length / this.registrosPorPagina);
     return Array.from({ length: total }, (_, i) => i + 1);
   }
+
   puedeInsertar(): boolean {
     return this.userProfile === 'Administrador';
   }
+
   exportarDatosFiltradosCSV() {
     const datos = this.registrosFiltradosPaginados();
-  
+
     if (!datos.length) {
       alert("No hay datos para exportar.");
       return;
     }
-  
-    const columnas = Object.keys(datos[0]);
-  
+
+    const columnas = this.campos.map(c => c.key);
+
     const csvContent = [
-      columnas.join(','), // Cabecera
+      columnas.join(','),
       ...datos.map(row => columnas.map(col => `"${(row[col] ?? '').toString().replace(/"/g, '""')}"`).join(','))
     ].join('\n');
-  
+
     const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
     const url = URL.createObjectURL(blob);
-  
+
     const a = document.createElement('a');
     a.href = url;
     const ahora = new Date();
@@ -248,6 +200,4 @@ export class IngresarCargasComponent implements OnInit {
     a.click();
     document.body.removeChild(a);
   }
-  
-  
 }
