@@ -128,7 +128,7 @@ body:has(.login-container){
     gap: 4px;
     width: 100%;
     label{
-        font-weight: 500;
+        font-weight: 600;
     }
     input[type=text], input[type=password], input[type=date], input[type=number], input[type=datetime-local]{
         padding: 8px 8px;
@@ -255,14 +255,17 @@ table{
         }
     }
   }
-.buscador{
-    margin: 0 8px 8px 8px;
-    padding: 8px;
-    border-radius:5px ;
-    float:right;
-    border: 1px solid $bp-grey-80;
-    width: calc(100% - 32px);
-    max-width: 350px;
+.wrap-actions{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 0 16px 0;
+    .buscador{
+        padding: 8px;
+        border-radius:5px ;
+        border: 1px solid $bp-grey-80;
+        width: calc(100% - 32px);
+        max-width: 350px;
+    }
 }
 .pagination{
     margin: 16px auto;
