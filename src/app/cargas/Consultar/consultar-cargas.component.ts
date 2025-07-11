@@ -21,46 +21,92 @@
       usuario_id: 1,
       MES: '',
       COM: '',
-      REF_OP: '',
-      COD_SAP_HIJO: '',
+      NRO_OP: '',
+      TARIFA: '',
+      COD_SAP: '',
       STATUS: '',
       TIPO: '',
       SERVICIO: '',
       UTILIDAD: '',
+      RUC: '',
       AGENTE: '',
       SHIPPER: '',
       CONSIGNEE: '',
-      BOOKING: '',
       MBL_MAWB: '',
       HBL_HAWB: '',
-      ETD: '',
-      NAVIERA_COLOADER: '',
       WEEK: '',
-      ETA: '',
+      PUERTO_DE_EMBARQUE: '',
+      ATD: '',
+      PUERTO_TRANSBORDO: '',
+      FECHA_ARRIBO_TRANSBORDO: '',
+      FECHA_SALIDA_TRANSBORDO: '',
+      PUERTO_DE_DESCARGA: '',
+      ATA: '',
+      NAVIERA_COLOADER: '',
       COND: '',
       NUMERO_CONTS: 0,
       CANT: 0,
       SIZE: '',
       TYPE: '',
       KILOS: 0,
-      VESSEL: '',
+      NAVE: '',
       VIAJE: '',
-      PORT_LOADING: '',
-      PORT_DISCHARGE: '',
       PUERTO_ATRAQUE: '',
       DT: '',
-      DIAS_SE: '',
       ADUANA_MANIF: '',
       NRO_MANIFIESTO: '',
-      AGENTE_ADUANA: '',
       DAM: '',
       FECHA_REGULARIZADA: '',
       NRO_TICKET: '',
       FECHA_HORA_TRANSMISION: '',
-      COMENTARIOS: '',
-      RUT: ''
+      COMENTARIOS: ''
     };
-
+    
+    campos = [
+      { label: 'MES', key: 'MES' },
+      { label: 'COM', key: 'COM' },
+      { label: 'NRO_OP', key: 'NRO_OP' },
+      { label: 'TARIFA', key: 'TARIFA' },
+      { label: 'COD_SAP', key: 'COD_SAP' },
+      { label: 'STATUS', key: 'STATUS' },
+      { label: 'TIPO', key: 'TIPO' },
+      { label: 'SERVICIO', key: 'SERVICIO' },
+      { label: 'UTILIDAD', key: 'UTILIDAD' },
+      { label: 'RUC', key: 'RUC' },
+      { label: 'AGENTE', key: 'AGENTE' },
+      { label: 'SHIPPER', key: 'SHIPPER' },
+      { label: 'CONSIGNEE', key: 'CONSIGNEE' },
+      { label: 'MBL_MAWB', key: 'MBL_MAWB' },
+      { label: 'HBL_HAWB', key: 'HBL_HAWB' },
+      { label: 'WEEK', key: 'WEEK' },
+      { label: 'PUERTO_DE_EMBARQUE', key: 'PUERTO_DE_EMBARQUE' },
+      { label: 'ATD', key: 'ATD' },
+      { label: 'PUERTO_TRANSBORDO', key: 'PUERTO_TRANSBORDO' },
+      { label: 'FECHA_ARRIBO_TRANSBORDO', key: 'FECHA_ARRIBO_TRANSBORDO' },
+      { label: 'FECHA_SALIDA_TRANSBORDO', key: 'FECHA_SALIDA_TRANSBORDO' },
+      { label: 'PUERTO_DE_DESCARGA', key: 'PUERTO_DE_DESCARGA' },
+      { label: 'ATA', key: 'ATA' },
+      { label: 'NAVIERA_COLOADER', key: 'NAVIERA_COLOADER' },
+      { label: 'COND', key: 'COND' },
+      { label: 'NUMERO_CONTS', key: 'NUMERO_CONTS' },
+      { label: 'CANT', key: 'CANT' },
+      { label: 'SIZE', key: 'SIZE' },
+      { label: 'TYPE', key: 'TYPE' },
+      { label: 'KILOS', key: 'KILOS' },
+      { label: 'NAVE', key: 'NAVE' },
+      { label: 'VIAJE', key: 'VIAJE' },
+      { label: 'PUERTO_ATRAQUE', key: 'PUERTO_ATRAQUE' },
+      { label: 'DT', key: 'DT' },
+      { label: 'ADUANA_MANIF', key: 'ADUANA_MANIF' },
+      { label: 'NRO_MANIFIESTO', key: 'NRO_MANIFIESTO' },
+      { label: 'DAM', key: 'DAM' },
+      { label: 'FECHA_REGULARIZADA', key: 'FECHA_REGULARIZADA' },
+      { label: 'NRO_TICKET', key: 'NRO_TICKET' },
+      { label: 'FECHA_HORA_TRANSMISION', key: 'FECHA_HORA_TRANSMISION' },
+      { label: 'COMENTARIOS', key: 'COMENTARIOS' }
+    ];
+    
+    
     registros: any[] = [];
     HBL_HAWB_original: any;
     modoEdicion: boolean | undefined;
@@ -91,38 +137,52 @@ ngOnInit(): void {
   }
       this.definirColumnasPorPerfil();
       this.cargarRegistros();
+      console.log("Perfil:", this.userProfile);
+
 }
 definirColumnasPorPerfil() {
   const perfil = this.userProfile;
 
   const todas = {
-    MES: true, COM: true, REF_OP: true, COD_SAP_HIJO: true, STATUS: true,
-    TIPO: true, SERVICIO: true, UTILIDAD: true, AGENTE: true, SHIPPER: true,
-    CONSIGNEE: true, BOOKING: true, MBL_MAWB: true, HBL_HAWB: true, ETD: true,
-    NAVIERA_COLOADER: true, WEEK: true, ETA: true, COND: true,
-    NUMERO_CONTS: true, CANT: true, SIZE: true, TYPE: true, KILOS: true,
-    VESSEL: true, VIAJE: true, PORT_LOADING: true, PORT_DISCHARGE: true,
-    PUERTO_ATRAQUE: true, DT: true, DIAS_SE: true, ADUANA_MANIF: true,
-    NRO_MANIFIESTO: true, AGENTE_ADUANA: true, DAM: true,
-    FECHA_REGULARIZADA: true, NRO_TICKET: true, FECHA_HORA_TRANSMISION: true,
-    COMENTARIOS: true, RUT: true
+    MES: true, COM: true, NRO_OP: true, TARIFA: true, COD_SAP: true,
+    STATUS: true, TIPO: true, SERVICIO: true, UTILIDAD: true, RUC: true,
+    AGENTE: true, SHIPPER: true, CONSIGNEE: true, MBL_MAWB: true,
+    HBL_HAWB: true, WEEK: true, PUERTO_DE_EMBARQUE: true, ATD: true,
+    PUERTO_TRANSBORDO: true, FECHA_ARRIBO_TRANSBORDO: true,
+    FECHA_SALIDA_TRANSBORDO: true, PUERTO_DE_DESCARGA: true, ATA: true,
+    NAVIERA_COLOADER: true, COND: true, NUMERO_CONTS: true, CANT: true,
+    SIZE: true, TYPE: true, KILOS: true, NAVE: true, VIAJE: true,
+    PUERTO_ATRAQUE: true, DT: true, ADUANA_MANIF: true, NRO_MANIFIESTO: true,
+    DAM: true, FECHA_REGULARIZADA: true, NRO_TICKET: true,
+    FECHA_HORA_TRANSMISION: true, COMENTARIOS: true
   };
 
   const empresas = {
-    TIPO: true, SHIPPER: true, CONSIGNEE: true, MBL_MAWB: true, HBL_HAWB: true,
-    ETD: true, NAVIERA_COLOADER: true, ETA: true, COND: true,
-    NUMERO_CONTS: true, CANT: true, SIZE: true, TYPE: true, KILOS: true,
-    VESSEL: true, VIAJE: true, PORT_LOADING: true, PORT_DISCHARGE: true,
-    PUERTO_ATRAQUE: true, DT: true, ADUANA_MANIF: true, NRO_MANIFIESTO: true,
-    FECHA_HORA_TRANSMISION: true, RUT: true
+    NRO_OP: true,
+    PUERTO_DE_EMBARQUE: true,
+    ATD: true,
+    PUERTO_TRANSBORDO: true,
+    FECHA_ARRIBO_TRANSBORDO: true,
+    FECHA_SALIDA_TRANSBORDO: true,
+    PUERTO_DE_DESCARGA: true,
+    ATA: true,
+    COND: true,
+    NUMERO_CONTS: true,
+    CANT: true,
+    SIZE: true,
+    TYPE: true, 
+    KILOS: true,
+    NAVE: true,
+    VIAJE: true
   };
-
+  
   const aduanero = { ...todas };
 
   if (perfil === 'Administrador') this.columnasVisibles = todas;
-  else if (perfil === 'Aduanero') this.columnasVisibles = aduanero;
+  else if (perfil === 'Aduana') this.columnasVisibles = aduanero;
   else if (perfil === 'Empresa') this.columnasVisibles = empresas;
 }
+
     cargarRegistros() {
       this.http.get<any>(`${this.apiUrl}?action=list`).subscribe(response => {
         console.log("carga" +this.userProfile);
@@ -145,13 +205,19 @@ definirColumnasPorPerfil() {
         }
       });
     }
-    cargarEnFormulario(reg: any) {
-      if (this.userProfile !== 'Administrador') return;
+    cargarEnFormulario(reg: any): void {
+      console.log("Abriendo modal para:", this.userProfile);
       this.carga = { ...reg };
-      this.HBL_HAWB_original = reg.HBL_HAWB;
-      this.modoEdicion = true;
+    
+      if (this.userProfile === 'Administrador') {
+        this.HBL_HAWB_original = reg.HBL_HAWB;
+        this.modoEdicion = true;
+      }
+    
       this.mostrarModal = true;
     }
+    
+    
     
     cerrarModal() {
       this.mostrarModal = false;
@@ -163,7 +229,7 @@ definirColumnasPorPerfil() {
           ...this.carga,
           HBL_HAWB: this.HBL_HAWB_original  // importante! usamos el original
         };
-    
+    console.log(bodyUpdate);
         this.http.post<any>(`${this.apiUrl}?action=update`, bodyUpdate).subscribe(response => {
           if (response.success) {
             alert('Registro modificado correctamente!');
@@ -245,6 +311,24 @@ definirColumnasPorPerfil() {
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
+    }
+    obtenerValoresPorCampo(campo: string): string[] {
+      switch (campo) {
+        case 'MES':
+          return ['ENERO', 'FEBRERO', 'MARZO', 'ABRIL', 'MAYO', 'JUNIO', 'JULIO', 'AGOSTO', 'SETIEMBRE', 'OCTUBRE', 'NOVIEMBRE', 'DICIEMBRE'];
+        case 'COM':
+          return ['AGENTE', 'BGL'];
+        case 'STATUS':
+          return ['EN CURSO', 'CERRADO'];
+        case 'TIPO':
+          return ['EXPO', 'IMPO'];
+        case 'SERVICIO':
+          return ['ALM', 'COURIER', 'FWD', 'FWD / SLI', 'SLI'];
+        case 'COND.':
+          return ['AIR', 'DEP', 'FCL', 'LCL'];
+        default:
+          return [];
+      }
     }
     
   }
