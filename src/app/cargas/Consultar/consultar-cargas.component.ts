@@ -175,11 +175,11 @@ definirColumnasPorPerfil() {
     NAVE: true,
     VIAJE: true
   };
-
+  
   const aduanero = { ...todas };
 
   if (perfil === 'Administrador') this.columnasVisibles = todas;
-  else if (perfil === 'Aduanero') this.columnasVisibles = aduanero;
+  else if (perfil === 'Aduana') this.columnasVisibles = aduanero;
   else if (perfil === 'Empresa') this.columnasVisibles = empresas;
 }
 

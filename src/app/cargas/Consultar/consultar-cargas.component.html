@@ -45,7 +45,7 @@
   </div>
 </ng-container>
 
-<ng-container *ngIf="userProfile === 'Empresa'">
+<ng-container *ngIf="userProfile === 'Empresa' || userProfile === 'Aduana'">
   <div class="modal-backdrop" *ngIf="mostrarModal">
     <div class="modal">
       <button class="cerrar-modal" (click)="cerrarModal()">
@@ -87,7 +87,7 @@
     <tbody>
       <tr *ngFor="let reg of registrosFiltradosPaginados()"
           (click)="cargarEnFormulario(reg)"
-          [class.clickable]="userProfile === 'Administrador' || userProfile === 'Empresa'">
+          [class.clickable]="userProfile === 'Administrador' || userProfile === 'Empresa' || userProfile === 'Aduana'">
         <td *ngFor="let campo of campos" [hidden]="!columnasVisibles[campo.key]">{{ reg[campo.key] }}</td>
       </tr>
     </tbody>
