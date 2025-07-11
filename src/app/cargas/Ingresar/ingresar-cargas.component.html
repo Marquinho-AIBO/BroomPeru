@@ -5,32 +5,35 @@
 </button>
 <div class="modal-backdrop" *ngIf="mostrarModal">
   <div class="modal">
-    <button class="cerrar-modal" (click)="cerrarModal()"><span class="material-symbols-outlined">close</span></button>
-    <h3>Nuevo Registro</h3>
-    <form (ngSubmit)="guardarRegistro()">
-      <div class="cont-form-nr">
-        <div class="form-group" *ngFor="let campo of campos">
-          <label>{{ campo.label }}:</label>
-        
-          <!-- Campos con valores predefinidos -->
-          <select *ngIf="['MES','COM','STATUS','TIPO','SERVICIO','COND.'].includes(campo.key)"
-                  [(ngModel)]="carga[campo.key]" [name]="campo.key">
-            <option *ngFor="let valor of obtenerValoresPorCampo(campo.key)" [value]="valor">{{ valor }}</option>
-          </select>
-        
-          <!-- Campo comentarios -->  
-          <textarea *ngIf="campo.key === 'COMENTARIOS'"
-                    [(ngModel)]="carga[campo.key]" [name]="campo.key"></textarea>
-        
-          <!-- Otros campos -->
-          <input *ngIf="!['MES','COM','STATUS','TIPO','SERVICIO','COND.','COMENTARIOS'].includes(campo.key)"
-                 [type]="campo.key.includes('FECHA') || campo.key === 'ATA' || campo.key === 'ATD' ? 'date' : (campo.key === 'FECHA_HORA_TRANSMISION' ? 'datetime-local' : 'text')"
-                 [(ngModel)]="carga[campo.key]" [name]="campo.key" />
+    <div class="modal-header">
+      <h3>Nuevo Registro</h3>
+      <button class="cerrar-modal" (click)="cerrarModal()"><span class="material-symbols-outlined">close</span></button>
+    </div>
+    <div class="modal-body">
+      <form (ngSubmit)="guardarRegistro()">
+        <div class="cont-form-nr">
+          <div class="form-group" *ngFor="let campo of campos">
+            <label>{{ campo.label }}:</label>
+          
+            <!-- Campos con valores predefinidos -->
+            <select *ngIf="['MES','COM','STATUS','TIPO','SERVICIO','COND.'].includes(campo.key)"
+                    [(ngModel)]="carga[campo.key]" [name]="campo.key">
+              <option *ngFor="let valor of obtenerValoresPorCampo(campo.key)" [value]="valor">{{ valor }}</option>
+            </select>
+          
+            <!-- Campo comentarios -->  
+            <textarea *ngIf="campo.key === 'COMENTARIOS'"
+                      [(ngModel)]="carga[campo.key]" [name]="campo.key"></textarea>
+          
+            <!-- Otros campos -->
+            <input *ngIf="!['MES','COM','STATUS','TIPO','SERVICIO','COND.','COMENTARIOS'].includes(campo.key)"
+                  [type]="campo.key.includes('FECHA') || campo.key === 'ATA' || campo.key === 'ATD' ? 'date' : (campo.key === 'FECHA_HORA_TRANSMISION' ? 'datetime-local' : 'text')"
+                  [(ngModel)]="carga[campo.key]" [name]="campo.key" />
+          </div>
         </div>
-      </div>
-
-      <br>
-      <div class="actions">
+      </form>
+    </div>
+    <div class="actions">
         <button class="btn-solid add" type="submit">
         <span>{{ modoEdicion ? 'Modificar' : 'Guardar' }}</span>
         <span class="material-symbols-outlined">save</span>
@@ -40,7 +43,6 @@
         <span class="material-symbols-outlined">close</span>
       </button>
       </div>
-    </form>
   </div>
 </div>
 <hr>
@@ -48,7 +50,7 @@
 <h2>Registros cargados</h2>
 <div class="wrap-actions">
   <input type="text" [(ngModel)]="filtroTexto" placeholder="Buscar..." class="form-control mb-2 buscador" />
-  <button class="btn-solid" (click)="exportarDatosFiltradosCSV()">
+  <button class="btn-solid export" (click)="exportarDatosFiltradosCSV()">
     <span>Exportar Excel.CSV</span>
     <span class="material-symbols-outlined">download</span>
   </button>
@@ -61,7 +63,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let reg of registrosFiltradosPaginados()" style="cursor: pointer;">
+      <tr *ngFor="let reg of registrosFiltradosPaginados()">
         <td *ngFor="let campo of campos">{{ reg[campo.key] }}</td>
       </tr>
     </tbody>
