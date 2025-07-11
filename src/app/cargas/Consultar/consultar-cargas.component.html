@@ -12,11 +12,21 @@
         <div class="cont-form-nr">
           <div class="form-group" *ngFor="let campo of campos">
             <label>{{ campo.label }}:</label>
-            <input *ngIf="campo.key !== 'COMENTARIOS'"
-                   [type]="campo.key.includes('FECHA') || campo.key === 'ATA' || campo.key === 'ATD' ? 'date' : 'text'"
-                   [(ngModel)]="carga[campo.key]" [name]="campo.key" />
+          
+            <!-- Campos con valores predefinidos -->
+            <select *ngIf="['MES','COM','STATUS','TIPO','SERVICIO','COND.'].includes(campo.key)"
+                    [(ngModel)]="carga[campo.key]" [name]="campo.key">
+              <option *ngFor="let valor of obtenerValoresPorCampo(campo.key)" [value]="valor">{{ valor }}</option>
+            </select>
+          
+            <!-- Campo comentarios -->
             <textarea *ngIf="campo.key === 'COMENTARIOS'"
                       [(ngModel)]="carga[campo.key]" [name]="campo.key"></textarea>
+          
+            <!-- Otros campos -->
+            <input *ngIf="!['MES','COM','STATUS','TIPO','SERVICIO','COND.','COMENTARIOS'].includes(campo.key)"
+                   [type]="campo.key.includes('FECHA') || campo.key === 'ATA' || campo.key === 'ATD' ? 'date' : (campo.key === 'FECHA_HORA_TRANSMISION' ? 'datetime-local' : 'text')"
+                   [(ngModel)]="carga[campo.key]" [name]="campo.key" />
           </div>
         </div>
 

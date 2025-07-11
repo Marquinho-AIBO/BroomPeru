@@ -200,4 +200,23 @@ export class IngresarCargasComponent implements OnInit {
     a.click();
     document.body.removeChild(a);
   }
+  obtenerValoresPorCampo(campo: string): string[] {
+    switch (campo) {
+      case 'MES':
+        return ['ENERO', 'FEBRERO', 'MARZO', 'ABRIL', 'MAYO', 'JUNIO', 'JULIO', 'AGOSTO', 'SETIEMBRE', 'OCTUBRE', 'NOVIEMBRE', 'DICIEMBRE'];
+      case 'COM':
+        return ['AGENTE', 'BGL'];
+      case 'STATUS':
+        return ['EN CURSO', 'CERRADO'];
+      case 'TIPO':
+        return ['EXPO', 'IMPO'];
+      case 'SERVICIO':
+        return ['ALM', 'COURIER', 'FWD', 'FWD / SLI', 'SLI'];
+      case 'COND.':
+        return ['AIR', 'DEP', 'FCL', 'LCL'];
+      default:
+        return [];
+    }
+  }
+  
 }

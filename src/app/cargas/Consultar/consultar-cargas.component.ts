@@ -229,7 +229,7 @@ definirColumnasPorPerfil() {
           ...this.carga,
           HBL_HAWB: this.HBL_HAWB_original  // importante! usamos el original
         };
-    
+    console.log(bodyUpdate);
         this.http.post<any>(`${this.apiUrl}?action=update`, bodyUpdate).subscribe(response => {
           if (response.success) {
             alert('Registro modificado correctamente!');
@@ -312,6 +312,23 @@ definirColumnasPorPerfil() {
       a.click();
       document.body.removeChild(a);
     }
-    
+    obtenerValoresPorCampo(campo: string): string[] {
+      switch (campo) {
+        case 'MES':
+          return ['ENERO', 'FEBRERO', 'MARZO', 'ABRIL', 'MAYO', 'JUNIO', 'JULIO', 'AGOSTO', 'SETIEMBRE', 'OCTUBRE', 'NOVIEMBRE', 'DICIEMBRE'];
+        case 'COM':
+          return ['AGENTE', 'BGL'];
+        case 'STATUS':
+          return ['EN CURSO', 'CERRADO'];
+        case 'TIPO':
+          return ['EXPO', 'IMPO'];
+        case 'SERVICIO':
+          return ['ALM', 'COURIER', 'FWD', 'FWD / SLI', 'SLI'];
+        case 'COND.':
+          return ['AIR', 'DEP', 'FCL', 'LCL'];
+        default:
+          return [];
+      }
+    }
     
   }
