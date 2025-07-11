@@ -65,7 +65,7 @@ export class IngresarCargasComponent implements OnInit {
     { label: 'NRO_TICKET', key: 'NRO_TICKET' },
     { label: 'FECHA_HORA_TRANSMISION', key: 'FECHA_HORA_TRANSMISION' },
     { label: 'COMENTARIOS', key: 'COMENTARIOS' },
-    { label: 'RUT', key: 'RUT' }
+    //{ label: 'RUT', key: 'RUT' }
   ];
 
   carga: any = {};
