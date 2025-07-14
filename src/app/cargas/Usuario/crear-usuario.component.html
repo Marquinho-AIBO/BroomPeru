@@ -1,7 +1,8 @@
 <h2>Crear Usuario</h2>
 
 <form (ngSubmit)="guardarUsuario()" #usuarioForm="ngForm">
-  <div class="form-group">
+  <div class="cont-cu">
+    <div class="form-group">
     <label>Usuario</label>
     <input type="text" name="nombre_usuario" [(ngModel)]="usuario.nombre_usuario" required>
   </div>
@@ -17,47 +18,60 @@
       <option *ngFor="let perfil of perfiles" [value]="perfil.nombre">{{ perfil.nombre }}</option>
     </select>
   </div>
-
+  <div class="form-group">
+    <label>Empresa (RUC)</label>
+    <select name="RUC-emp" >
+      <option value="">Seleccionar Epresa</option>
+      <option value="">ruc-123456</option>
+      <option value="">ruc-123456</option>
+      <option value="">ruc-123456</option>
+    </select>
+  </div>
   <input type="hidden" name="empresa_id" [(ngModel)]="usuario.empresa_id"
   [required]="usuario.rol !== 'Administrador'" *ngIf="usuario.rol !== 'Administrador'">
-
+  </div>
   
-  <button type="button" (click)="resetFormulario()">Cancelar</button>
-  <button type="submit" [disabled]="usuarioForm.invalid">
-    {{ usuario.id ? 'Actualizar' : 'Guardar' }}
-  </button>
-  
+  <div class="actions">
+    <button class="btn-solid add" type="submit" [disabled]="usuarioForm.invalid">
+      {{ usuario.id ? 'Actualizar' : 'Guardar' }}
+    </button>
+    <button class="btn-solid close" type="button" (click)="resetFormulario()">Cancelar</button>
+  </div>
   
 </form>
 
-
+<hr>
 <p *ngIf="mensaje">{{ mensaje }}</p>
 <h3>Usuarios con Empresa</h3>
-<input type="text" [(ngModel)]="filtro" placeholder="Buscar usuario..." />
+<div class="wrap-actions">
+  <input class="form-control mb-2  buscador" type="text" [(ngModel)]="filtro" placeholder="Buscar usuario..." />
+</div>
+
+<div class="cont-table">
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Usuario</th>
+        <!-- <th>Contraseña</th> -->
+        <th>Rol</th>
+        <th>Empresa ID</th>
+        <th>Acción</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let usuario of usuariosFiltrados">
 
 
-<table border="1">
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Usuario</th>
-      <th>Rol</th>
-      <th>Empresa ID</th>
-      <th>Acción</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let usuario of usuariosFiltrados">
-
-
-      <td>{{ usuario.id }}</td>
-      <td>{{ usuario.nombre_usuario }}</td>
-      <td>{{ usuario.contrasena }}</td>
-      <td>{{ usuario.rol }}</td>
-      <td>{{ usuario.empresa_id }}</td>
-      <td>
-        <button type="button" (click)="seleccionarUsuario(usuario); $event.stopPropagation()">Editar</button>
-      </td>
-    </tr>
-  </tbody>
-</table>
+        <td>{{ usuario.id }}</td>
+        <td>{{ usuario.nombre_usuario }}</td>
+        <!-- <td>{{ usuario.contrasena }}</td> -->
+        <td>{{ usuario.rol }}</td>
+        <td>{{ usuario.empresa_id }}</td>
+        <td>
+          <button type="button" class="btn-solid edit" (click)="seleccionarUsuario(usuario); $event.stopPropagation()">Editar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
