@@ -56,7 +56,7 @@
         <th>Contraseña</th>
         <th>Rol</th>
         <!--th>Empresa ID</th-->
-        <th>Acción</th>
+        <th colspan="2">Acción</th> 
       </tr>
     </thead>
     <tbody>
@@ -70,6 +70,9 @@
         <!--td>{{ usuario.empresa_id }}</td-->
         <td>
           <button type="button" class="btn-solid edit" (click)="seleccionarUsuario(usuario); $event.stopPropagation()">Editar</button>
+        </td>
+        <td>
+          <button type="button" class="btn-solid edit" (click)="eliminarEmpresa(usuario.empresa_id)">🗑 Eliminar</button>
         </td>
       </tr>
     </tbody>

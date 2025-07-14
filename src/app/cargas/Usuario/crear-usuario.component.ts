@@ -36,15 +36,15 @@
     guardarUsuario(): void {
       const empresaPayload = {
         nombre: this.usuario.nombre_usuario,
-        IdPerfil: 4, // ejemplo fijo o puedes mapear según el rol
-        RUT: this.usuario.empresa_id || 0 // puedes ajustar lógica si tienes RUT real
+        IdPerfil: this.usuario.rol, // ejemplo fijo o puedes mapear según el rol
+        RUT: this.usuario.nombre_usuario || 0 // puedes ajustar lógica si tienes RUT real
       };
     
-      this.http.post<any>('https://www.broomperu.com/BroomPeru/API/Empresas.php?action=create_empresa', empresaPayload)
+      this.http.post<any>('https://www.broomperu.com/BroomPeru/API/Usuarios.php?action=create_empresa', empresaPayload)
         .subscribe(res => {
           if (res.success) {
             const idEmpresa = res.id_empresa;
-    
+            
             const body = {
               ...this.usuario,
               empresa_id: idEmpresa
@@ -122,4 +122,20 @@ get usuariosFiltrados(): any[] {
     )
   );
 }
+
+eliminarEmpresa(id: number): void {
+  if (!confirm('¿Estás seguro de eliminar esta empresa?')) return;
+
+  this.http.get<any>(`https://www.broomperu.com/BroomPeru/API/Usuarios.php?action=delete_empresa&id=${id}`)
+    .subscribe(res => {
+      if (res.success) {
+        this.mensaje = '✅ Empresa eliminada correctamente.';
+        this.cargarEmpresas(); // vuelve a cargar lista actualizada
+      } else {
+        this.mensaje = '❌ ' + res.message;
+      }
+    });
+}
+
+
   }
