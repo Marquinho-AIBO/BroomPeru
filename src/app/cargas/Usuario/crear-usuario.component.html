@@ -18,7 +18,7 @@
       <option *ngFor="let perfil of perfiles" [value]="perfil.nombre">{{ perfil.nombre }}</option>
     </select>
   </div>
-  <div class="form-group">
+  <!--div class="form-group">
     <label>Empresa (RUC)</label>
     <select name="RUC-emp" >
       <option value="">Seleccionar Epresa</option>
@@ -26,7 +26,7 @@
       <option value="">ruc-123456</option>
       <option value="">ruc-123456</option>
     </select>
-  </div>
+  </div-->
   <input type="hidden" name="empresa_id" [(ngModel)]="usuario.empresa_id"
   [required]="usuario.rol !== 'Administrador'" *ngIf="usuario.rol !== 'Administrador'">
   </div>
@@ -53,9 +53,9 @@
       <tr>
         <th>ID</th>
         <th>Usuario</th>
-        <!-- <th>Contraseña</th> -->
+        <th>Contraseña</th>
         <th>Rol</th>
-        <th>Empresa ID</th>
+        <!--th>Empresa ID</th-->
         <th>Acción</th>
       </tr>
     </thead>
@@ -65,9 +65,9 @@
 
         <td>{{ usuario.id }}</td>
         <td>{{ usuario.nombre_usuario }}</td>
-        <!-- <td>{{ usuario.contrasena }}</td> -->
+         <td>{{ usuario.contrasena }}</td> 
         <td>{{ usuario.rol }}</td>
-        <td>{{ usuario.empresa_id }}</td>
+        <!--td>{{ usuario.empresa_id }}</td-->
         <td>
           <button type="button" class="btn-solid edit" (click)="seleccionarUsuario(usuario); $event.stopPropagation()">Editar</button>
         </td>

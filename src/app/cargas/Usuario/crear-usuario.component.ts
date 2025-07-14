@@ -34,25 +34,38 @@
     }
 
     guardarUsuario(): void {
-      const body = { ...this.usuario };
+      const empresaPayload = {
+        nombre: this.usuario.nombre_usuario,
+        IdPerfil: 4, // ejemplo fijo o puedes mapear según el rol
+        RUT: this.usuario.empresa_id || 0 // puedes ajustar lógica si tienes RUT real
+      };
     
-      // Crear o actualizar según presencia de ID
-      const action = this.usuario.id ? 'update' : 'create';
-    
-      this.http.post<any>(`https://www.broomperu.com/BroomPeru/API/Usuarios.php?action=${action}`, body)
+      this.http.post<any>('https://www.broomperu.com/BroomPeru/API/Empresas.php?action=create_empresa', empresaPayload)
         .subscribe(res => {
           if (res.success) {
-            this.mensaje = this.usuario.id
-              ? '✅ Usuario actualizado correctamente.'
-              : '✅ Usuario creado correctamente.';
+            const idEmpresa = res.id_empresa;
     
-            this.resetFormulario();
-            this.cargarEmpresas(); // Refrescar tabla
+            const body = {
+              ...this.usuario,
+              empresa_id: idEmpresa
+            };
+    
+            this.http.post<any>('https://www.broomperu.com/BroomPeru/API/Usuarios.php?action=create', body)
+              .subscribe(res2 => {
+                if (res2.success) {
+                  this.mensaje = '✅ Empresa y usuario creados correctamente.';
+                  this.resetFormulario();
+                  this.cargarEmpresas(); // refrescar tabla
+                } else {
+                  this.mensaje = '❌ ' + res2.message;
+                }
+              });
           } else {
             this.mensaje = '❌ ' + res.message;
           }
         });
     }
+    
     
     actualizarUsuario(): void {
       const body = { ...this.usuario };
