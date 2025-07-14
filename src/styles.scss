@@ -72,6 +72,20 @@ body{
         background-color: $bp-blue;
     }
 }
+.edit{
+    width: fit-content;
+    padding: 4px 16px;
+    display: flex;
+    align-items: center;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    gap: 4px;
+    background-color: $bp-grey-80;
+    color: $white;
+    &:hover{
+        background-color: $bp-grey-50;
+    }
+}
 .add{
     background-color: $bp-green;
     color: $white;
@@ -129,6 +143,13 @@ body:has(.login-container){
     align-items: center;
     justify-content: center;
 }
+.cont-cu{
+    width: calc(100% - 32px);
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
 .form-group{
     display: flex;
     flex-direction: column;
@@ -144,6 +165,7 @@ body:has(.login-container){
         font-size: 14px;
         font-family: inherit;
         width: 100%;
+        height: 31px;
         &:focus-visible {
             outline: 1px solid $bp-blue;
         }
