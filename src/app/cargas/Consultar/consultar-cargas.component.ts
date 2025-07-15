@@ -146,7 +146,7 @@ definirColumnasPorPerfil() {
   const todas = {
     MES: true, COM: true, NRO_OP: true, TARIFA: true, COD_SAP: true,
     STATUS: true, TIPO: true, SERVICIO: true, UTILIDAD: true, RUC: true,
-    AGENTE: true, SHIPPER: true, CONSIGNEE: true, MBL_MAWB: true,
+    AGENTE: true, CONSIGNEE: true, MBL_MAWB: true,
     HBL_HAWB: true, WEEK: true, PUERTO_DE_EMBARQUE: true, ATD: true,
     PUERTO_TRANSBORDO: true, FECHA_ARRIBO_TRANSBORDO: true,
     FECHA_SALIDA_TRANSBORDO: true, PUERTO_DE_DESCARGA: true, ATA: true,
@@ -159,6 +159,11 @@ definirColumnasPorPerfil() {
 
   const empresas = {
     NRO_OP: true,
+    TIPO: true,
+    RUC: true,
+    SHIPPER: true, 
+    CONSIGNEE: true,
+    MBL_MAWB: true,
     PUERTO_DE_EMBARQUE: true,
     ATD: true,
     PUERTO_TRANSBORDO: true,
@@ -176,7 +181,7 @@ definirColumnasPorPerfil() {
     VIAJE: true
   };
   
-  const aduanero = { ...todas };
+  const aduanero = { ...empresas };
 
   if (perfil === 'Administrador') this.columnasVisibles = todas;
   else if (perfil === 'Aduana') this.columnasVisibles = aduanero;
