@@ -180,7 +180,12 @@ body:has(.login-container){
         height: 31px;
     }
 }
-
+.show-reg{
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 8px;
+}
 .header{
     background-color: $bp-greyblue;
     color: $white;

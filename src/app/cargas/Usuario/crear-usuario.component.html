@@ -3,6 +3,22 @@
 <form (ngSubmit)="guardarUsuario()" #usuarioForm="ngForm">
   <div class="cont-cu">
     <div class="form-group">
+    <label>Rol</label>
+    <select id="sel-rol" name="rol" [(ngModel)]="usuario.rol" required>
+      <option *ngFor="let perfil of perfiles" [value]="perfil.nombre">{{ perfil.nombre }}</option>
+    </select>
+  </div>
+  <div id="sel-ruc" class="form-group" *ngIf="usuario.rol === 'Empresa'">
+    <label>Empresa (RUC)</label>
+    <select name="empresa_ruc" [(ngModel)]="usuario.nombre_usuario" required>
+      <option value="">-- Seleccionar RUC disponible --</option>
+      <option *ngFor="let ruc of rucsDisponibles" [value]="ruc">{{ ruc }}</option>
+    </select>
+  </div>
+  
+  <input type="hidden" name="empresa_id" [(ngModel)]="usuario.empresa_id"
+  [required]="usuario.rol === 'Empresa'" *ngIf="usuario.rol === 'Empresa'">
+    <div class="form-group">
     <label>Usuario</label>
     <input type="text" name="nombre_usuario" [(ngModel)]="usuario.nombre_usuario" required>
   </div>
@@ -11,30 +27,8 @@
     <label>Contraseña</label>
     <input type="password" name="contrasena" [(ngModel)]="usuario.contrasena" required minlength="6">
   </div>
-  <div class="form-group" *ngIf="usuario.rol !== 'Administrador'">
-    <label>Empresa (RUC)</label>
-    <select name="empresa_ruc" [(ngModel)]="usuario.nombre_usuario" required>
-      <option value="">-- Seleccionar RUC disponible --</option>
-      <option *ngFor="let ruc of rucsDisponibles" [value]="ruc">{{ ruc }}</option>
-    </select>
-  </div>
-  <div class="form-group">
-    <label>Rol</label>
-    <select name="rol" [(ngModel)]="usuario.rol" required>
-      <option *ngFor="let perfil of perfiles" [value]="perfil.nombre">{{ perfil.nombre }}</option>
-    </select>
-  </div>
-  <!--div class="form-group">
-    <label>Empresa (RUC)</label>
-    <select name="RUC-emp" >
-      <option value="">Seleccionar Epresa</option>
-      <option value="">ruc-123456</option>
-      <option value="">ruc-123456</option>
-      <option value="">ruc-123456</option>
-    </select>
-  </div-->
-  <input type="hidden" name="empresa_id" [(ngModel)]="usuario.empresa_id"
-  [required]="usuario.rol !== 'Administrador'" *ngIf="usuario.rol !== 'Administrador'">
+  
+
   </div>
   
   <div class="actions">
