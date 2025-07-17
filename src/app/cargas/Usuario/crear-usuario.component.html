@@ -17,6 +17,7 @@
   </div>
   
   <input type="hidden" name="empresa_id" [(ngModel)]="usuario.empresa_id"
+  
   [required]="usuario.rol === 'Empresa'" *ngIf="usuario.rol === 'Empresa'">
     <div class="form-group">
     <label>Usuario</label>
@@ -72,7 +73,8 @@
           <button type="button" class="btn-solid edit" (click)="seleccionarUsuario(usuario); $event.stopPropagation()">Editar</button>
         </td>
         <td>
-          <button type="button" class="btn-solid edit" (click)="eliminarEmpresa(usuario.empresa_id)">🗑 Eliminar</button>
+     <button type="button" class="btn-solid edit" (click)="eliminarEmpresa(usuario.empresa_id)">🗑 Eliminar</button>
+
         </td>
       </tr>
     </tbody>
