@@ -2,13 +2,13 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
-
+import { HttpClientModule } from '@angular/common/http';
 import { LoginService } from '../services/login.service';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterModule], // 👈 AQUI agregas HttpClientModule
+  imports: [CommonModule, FormsModule, RouterModule,HttpClientModule], // 👈 AQUI agregas HttpClientModule
   templateUrl: './login.component.html'
 })
 export class LoginComponent {

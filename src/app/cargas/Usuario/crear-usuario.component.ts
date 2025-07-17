@@ -18,11 +18,16 @@
       rol: '',
       empresa_id: 0
     };
-
+    paginaActual: number = 1;
+    registrosPorPagina: number = 10;
+    opcionesCantidad: number[] = [5, 10, 25, 50, 100];
+    rucsDisponibles: string[] = [];
     perfiles: any[] = [];
     mensaje: string = '';
     empresas: any[] = [];
     filtro: string = '';
+    totalRegistros: number = 0;
+    todosLosRegistros: any;
 
     constructor(private http: HttpClient) {}
 
@@ -31,6 +36,7 @@
         .subscribe(res => this.perfiles = res.data);
     
       this.cargarEmpresas();
+      this.cargarRucsDisponibles(); 
     }
 
     guardarUsuario(): void {
@@ -65,7 +71,14 @@
           }
         });
     }
-    
+    cargarRucsDisponibles(): void {
+      this.http.get<any>('https://www.broomperu.com/BroomPeru/API/Usuarios.php?action=listar_ruc_disponibles')
+        .subscribe(res => {
+          if (res.success) {
+            this.rucsDisponibles = res.data;
+          }
+        });
+    }
     
     actualizarUsuario(): void {
       const body = { ...this.usuario };
@@ -135,6 +148,14 @@ eliminarEmpresa(id: number): void {
         this.mensaje = '❌ ' + res.message;
       }
     });
+}
+get totalPaginas(): number[] {
+  const total = Math.ceil(this.totalRegistros / this.registrosPorPagina);
+  return Array(total).fill(0).map((_, i) => i + 1);
+}
+get registrosPaginados() {
+  const inicio = (this.paginaActual - 1) * this.registrosPorPagina;
+  return this.todosLosRegistros.slice(inicio, inicio + this.registrosPorPagina);
 }
 
 

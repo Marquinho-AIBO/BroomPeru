@@ -116,9 +116,11 @@
     
   filtroTexto: string = '';
   paginaActual: number = 1;
-  registrosPorPagina: number = 50;
+  registrosPorPagina: number = 10;
   ordenColumna: string = '';
   ordenAscendente: boolean = true;
+  opcionesCantidad: number[] = [10, 25, 50, 100];
+
     constructor(private http: HttpClient) {
       const user = localStorage.getItem('user');
       console.log(localStorage);
@@ -164,6 +166,7 @@ definirColumnasPorPerfil() {
     SHIPPER: true, 
     CONSIGNEE: true,
     MBL_MAWB: true,
+    HBL_HAWB: true,
     PUERTO_DE_EMBARQUE: true,
     ATD: true,
     PUERTO_TRANSBORDO: true,
@@ -252,31 +255,11 @@ definirColumnasPorPerfil() {
       } 
     }
     registrosFiltradosPaginados() {
-      let datos = [...this.registros];
-    
-      // Filtro
-      if (this.filtroTexto.trim()) {
-        const filtro = this.filtroTexto.toLowerCase();
-        datos = datos.filter(reg =>
-          Object.values(reg).some(val => val?.toString().toLowerCase().includes(filtro))
-        );
-      }
-    
-      // Orden
-      if (this.ordenColumna) {
-        datos.sort((a, b) => {
-          const aVal = a[this.ordenColumna];
-          const bVal = b[this.ordenColumna];
-          return this.ordenAscendente
-            ? aVal > bVal ? 1 : -1
-            : aVal < bVal ? 1 : -1;
-        });
-      }
-    
-      // Paginación
+      const datos = this.registrosFiltrados;
       const inicio = (this.paginaActual - 1) * this.registrosPorPagina;
       return datos.slice(inicio, inicio + this.registrosPorPagina);
     }
+    
     
     ordenarPor(columna: string) {
       if (this.ordenColumna === columna) {
@@ -287,7 +270,7 @@ definirColumnasPorPerfil() {
       }
     } 
     totalPaginas(): number[] {
-      const total = Math.ceil(this.registros.length / this.registrosPorPagina);
+      const total = Math.ceil(this.registrosFiltrados.length / this.registrosPorPagina);
       return Array.from({ length: total }, (_, i) => i + 1);
     }
     exportarDatosFiltradosCSV() {
@@ -335,5 +318,16 @@ definirColumnasPorPerfil() {
           return [];
       }
     }
+    get registrosFiltrados(): any[] {
+      if (!this.filtroTexto.trim()) return this.registros;
+    
+      const texto = this.filtroTexto.toLowerCase();
+      return this.registros.filter(reg =>
+        Object.values(reg).some(val => val?.toString().toLowerCase().includes(texto))
+      );
+    }
+   
+    
+
     
   }
