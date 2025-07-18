@@ -187,9 +187,8 @@ export class IngresarCargasComponent implements OnInit {
   }
 
   exportarDatosFiltradosCSV() {
-    const datos = this.registrosFiltradosPaginados();
-
-    if (!datos.length) {
+    const datos = this.registros;
+     if (!datos.length) {
       alert("No hay datos para exportar.");
       return;
     }
