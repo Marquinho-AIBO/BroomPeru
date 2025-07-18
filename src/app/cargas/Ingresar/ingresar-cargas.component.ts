@@ -23,6 +23,8 @@ export class IngresarCargasComponent implements OnInit {
   ordenColumna: string = '';
   ordenAscendente: boolean = true;
 
+  opcionesCantidad: number[] = [10, 25, 50, 100];
+  
   campos = [
     { label: 'MES', key: 'MES' },
     { label: 'COM', key: 'COM' },

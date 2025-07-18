@@ -122,13 +122,17 @@ resetFormulario(): void {
   this.mensaje = '';
 }
 
+get usuariosFiltradosPaginados(): any[] {
+  const datos = this.usuariosFiltrados;
+  const inicio = (this.paginaActual - 1) * this.registrosPorPagina;
+  return datos.slice(inicio, inicio + this.registrosPorPagina);
+}
 get usuariosFiltrados(): any[] {
   if (!this.filtro.trim()) {
     return this.usuariosEmpresariales;
   }
 
   const texto = this.filtro.trim().toLowerCase();
-
   return this.usuariosEmpresariales.filter(usuario =>
     Object.values(usuario).some(valor =>
       String(valor).toLowerCase().includes(texto)
