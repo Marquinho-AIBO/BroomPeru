@@ -302,18 +302,27 @@ definirColumnasPorPerfil() {
       return Array.from({ length: total }, (_, i) => i + 1);
     }
     exportarDatosFiltradosCSV() {
-      const datos = this.registros;
+      const datos = this.registros; // todos los registros, sin filtros ni paginado
     
       if (!datos.length) {
         alert("No hay datos para exportar.");
         return;
       }
     
-      const columnas = Object.keys(datos[0]);
+      // Solo columnas visibles según el perfil
+      const columnas = this.campos
+        .filter(c => this.columnasVisibles[c.key])
+        .map(c => c.key);
+    
+      const encabezados = this.campos
+        .filter(c => this.columnasVisibles[c.key])
+        .map(c => c.label);
     
       const csvContent = [
-        columnas.join(','), // Cabecera
-        ...datos.map(row => columnas.map(col => `"${(row[col] ?? '').toString().replace(/"/g, '""')}"`).join(','))
+        encabezados.join(','), // Cabecera
+        ...datos.map(row =>
+          columnas.map(col => `"${(row[col] ?? '').toString().replace(/"/g, '""')}"`).join(',')
+        )
       ].join('\n');
     
       const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
@@ -323,11 +332,12 @@ definirColumnasPorPerfil() {
       a.href = url;
       const ahora = new Date();
       const timestamp = ahora.toISOString().replace(/[:.]/g, '-');
-      a.download = `registros_filtrados_${timestamp}.csv`;
+      a.download = `registros_${this.userProfile}_${timestamp}.csv`;
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
     }
+    
     obtenerValoresPorCampo(campo: string): string[] {
       switch (campo) {
         case 'MES':
