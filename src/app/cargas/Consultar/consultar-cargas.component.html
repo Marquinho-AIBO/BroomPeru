@@ -28,23 +28,26 @@
           
             <!-- Otros campos -->
             <input *ngIf="!['MES','COM','STATUS','TIPO','SERVICIO','COND.','COMENTARIOS', 'RUC'].includes(campo.key)"
-                   [type]="campo.key.includes('FECHA') || campo.key === 'ATA' || campo.key === 'ATD' ? 'date' : (campo.key === 'FECHA_HORA_TRANSMISION' ? 'datetime-local' : 'text')"
-                   [(ngModel)]="carga[campo.key]" [name]="campo.key" />
+                           [type]="campo.key === 'FECHA_REGULARIZADA' || campo.key === 'FECHA_HORA_TRANSMISION' ? 'datetime-local' : 
+                        (campo.key.includes('FECHA') || campo.key === 'ATA' || campo.key === 'ATD' ? 'date' : 'text')"
+                      [(ngModel)]="carga[campo.key]" [name]="campo.key" />
             <input *ngIf="['RUC'].includes(campo.key)" [(ngModel)]="carga[campo.key]" [name]="campo.key" disabled/>
           </div>
         </div>
+        <div class="actions">
+          <button class="btn-solid add" type="submit">
+            <span>{{ modoEdicion ? 'Modificar' : 'Guardar' }}</span>
+            <span class="material-symbols-outlined">save</span>
+          </button>
+        
+          <button class="btn-solid close" type="button" (click)="cerrarModal()">
+            <span>Cerrar</span>
+            <span class="material-symbols-outlined">close</span>
+          </button>
+        </div>
       </form>
       </div>
-      <div class="actions">
-        <button class="btn-solid add" type="submit">
-          <span>{{ modoEdicion ? 'Modificar' : 'Guardar' }}</span>
-          <span class="material-symbols-outlined">save</span>
-        </button>
-        <button class="btn-solid close" type="button" (click)="cerrarModal()">
-          <span>Cerrar</span>
-          <span class="material-symbols-outlined">close</span>
-        </button>
-      </div>
+    
     </div>
   </div>
 </ng-container>

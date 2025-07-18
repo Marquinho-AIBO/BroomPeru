@@ -147,7 +147,7 @@ definirColumnasPorPerfil() {
 
   const todas = {
     MES: true, COM: true, NRO_OP: true, TARIFA: true, COD_SAP: true,
-    STATUS: true, TIPO: true, SERVICIO: true, UTILIDAD: true, RUC: true,
+    STATUS: true, TIPO: true, SERVICIO: true, UTILIDAD: true, RUC: true,SHIPPER: true, 
     AGENTE: true, CONSIGNEE: true, MBL_MAWB: true,
     HBL_HAWB: true, WEEK: true, PUERTO_DE_EMBARQUE: true, ATD: true,
     PUERTO_TRANSBORDO: true, FECHA_ARRIBO_TRANSBORDO: true,
@@ -214,8 +214,15 @@ definirColumnasPorPerfil() {
       });
     }
     cargarEnFormulario(reg: any): void {
-      console.log("Abriendo modal para:", this.userProfile);
-      this.carga = { ...reg };
+      const convertirFecha = (fecha: string) => {
+        return fecha ? fecha.replace(' ', 'T') : '';
+      };
+    
+      this.carga = {
+        ...reg,
+        FECHA_REGULARIZADA: this.convertirAFormatoDatetimeLocal(reg.FECHA_REGULARIZADA),
+        FECHA_HORA_TRANSMISION: this.convertirAFormatoDatetimeLocal(reg.FECHA_HORA_TRANSMISION),
+      };
     
       if (this.userProfile === 'Administrador') {
         this.HBL_HAWB_original = reg.HBL_HAWB;
@@ -224,6 +231,24 @@ definirColumnasPorPerfil() {
     
       this.mostrarModal = true;
     }
+    convertirAFormatoDatetimeLocal(fechaStr: string): string {
+      if (!fechaStr || typeof fechaStr !== 'string' || !fechaStr.includes(' ')) return '';
+    
+      const [fecha, hora] = fechaStr.split(' ');
+      if (!fecha || !hora) return '';
+    
+      return `${fecha}T${hora}`;  // Simplemente reemplaza el espacio por "T"
+    }
+    
+    
+    convertirAFormatoOriginal(datetimeStr: string): string {
+      if (!datetimeStr || !datetimeStr.includes('T')) return '';
+      
+      return datetimeStr.replace('T', ' ');
+    }
+    
+    
+    
     
     
     
@@ -235,8 +260,11 @@ definirColumnasPorPerfil() {
         // 🚀 MODO MODIFICAR (UPDATE)
         const bodyUpdate = {
           ...this.carga,
-          HBL_HAWB: this.HBL_HAWB_original  // importante! usamos el original
+          HBL_HAWB: this.HBL_HAWB_original,
+          FECHA_REGULARIZADA: this.convertirAFormatoOriginal(this.carga.FECHA_REGULARIZADA),
+          FECHA_HORA_TRANSMISION: this.convertirAFormatoOriginal(this.carga.FECHA_HORA_TRANSMISION)
         };
+        
     console.log(bodyUpdate);
         this.http.post<any>(`${this.apiUrl}?action=update`, bodyUpdate).subscribe(response => {
           if (response.success) {

@@ -19,7 +19,7 @@ export class IngresarCargasComponent implements OnInit {
   registros: any[] = [];
   filtroTexto: string = '';
   paginaActual: number = 1;
-  registrosPorPagina: number = 50;
+  registrosPorPagina: number = 10;
   ordenColumna: string = '';
   ordenAscendente: boolean = true;
 
@@ -89,7 +89,13 @@ export class IngresarCargasComponent implements OnInit {
       return;
     }
 
-    this.http.post<any>(`${this.apiUrl}?action=insert`, this.carga).subscribe(response => {
+    const bodyInsert = {
+      ...this.carga,
+      FECHA_REGULARIZADA: this.convertirAFormatoOriginal(this.carga.FECHA_REGULARIZADA),
+      FECHA_HORA_TRANSMISION: this.convertirAFormatoOriginal(this.carga.FECHA_HORA_TRANSMISION)
+    };
+
+    this.http.post<any>(`${this.apiUrl}?action=insert`, bodyInsert).subscribe(response => {
       if (response.success) {
         alert('Registro guardado correctamente!');
         this.limpiarFormulario();
@@ -102,6 +108,11 @@ export class IngresarCargasComponent implements OnInit {
       console.error('Error:', error);
       alert('Error en la comunicación con el servidor.');
     });
+  }
+
+  convertirAFormatoOriginal(datetimeStr: string): string {
+    if (!datetimeStr || !datetimeStr.includes('T')) return '';
+    return datetimeStr.replace('T', ' ');
   }
 
   cargarRegistros() {
