@@ -302,7 +302,7 @@ definirColumnasPorPerfil() {
       return Array.from({ length: total }, (_, i) => i + 1);
     }
     exportarDatosFiltradosCSV() {
-      const datos = this.registrosFiltradosPaginados();
+      const datos = this.registros;
     
       if (!datos.length) {
         alert("No hay datos para exportar.");
