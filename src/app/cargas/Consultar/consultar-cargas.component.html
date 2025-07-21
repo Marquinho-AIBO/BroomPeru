@@ -10,31 +10,33 @@
           <span class="material-symbols-outlined">close</span>
         </button>
       </div>
-      <div class="modal-body">
-        <form (ngSubmit)="guardarRegistro()">
-        <div class="cont-form-nr">
-          <div class="form-group" *ngFor="let campo of campos">
-            <label>{{ campo.label }}:</label>
-          
-            <!-- Campos con valores predefinidos -->
-            <select *ngIf="['MES','COM','STATUS','TIPO','SERVICIO','COND.'].includes(campo.key)"
-                    [(ngModel)]="carga[campo.key]" [name]="campo.key">
-              <option *ngFor="let valor of obtenerValoresPorCampo(campo.key)" [value]="valor">{{ valor }}</option>
-            </select>
-          
-            <!-- Campo comentarios -->
-            <textarea *ngIf="campo.key === 'COMENTARIOS'"
-                      [(ngModel)]="carga[campo.key]" [name]="campo.key"></textarea>
-          
-            <!-- Otros campos -->
-            <input *ngIf="!['MES','COM','STATUS','TIPO','SERVICIO','COND.','COMENTARIOS', 'RUC'].includes(campo.key)"
-                           [type]="campo.key === 'FECHA_REGULARIZADA' || campo.key === 'FECHA_HORA_TRANSMISION' ? 'datetime-local' : 
-                        (campo.key.includes('FECHA') || campo.key === 'ATA' || campo.key === 'ATD' ? 'date' : 'text')"
-                      [(ngModel)]="carga[campo.key]" [name]="campo.key" />
-            <input *ngIf="['RUC'].includes(campo.key)" [(ngModel)]="carga[campo.key]" [name]="campo.key" disabled/>
+      <form (ngSubmit)="guardarRegistro()">
+        <div class="modal-body">
+          <div class="cont-form-nr">
+            <div class="form-group" *ngFor="let campo of campos">
+              <label>{{ campo.label }}:</label>
+            
+              <!-- Campos con valores predefinidos -->
+              <select *ngIf="['MES','COM','STATUS','TIPO','SERVICIO','COND.'].includes(campo.key)"
+                      [(ngModel)]="carga[campo.key]" [name]="campo.key">
+                <option *ngFor="let valor of obtenerValoresPorCampo(campo.key)" [value]="valor">{{ valor }}</option>
+              </select>
+            
+              <!-- Campo comentarios -->
+              <textarea *ngIf="campo.key === 'COMENTARIOS'"
+                        [(ngModel)]="carga[campo.key]" [name]="campo.key"></textarea>
+            
+              <!-- Otros campos -->
+              <input *ngIf="!['MES','COM','STATUS','TIPO','SERVICIO','COND.','COMENTARIOS', 'RUC'].includes(campo.key)"
+                            [type]="campo.key === 'FECHA_REGULARIZADA' || campo.key === 'FECHA_HORA_TRANSMISION' ? 'datetime-local' : 
+                          (campo.key.includes('FECHA') || campo.key === 'ATA' || campo.key === 'ATD' ? 'date' : 'text')"
+                        [(ngModel)]="carga[campo.key]" [name]="campo.key" />
+              <input *ngIf="['RUC'].includes(campo.key)" [(ngModel)]="carga[campo.key]" [name]="campo.key" disabled/>
+            </div>
           </div>
         </div>
-        <div class="actions">
+        <div class="modal-footer">
+          <div class="actions">
           <button class="btn-solid add" type="submit">
             <span>{{ modoEdicion ? 'Modificar' : 'Guardar' }}</span>
             <span class="material-symbols-outlined">save</span>
@@ -45,8 +47,8 @@
             <span class="material-symbols-outlined">close</span>
           </button>
         </div>
-      </form>
-      </div>
+        </div>
+    </form>
     
     </div>
   </div>

@@ -9,8 +9,8 @@
       <h3>Nuevo Registro</h3>
       <button class="cerrar-modal" (click)="cerrarModal()"><span class="material-symbols-outlined">close</span></button>
     </div>
-    <div class="modal-body">
-      <form (ngSubmit)="guardarRegistro()">
+    <form (ngSubmit)="guardarRegistro()">
+      <div class="modal-body">
         <div class="cont-form-nr">
           <div class="form-group" *ngFor="let campo of campos">
             <label>{{ campo.label }}:</label>
@@ -33,6 +33,8 @@
      
           </div>
         </div>
+      </div>
+      <div class="modal-footer">
         <div class="actions">
           <button class="btn-solid add" type="submit">
           <span>{{ modoEdicion ? 'Modificar' : 'Guardar' }}</span>
@@ -43,9 +45,8 @@
           <span class="material-symbols-outlined">close</span>
         </button>
         </div>
+      </div>
       </form>
-    </div>
-    
   </div>
 </div>
 <hr>
